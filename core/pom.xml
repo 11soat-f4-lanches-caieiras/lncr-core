@@ -7,13 +7,13 @@
     <artifactId>core</artifactId>
     <version>3.0</version>
     <packaging>jar</packaging>
-    <distributionManagement>
+   <!-- <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/11soat-f4-lanches-caieiras/lncr-core</url>
         </repository>
-    </distributionManagement>
+    </distributionManagement>-->
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -52,6 +52,9 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

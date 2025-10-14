@@ -19,5 +19,7 @@ public class DeleteCustomerUseCase {
         if (customer == null) {
             throw new CustomerException("Cliente não encontrado com o ID: " + id, 404);
         }
+        customerGateway.deleteCustomerById(id);
+        Logger.info("Cliente com ID: " + id + " excluído com sucesso.");
     }
 }
