@@ -7,8 +7,6 @@ import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderCustomerDTO;
 import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
 import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderFoodItemDTO;
 
-import java.util.stream.Collectors;
-
 public class CustomerOrderMapper {
     public  CustomerOrderDTO customerOrderToDTO(CustomerOrder order) {
         if (order == null) return null;
@@ -16,13 +14,13 @@ public class CustomerOrderMapper {
         dto.setId(order.getId());
         dto.setStatus(order.getStatus());
         dto.setTotalCost(order.getTotalCost());
-        dto.set_created(order.get_created());
-        dto.set_updated(order.get_updated());
+        dto.setCreated(order.getCreated());
+        dto.setUpdated(order.getUpdated());
         if (order.getCustomer() != null) {
             dto.setCustomer(customerInOrderToDTO(order.getCustomer()));
         }
         if (order.getFoodItems() != null) {
-            dto.setFoodItems(order.getFoodItems().stream().map(this::foodItemInOrderToDTO).collect(Collectors.toList()));
+            dto.setFoodItems(order.getFoodItems().stream().map(this::foodItemInOrderToDTO).toList());
         }
         return dto;
     }
@@ -32,13 +30,13 @@ public class CustomerOrderMapper {
         CustomerOrder order = new CustomerOrder();
         order.setId(dto.getId());
         order.setStatus(dto.getStatus());
-        order.set_created(dto.get_created());
-        order.set_updated(dto.get_updated());
+        order.setCreated(dto.getCreated());
+        order.setUpdated(dto.getUpdated());
         if (dto.getCustomer() != null) {
             order.setCustomer(customerInOrderToDomain(dto.getCustomer()));
         }
         if (dto.getFoodItems() != null) {
-            order.setFoodItems(dto.getFoodItems().stream().map(this::foodItemInOrderToDomain).collect(Collectors.toList()));
+            order.setFoodItems(dto.getFoodItems().stream().map(this::foodItemInOrderToDomain).toList());
             order.setTotalCost();
         }
         if (dto.getTotalCost() != null || order.getTotalCost() != null){

@@ -33,14 +33,14 @@ public class CustomerOrderDTO {
     public Double getTotalCost() { return totalCost; }
     public void setTotalCost(Double totalCost) { this.totalCost = totalCost; }
 
-    public LocalDateTime get_created() { return _created; }
-    public void set_created(LocalDateTime _created) { this._created = _created; }
+    public LocalDateTime getCreated() { return _created; }
+    public void setCreated(LocalDateTime _created) { this._created = _created; }
 
-    public LocalDateTime get_updated() {
+    public LocalDateTime getUpdated() {
         return _updated;
     }
 
-    public void set_updated(LocalDateTime _updated) {
+    public void setUpdated(LocalDateTime _updated) {
         this._updated = _updated;
     }
 

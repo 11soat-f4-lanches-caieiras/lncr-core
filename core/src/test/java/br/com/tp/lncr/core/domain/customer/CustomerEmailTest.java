@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.exceptions.CustomerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerEmailTest {
+class CustomerEmailTest {
     @Test
     void testValidEmail() {
         CustomerEmail email = new CustomerEmail("teste@email.com");

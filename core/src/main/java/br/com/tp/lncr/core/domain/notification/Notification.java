@@ -59,11 +59,11 @@ public class Notification {
         this.message = message;
     }
 
-    public LocalDateTime get_created() {
+    public LocalDateTime getCreated() {
         return _created;
     }
 
-    public void set_created(LocalDateTime _created) {
+    public void setCreated(LocalDateTime _created) {
         this._created = _created;
     }
 

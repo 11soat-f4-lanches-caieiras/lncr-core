@@ -15,11 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FoodItemMapperTest {
     private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
     private final FoodItemImage IMAGE = new FoodItemImage(null,1, BASE64_PNG, null, null, null, null);
     private final List<FoodItemImage> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE));
-    private final List<FoodItemImageDTO> IMAGES_DTO = new ArrayList<>(Collections.singletonList(IMAGE_DTO));
-    private final FoodItemDTO ITEM_DTO = new FoodItemDTO(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH.getDescription(), IMAGES_DTO);
     private final FoodItem ITEM = new FoodItem(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH, IMAGES);
 
     @Test

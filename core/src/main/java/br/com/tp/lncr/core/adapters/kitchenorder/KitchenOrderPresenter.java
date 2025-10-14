@@ -20,13 +20,11 @@ public class KitchenOrderPresenter {
     }
 
     public KitchenOrderDTO getById(KitchenOrder kitchenOrder) {
-        clearKitchenOrderIdInFoodItem(kitchenOrder);
-        return kitchenOrderMapper.kitchenOrderToDTO(kitchenOrder);
+        return created(kitchenOrder);
     }
 
     public KitchenOrderDTO getByCustomerOrderId(KitchenOrder kitchenOrder) {
-        clearKitchenOrderIdInFoodItem(kitchenOrder);
-        return kitchenOrderMapper.kitchenOrderToDTO(kitchenOrder);
+        return created(kitchenOrder);
     }
 
     public List<KitchenOrderDTO> getByStatusList(List<KitchenOrder> kitchenOrderList, List<String> statusList) {
@@ -38,9 +36,7 @@ public class KitchenOrderPresenter {
 
     private void clearKitchenOrderIdInFoodItem(KitchenOrder kitchenOrder) {
         if (kitchenOrder.getFoodItems() != null && !kitchenOrder.getFoodItems().isEmpty()) {
-            kitchenOrder.getFoodItems().forEach(foodItem -> {
-                foodItem.setKitchenOrderId(null);
-            });
+            kitchenOrder.getFoodItems().forEach(foodItem -> foodItem.setKitchenOrderId(null));
         }
     }
 }

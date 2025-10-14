@@ -17,8 +17,8 @@ public class PaymentMercadopagoQRMapper {
             entity.getAmount(),
             entity.getPaymentProvider(),
             entity.getPaymentMethod(),
-            entity.get_created(),
-            entity.get_updated(),
+            entity.getCreated(),
+            entity.getUpdated(),
             entity.getExternalPaymentId(),
             entity.getQrData(),
             entity.getMeliId() != null ? entity.getMeliId() : null

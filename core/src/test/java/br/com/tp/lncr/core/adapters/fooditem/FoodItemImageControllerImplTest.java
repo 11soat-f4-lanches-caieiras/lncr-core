@@ -33,7 +33,6 @@ class FoodItemImageControllerImplTest {
         Mockito.when(foodItemImageRules.getImageMaxSize()).thenReturn(5 * 1024 * 1024); // 5 MB
         Mockito.when(foodItemImageRules.getMaxNumberOfImages()).thenReturn(5);
         Mockito.when(foodItemImageRules.getAllowedExtentions()).thenReturn(allowedExtensions);
-        FoodItemImageDTO image = new FoodItemImageDTO(1, 1, BASE64_PNG, null, "11.png", ".png", null);
         FoodItemImageDTO oldimage = new FoodItemImageDTO(1, 1, BASE64_PNG, null, "11.jpg", ".jpg", null);
         Mockito.when(foodItemDatabase.findFoodItemImageById(1)).thenReturn(oldimage);
         Mockito.when(foodItemDatabase.save(Mockito.any(FoodItemImageDTO.class))).thenReturn(IMAGE_DTO);

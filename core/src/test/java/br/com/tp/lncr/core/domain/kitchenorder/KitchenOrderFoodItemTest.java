@@ -3,7 +3,7 @@ package br.com.tp.lncr.core.domain.kitchenorder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class KitchenOrderFoodItemTest {
+class KitchenOrderFoodItemTest {
     @Test
     void testConstructorAndGetters() {
         KitchenOrderFoodItem item = new KitchenOrderFoodItem(1, 2, "Coxinha", "Salgado", "Sem pimenta");

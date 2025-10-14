@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderFoodItemDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerOrderFoodItemTest {
+class CustomerOrderFoodItemTest {
     @Test
     void testConstructorAndGetters() {
         CustomerOrderFoodItem item = new CustomerOrderFoodItem(1, 10, "Coxinha", "Salgado de frango", 7.5, "Sem pimenta");

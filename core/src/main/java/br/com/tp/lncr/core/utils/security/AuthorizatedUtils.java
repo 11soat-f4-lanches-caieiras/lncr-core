@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class AuthorizatedUtils {
 
+    private AuthorizatedUtils() {
+    }
+
     public static Boolean isAuthorizedResult(Map<String, Object> allowResourcesRules, String scope, String method, String path) {
         Boolean result = false;
         if (allowResourcesRules.containsKey(scope)) {

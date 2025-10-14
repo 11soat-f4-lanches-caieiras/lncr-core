@@ -5,6 +5,9 @@ import br.com.tp.lncr.core.interfaces.EnumWithIdDescription;
 import java.util.function.Function;
 
 public class EnumUtils {
+    private EnumUtils() {
+    }
+
     public static <E extends Enum<E> & EnumWithIdDescription> E fromId(Class<E> enumClass, int id, RuntimeException exception) {
         for (E e : enumClass.getEnumConstants()) {
             if (e.getId() == id) {
@@ -26,7 +29,7 @@ public class EnumUtils {
     public static <E extends Enum<E> & EnumWithIdDescription> String listOfAllowIds(Class<E> enumClass) {
         StringBuilder sb = new StringBuilder();
         for (E e : enumClass.getEnumConstants()) {
-            if (sb.length() > 0) sb.append(",");
+            if (!sb.isEmpty()) sb.append(",");
             sb.append(e.getId());
         }
         return sb.toString();
@@ -35,19 +38,20 @@ public class EnumUtils {
     public static <E extends Enum<E> & EnumWithIdDescription> String listOfAllowDescriptions(Class<E> enumClass) {
         StringBuilder sb = new StringBuilder();
         for (E e : enumClass.getEnumConstants()) {
-            if (sb.length() > 0) sb.append(", ");
+            if (!sb.isEmpty()) sb.append(", ");
             sb.append(e.getDescription());
         }
         return sb.toString();
     }
 
     public static <E extends Enum<E> & EnumWithIdDescription, X extends RuntimeException> String validateNewStatusRules(Class<E> enumClass, String actualStatus, String newStatus, Boolean forceUpdate, Function<String, X> exceptionSupplier) {
-        newStatus = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply("Status inválido: " + newStatus)).getDescription();
-        if (forceUpdate == true || actualStatus.equalsIgnoreCase(newStatus)) {
-            return newStatus;
+        String INVALID_STATUS = "Status inválido: ";
+        String forcedStatus = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(INVALID_STATUS + newStatus)).getDescription();
+        if (Boolean.TRUE.equals(forceUpdate) || actualStatus.equalsIgnoreCase(newStatus)) {
+            return forcedStatus;
         } else {
-            Integer actualStatusId = EnumUtils.fromDescription(enumClass, actualStatus, exceptionSupplier.apply("Status inválido: " + actualStatus)).getId();
-            Integer newStatusId = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply("Status inválido: " + newStatus)).getId();
+            Integer actualStatusId = EnumUtils.fromDescription(enumClass, actualStatus, exceptionSupplier.apply(INVALID_STATUS + actualStatus)).getId();
+            Integer newStatusId = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(INVALID_STATUS + newStatus)).getId();
             if (actualStatusId + 1 == newStatusId) {
                 return newStatus;
             } else {

@@ -22,7 +22,7 @@ class GetFoodItemImageUseCaseTest {
     void testGetFoodItemImage() {
         FoodItemImage image = mock(FoodItemImage.class);
         when(image.getFileName()).thenReturn("test-image.png");
-        when(image.get_data()).thenReturn("base64ImageData"); // Adiciona mock para _data
+        when(image.getData()).thenReturn("base64ImageData"); // Adiciona mock para _data
         when(gateway.getFoodItemImageById(anyInt())).thenReturn(image);
 
         FoodItemImage result = useCase.getById(1);

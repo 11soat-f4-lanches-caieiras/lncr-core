@@ -36,7 +36,7 @@ public class FoodItemImagePresenter {
         foodItemImageDTO.setFoodItemId(null);
         foodItemImageDTO.setFileName(null);
         foodItemImageDTO.setFileExtension(null);
-        if (includeData == true) {
+        if (Boolean.TRUE.equals(includeData)) {
             foodItemImageDTO.setLocation(null);
         } else {
             foodItemImageDTO.setLocation(location);
@@ -46,7 +46,7 @@ public class FoodItemImagePresenter {
 
     private List<FoodItemImageDTO> foodItemImageDTOList(List<FoodItemImageDTO> foodItemImageDTOList, String imageLocationPrefix, Boolean includeData) {
         for (FoodItemImageDTO image : foodItemImageDTOList) {
-            image = formatFoodItemImageDTO(image, imageLocationPrefix, includeData);
+            formatFoodItemImageDTO(image, imageLocationPrefix, includeData);
         }
         return foodItemImageDTOList;
     }

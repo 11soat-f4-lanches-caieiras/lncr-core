@@ -4,6 +4,6 @@ import java.time.LocalDateTime;
 
 //Interface para ordernar classes por status e data de criação
 public interface SortedByStatusCreated {
-    LocalDateTime get_created();
+    LocalDateTime getCreated();
     String getStatus();
 }

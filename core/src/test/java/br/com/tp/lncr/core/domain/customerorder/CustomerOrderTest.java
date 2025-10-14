@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-public class CustomerOrderTest {
+class CustomerOrderTest {
     @Test
     void testConstructorAndGetters() {
         CustomerOrderCustomer customer = new CustomerOrderCustomer(1, "Cliente Teste");
@@ -48,8 +48,8 @@ public class CustomerOrderTest {
         dto.setId(30);
         dto.setStatus(CustomerOrderStatus.RECEIVED.getDescription());
         dto.setTotalCost(10.0);
-        dto.set_created(LocalDateTime.now());
-        dto.set_updated(LocalDateTime.now());
+        dto.setCreated(LocalDateTime.now());
+        dto.setUpdated(LocalDateTime.now());
         CustomerOrderCustomerDTO customerDTO = new CustomerOrderCustomerDTO();
         customerDTO.setId(3);
         customerDTO.setName("DTO Cliente");
@@ -76,8 +76,8 @@ public class CustomerOrderTest {
         dto.setId(40);
         dto.setStatus(CustomerOrderStatus.RECEIVED.getDescription());
         dto.setTotalCost(10.0);
-        dto.set_created(LocalDateTime.now());
-        dto.set_updated(LocalDateTime.now());
+        dto.setCreated(LocalDateTime.now());
+        dto.setUpdated(LocalDateTime.now());
         dto.setFoodItems(Collections.emptyList());
         Assertions.assertThrows(CustomerOrderException.class, () -> new CustomerOrder(dto));
     }

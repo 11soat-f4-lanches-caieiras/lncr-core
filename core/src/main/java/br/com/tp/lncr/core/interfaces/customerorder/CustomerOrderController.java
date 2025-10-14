@@ -14,14 +14,4 @@ public interface CustomerOrderController {
 
     CustomerOrderDTO updateStatusById(CustomerOrderDatabase customerOrderDatabase, Integer customerOrderId, String newStatus, Boolean forceUpdate);
 
-    /*CustomerOrderDTO getCustomerOrderById(Integer id, Boolean includeFoodItems);
-
-    List<CustomerOrderDTO> getCustomerOrderByStatus(String status, Boolean includeFoodItems);
-
-    List<CustomerOrderDTO> getAllCustomerOrders(String status, Boolean includeFoodItems);
-
-    CustomerOrderDTO updateOrderStatusById(Integer id, String newStatus, Boolean forceUpdate);*/
-
-
-
 }

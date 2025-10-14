@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.domain.customer.Customer;
 import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
 import br.com.tp.lncr.core.exceptions.CustomerException;
 import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class PartialUpdateCustomerUseCase {
 
@@ -15,13 +15,13 @@ public class PartialUpdateCustomerUseCase {
     }
 
     public Customer execute(Integer id, CustomerDTO customerDto) {
-        Logger.info("Iniciando atualização parcial do cliente com ID: " + id);
+        LoggerUtil.info("Iniciando atualização parcial do cliente com ID: " + id);
         Customer updatedCustomer = new Customer(id,customerDto.getDocumentNumber(),customerDto.getName(),customerDto.getEmail());
         validateExistsCustomerByDocumentNumberAndEmail(updatedCustomer);
         Customer actualCustomer = getById(id);
         mergeCustomerDto(actualCustomer, customerDto);
         updatedCustomer = customerGateway.save(actualCustomer);
-        Logger.info("Finalizando atualização parcial do cliente com ID: " + id);
+        LoggerUtil.info("Finalizando atualização parcial do cliente com ID: " + id);
         return updatedCustomer;
     }
 
@@ -39,14 +39,14 @@ public class PartialUpdateCustomerUseCase {
     }
 
     private void existsByDocumentNumber(Customer updatedCustomer) {
-        Logger.debug("Verificando se já existe cliente com o mesmo número de documento: " + updatedCustomer.getDocumentNumber());
+        LoggerUtil.debug("Verificando se já existe cliente com o mesmo número de documento: " + updatedCustomer.getDocumentNumber());
         if (updatedCustomer.getDocumentNumber() != null && customerGateway.existsByDocumentNumber(updatedCustomer.getDocumentNumber())) {
             throw new CustomerException("Cliente já cadastrado com o mesmo número de documento: " + updatedCustomer.getDocumentNumber(), 409);
         }
     }
 
     private void existsByEmail(Customer updatedCustomer) {
-        Logger.debug("Verificando se já existe cliente com o mesmo número de documento: " + updatedCustomer.getDocumentNumber());
+        LoggerUtil.debug("Verificando se já existe cliente com o mesmo número de documento: " + updatedCustomer.getDocumentNumber());
         if (updatedCustomer.getEmail() !=null && customerGateway.existsByEmail(updatedCustomer.getEmail())) {
             throw new CustomerException("Cliente já cadastrado com o mesmo e-mail: " + updatedCustomer.getEmail(), 409);
         }

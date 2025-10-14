@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class FoodItemTest {
+class FoodItemTest {
     @Test
     void testConstructorAndGetters() {
         FoodItemImage image = new FoodItemImage(1, 1, "data", "location", "file.png", "png", null);

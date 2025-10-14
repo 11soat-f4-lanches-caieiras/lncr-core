@@ -18,8 +18,8 @@ public class CustomerEmail {
 
     public boolean emailIsValid(String value) {
         if (value == null) throw new CustomerException("Email não informado. Informe um email válido", 400);
-        String emailRegex = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$";
-        return value != null && value.matches(emailRegex);
+        String emailRegex = "^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$";
+        return value.matches(emailRegex);
     }
 
     @Override

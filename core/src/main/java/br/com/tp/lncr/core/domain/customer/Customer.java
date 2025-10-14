@@ -3,10 +3,10 @@ package br.com.tp.lncr.core.domain.customer;
 import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
 
 public class Customer {
-    public Integer id;
-    public CustomerCPF documentNumber;
-    public String name;
-    public CustomerEmail email;
+    private Integer id;
+    private CustomerCPF documentNumber;
+    private String name;
+    private CustomerEmail email;
 
     public Customer() {
     }

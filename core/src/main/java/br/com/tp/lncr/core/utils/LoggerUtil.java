@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
-public class Logger {
+public class LoggerUtil {
     public enum Level {
         INFO, DEBUG, ERROR
     }
+
+    static Logger logger = Logger.getLogger(LoggerUtil.class.getName());
 
     private static final String LOG_FILE = "../../application.log";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
@@ -21,9 +24,9 @@ public class Logger {
                 level,
                 PID,
                 Thread.currentThread().getName(),
-                Logger.class.getSimpleName(),
+                LoggerUtil.class.getSimpleName(),
                 message);
-        System.out.println(logMessage);
+        logger.info(logMessage);
         writeToFile(logMessage);
     }
 
@@ -43,7 +46,7 @@ public class Logger {
         try (FileWriter fw = new FileWriter(LOG_FILE, true); PrintWriter pw = new PrintWriter(fw)) {
             pw.println(message);
         } catch (IOException e) {
-            System.err.println("Erro ao escrever no arquivo de log: " + e.getMessage());
+            error("Erro ao escrever no arquivo de log: " + e.getMessage());
         }
     }
 

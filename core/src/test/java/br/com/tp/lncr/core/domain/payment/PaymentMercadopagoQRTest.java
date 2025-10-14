@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-public class PaymentMercadopagoQRTest {
+class PaymentMercadopagoQRTest {
     @Test
     void testConstructorAndGetters() {
         PaymentMercadopagoQR payment = new PaymentMercadopagoQR(1, 10, "Aprovado", 50.0, "ext123", LocalDateTime.now(), LocalDateTime.now(), "meli123", "qrdata");

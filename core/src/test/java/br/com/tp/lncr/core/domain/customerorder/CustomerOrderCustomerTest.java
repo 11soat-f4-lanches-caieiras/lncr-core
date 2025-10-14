@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderCustomerDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerOrderCustomerTest {
+class CustomerOrderCustomerTest {
     @Test
     void testConstructorAndGetters() {
         CustomerOrderCustomer customer = new CustomerOrderCustomer(1, "Cliente Teste");

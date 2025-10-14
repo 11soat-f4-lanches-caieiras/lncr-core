@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.exceptions.CustomerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerCPFTest {
+class CustomerCPFTest {
     @Test
     void testValidCPF() {
         CustomerCPF cpf = new CustomerCPF("12345678909");

@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.domain.kitchenorder.KitchenOrder;
 import br.com.tp.lncr.core.enums.KitchenOrderStatus;
 import br.com.tp.lncr.core.exceptions.KitchenOrderException;
 import br.com.tp.lncr.core.interfaces.kitchenorder.KitchenOrderGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class UpdateKitchenOrderUseCase {
 
@@ -15,52 +15,54 @@ public class UpdateKitchenOrderUseCase {
     }
 
     public KitchenOrder updateStatus(Integer kitchenOrderId, String newStatus, Boolean forceUpdate, Boolean updateCustomerOrder) {
-        Logger.info("Iniciando atualização de preparo, id: " + kitchenOrderId + ", novo status: " + newStatus + ", forçar atualização: " + forceUpdate + ", atualizar pedido do cliente: " + updateCustomerOrder);
+        String SUFIX_MESSAGE = ", novo status: ";
+        LoggerUtil.info("Iniciando atualização de preparo, id: " + kitchenOrderId + SUFIX_MESSAGE + newStatus + ", forçar atualização: " + forceUpdate + ", atualizar pedido do cliente: " + updateCustomerOrder);
         KitchenOrder kitchenOrder = kitchenOrderGateway.getKitchenOrderById(kitchenOrderId);
         if (kitchenOrder != null) {
             kitchenOrder.setStatus(newStatus, forceUpdate);
             kitchenOrder = this.kitchenOrderGateway.saveKitchenOrder(kitchenOrder);
             updateCustomerOrder(kitchenOrder, updateCustomerOrder);
             sendNotification(kitchenOrder);
-            Logger.info("Preparo atualizado com sucesso, id: " + kitchenOrderId + ", novo status: " + newStatus);
+            LoggerUtil.info("Preparo atualizado com sucesso, id: " + kitchenOrderId + SUFIX_MESSAGE + newStatus);
             return kitchenOrder;
         }
          throw new KitchenOrderException("Não encontrado preparo para o id:" + kitchenOrderId, 404);
     }
     private void updateCustomerOrder(KitchenOrder kitchenOrder, Boolean updateCustomerOrder) {
-        Logger.debug("Atualizando status do pedido do cliente, id: " + kitchenOrder.getCustomerOrderId() + ", novo status: " + kitchenOrder.getStatus() + ", atualizar pedido do cliente: " + updateCustomerOrder);
-        if (updateCustomerOrder)
-            if (kitchenOrder.getStatus().equals(KitchenOrderStatus.PREPARING.getDescription()) ||
-                kitchenOrder.getStatus().equals(KitchenOrderStatus.READY.getDescription()))
+        LoggerUtil.debug("Atualizando status do pedido do cliente, id: " + kitchenOrder.getCustomerOrderId() + ", novo status: " + kitchenOrder.getStatus() + ", atualizar pedido do cliente: " + updateCustomerOrder);
+        if (Boolean.TRUE.equals(updateCustomerOrder) && (kitchenOrder.getStatus().equals(KitchenOrderStatus.PREPARING.getDescription()) ||
+                kitchenOrder.getStatus().equals(KitchenOrderStatus.READY.getDescription())))
                    this.kitchenOrderGateway.updateCustomerOrderStatus(kitchenOrder.getCustomerOrderId(), kitchenOrder.getStatus());
     }
 
     private void sendNotification(KitchenOrder kitchenOrder) {
-        Logger.debug("Enviando notificação para o preparo, id: " + kitchenOrder.getId() + ", status: " + kitchenOrder.getStatus());
         if (kitchenOrder == null) return;
+        LoggerUtil.debug("Enviando notificação para o preparo, id: " + kitchenOrder.getId() + ", status: " + kitchenOrder.getStatus());
         Integer customerOrderId = kitchenOrder.getId();
         String  notificationType = null;
         String  message = null;
+        String PREFIX_MESSAGE = "Preparo com id: ";
         switch (kitchenOrder.getStatus().toUpperCase()) {
             case "PREPARING":
                 notificationType = "KITCHEN_ORDER_PREPARING";
-                message = "Preparo com id: " + customerOrderId + " iniciado.";
+                message = PREFIX_MESSAGE + customerOrderId + " iniciado.";
                 break;
             case "READY":
                 notificationType = "KITCHEN_ORDER_READY";
-                message = "Preparo com id: " + customerOrderId + " pronto.";
+                message = PREFIX_MESSAGE + customerOrderId + " pronto.";
                 break;
             case "FINISEHD":
                 notificationType = "KITCHEN_ORDER_FINISHED";
-                message = "Preparo com id: " + customerOrderId + " finalizado.";
+                message = PREFIX_MESSAGE + customerOrderId + " finalizado.";
                 break;
             case "CANCELLED":
                 notificationType = "KITCHEN_ORDER_CANCELLED";
-                message = "Preparo com id: " + customerOrderId + " cancelado.";
+                message = PREFIX_MESSAGE + customerOrderId + " cancelado.";
+                break;
             default:
                 break;
         }
-        if (notificationType!= null  && message != null)
+        if (notificationType != null)
             this.kitchenOrderGateway.sendNotification(notificationType,customerOrderId,message);
     }
 }

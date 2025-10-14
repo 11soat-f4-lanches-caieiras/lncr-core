@@ -57,7 +57,7 @@ class CustomerOrderControllerImplTest {
 
     @Test
     void testGetById() {
-        when(customerOrderDatabase.findCustomerOrderById(eq(1), eq(true))).thenReturn(customerOrderDTO);
+        when(customerOrderDatabase.findCustomerOrderById((1), eq(true))).thenReturn(customerOrderDTO);
 
         CustomerOrderDTO result = controller.getById(customerOrderDatabase, 1, true);
         assertNotNull(result);
@@ -71,7 +71,7 @@ class CustomerOrderControllerImplTest {
         List<CustomerOrderFoodItem> foodItems = List.of(new CustomerOrderFoodItem(1,1,"Pizza","Pizza", 12.99, "PIZZA"));
         List<Integer> statusListIds = List.of(1, 2,3,4,5,6);
         CustomerOrder actualCustomerOrder = new CustomerOrder(1,"READY", 25.99, LocalDateTime.now(), null, null, foodItems);
-        when(customerOrderGateway.getCustomerOrderByStatusList(eq(statusListIds), eq(true))).thenReturn(List.of(actualCustomerOrder));
+        when(customerOrderGateway.getCustomerOrderByStatusList((statusListIds), eq(true))).thenReturn(List.of(actualCustomerOrder));
 
         GetCustomerOrderUseCase getCustomerOrderUseCase = new GetCustomerOrderUseCase(customerOrderGateway);
         List<CustomerOrder> result = getCustomerOrderUseCase.getByStatusList(statusList, true);

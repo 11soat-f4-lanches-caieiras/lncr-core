@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.domain.customer.Customer;
 import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
 import br.com.tp.lncr.core.exceptions.CustomerException;
 import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class CreateCustomerUseCase {
 
@@ -15,10 +15,10 @@ public class CreateCustomerUseCase {
     }
 
     public Customer execute(CustomerDTO customerDTO) {
-        Logger.info("Iniciando criação de cliente: " + customerDTO.getName());
+        LoggerUtil.info("Iniciando criação de cliente: " + customerDTO.getName());
         Customer customer = new Customer(customerDTO);
         validateExistsFields(customer, customerGateway);
-        Logger.info("Finalizando criação de cliente: " + customerDTO.getName());
+        LoggerUtil.info("Finalizando criação de cliente: " + customerDTO.getName());
         return customerGateway.save(customer);
     }
 
@@ -28,14 +28,14 @@ public class CreateCustomerUseCase {
     }
 
     private void existsByDocumentNumber(Customer customer, CustomerGateway customerGateway) {
-        Logger.debug("Verificando se o cliente já existe pelo número de documento: " + customer.getDocumentNumber());
+        LoggerUtil.debug("Verificando se o cliente já existe pelo número de documento: " + customer.getDocumentNumber());
         if (customerGateway.existsByDocumentNumber(customer.getDocumentNumber())) {
             throw new CustomerException("Cliente já cadastrado com o mesmo número de documento: " + customer.getDocumentNumber(), 409);
         }
     }
 
     private void existsByEmail(Customer customer, CustomerGateway customerGateway) {
-        Logger.debug("Verificando se o cliente já existe pelo e-mail: " + customer.getEmail());
+        LoggerUtil.debug("Verificando se o cliente já existe pelo e-mail: " + customer.getEmail());
         if (customerGateway.existsByEmail(customer.getEmail())) {
             throw new CustomerException("Cliente já cadastrado com o mesmo e-mail: " + customer.getEmail(), 409);
         }

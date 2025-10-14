@@ -19,7 +19,10 @@ class EnumUtilsTest {
     @Test
     void testFromId() {
         assertEquals(TestEnum.UM, EnumUtils.fromId(TestEnum.class, 1, new RuntimeException()));
-        assertThrows(RuntimeException.class, () -> EnumUtils.fromId(TestEnum.class, 99, new RuntimeException()));
+        assertThrows(RuntimeException.class, () -> {
+            RuntimeException ex = new RuntimeException();
+            EnumUtils.fromId(TestEnum.class, 99, ex);
+        });
     }
 
     @Test

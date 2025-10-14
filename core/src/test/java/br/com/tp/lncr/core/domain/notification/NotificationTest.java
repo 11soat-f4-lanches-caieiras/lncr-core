@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-public class NotificationTest {
+class NotificationTest {
     @Test
     void testConstructorAndGetters() {
         Notification notification = new Notification(1, "ORDER", 10, "Pedido criado", LocalDateTime.now());
@@ -14,7 +14,7 @@ public class NotificationTest {
         Assertions.assertEquals("ORDER", notification.getNotificationType());
         Assertions.assertEquals(10, notification.getArtefactId());
         Assertions.assertEquals("Pedido criado", notification.getMessage());
-        Assertions.assertNotNull(notification.get_created());
+        Assertions.assertNotNull(notification.getCreated());
     }
 
     @Test
@@ -24,12 +24,12 @@ public class NotificationTest {
         notification.setNotificationType("KITCHEN");
         notification.setArtefactId(30);
         notification.setMessage("Pedido pronto");
-        notification.set_created(LocalDateTime.now());
+        notification.setCreated(LocalDateTime.now());
         Assertions.assertEquals(3, notification.getId());
         Assertions.assertEquals("KITCHEN", notification.getNotificationType());
         Assertions.assertEquals(30, notification.getArtefactId());
         Assertions.assertEquals("Pedido pronto", notification.getMessage());
-        Assertions.assertNotNull(notification.get_created());
+        Assertions.assertNotNull(notification.getCreated());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class NotificationTest {
         Assertions.assertEquals("ORDER", notification.getNotificationType());
         Assertions.assertEquals(40, notification.getArtefactId());
         Assertions.assertEquals("Novo pedido", notification.getMessage());
-        Assertions.assertNotNull(notification.get_created());
+        Assertions.assertNotNull(notification.getCreated());
     }
 }
 

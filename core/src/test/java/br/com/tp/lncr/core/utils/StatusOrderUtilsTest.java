@@ -19,7 +19,7 @@ class StatusOrderUtilsTest {
             this.created = created;
         }
         public String getStatus() { return status; }
-        public LocalDateTime get_created() { return created; }
+        public LocalDateTime getCreated() { return created; }
     }
 
     @Test

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class KitchenOrderTest {
+ class KitchenOrderTest {
     @Test
     void testConstructorAndGetters() {
         KitchenOrderFoodItem item = new KitchenOrderFoodItem(1, 10, "Coxinha", "Salgado", "Sem pimenta");

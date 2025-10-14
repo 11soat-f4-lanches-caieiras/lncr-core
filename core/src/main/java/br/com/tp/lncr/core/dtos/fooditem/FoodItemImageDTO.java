@@ -38,11 +38,11 @@ public class FoodItemImageDTO {
         this.foodItemId = foodItemId;
     }
 
-    public String get_data() {
+    public String getData() {
         return _data;
     }
 
-    public void set_data(String _data) {
+    public void setData(String _data) {
         this._data = _data;
     }
 

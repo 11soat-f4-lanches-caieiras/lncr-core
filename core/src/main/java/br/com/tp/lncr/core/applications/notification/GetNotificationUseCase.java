@@ -3,7 +3,7 @@ package br.com.tp.lncr.core.applications.notification;
 import br.com.tp.lncr.core.domain.notification.Notification;
 import br.com.tp.lncr.core.exceptions.NotificationException;
 import br.com.tp.lncr.core.interfaces.notification.NotificationGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ public class GetNotificationUseCase {
     }
 
     public List<Notification> getByType(String notificationType) {
-        Logger.info("Iniciando busca de notificações pelo tipo: " + notificationType);
+        LoggerUtil.info("Iniciando busca de notificações pelo tipo: " + notificationType);
         List<Notification> notifications = notificationGateway.getNotificationsByType(notificationType);
         if (notifications == null || notifications.isEmpty()) {
             throw new NotificationException("Não encontrada notificações para o tipo: " + notificationType,404);
         }
-        Logger.info("Notificações encontradas com sucesso, tipo: " + notificationType);
+        LoggerUtil.info("Notificações encontradas com sucesso, tipo: " + notificationType);
         return notifications;
     }
 
     public List<String> getTypeList() {
-        Logger.info("Buscando tipos de notificações");
+        LoggerUtil.info("Buscando tipos de notificações");
         return notificationGateway.getNotificationTypesList();
     }
 }

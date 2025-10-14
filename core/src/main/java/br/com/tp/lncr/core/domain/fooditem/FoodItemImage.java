@@ -3,6 +3,7 @@ package br.com.tp.lncr.core.domain.fooditem;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.exceptions.FoodItemException;
 import br.com.tp.lncr.core.utils.FoodItemImageRules;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 import java.util.Base64;
 import java.util.Map;
@@ -10,13 +11,13 @@ import java.util.Map;
 
 public class FoodItemImage {
 
-    public Integer id;
-    public Integer foodItemId;
-    public String _data;
-    public String location;
-    public String fileName;
-    public String fileExtension;
-    public String imageError;
+    private Integer id;
+    private Integer foodItemId;
+    private String _data;
+    private String location;
+    private String fileName;
+    private String fileExtension;
+    private String imageError;
 
     public FoodItemImage() {
     }
@@ -29,7 +30,7 @@ public class FoodItemImage {
         if (foodItemImageDTO != null) {
             this.id = foodItemImageDTO.getId();
             this.foodItemId = foodItemImageDTO.getFoodItemId();
-            this._data = foodItemImageDTO.get_data();
+            this._data = foodItemImageDTO.getData();
             this.location = foodItemImageDTO.getLocation();
             if (foodItemImageDTO.getFileName() != null) {
                 this.fileName = foodItemImageDTO.getFileName();
@@ -72,11 +73,11 @@ public class FoodItemImage {
         this.foodItemId = foodItemId;
     }
 
-    public String get_data() {
+    public String getData() {
         return _data;
     }
 
-    public void set_data(String _data) {
+    public void setData(String _data) {
         this._data = _data;
     }
 
@@ -126,7 +127,7 @@ public class FoodItemImage {
 
     public void validateImageSize(String _base64, Integer maxSizeInBytes) {
         if (getDecodeImageData(_base64).length > maxSizeInBytes) {
-            //log.info("Tamanho da imagem excede o limite de {} bytes", maxSizeInBytes);
+            LoggerUtil.info("Tamanho da imagem excede o limite de "+ maxSizeInBytes + " bytes");
             this.imageError = "Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes"; //Adiciona mensagem de erro de tamanho inválid para o usuário
             throw new FoodItemException("Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes", 404);
         }
@@ -140,7 +141,7 @@ public class FoodItemImage {
             }
         }
         if (this.fileExtension == null) {
-            //log.info("Imagens inválidas. Extensões permitidas: {}", allowedExtensions);
+            LoggerUtil.info("Imagens inválidas. Extensões permitidas: "+ allowedExtensions);
             this.imageError = "Encontrada uma imagem inválida. Extensões permitidas:" + allowedExtensions; //Adiciona mensagem de erro de extensão não permitida
             throw new FoodItemException("Encontrada uma imagem inválida. Extensões permitidas:" + allowedExtensions, 404);
         }

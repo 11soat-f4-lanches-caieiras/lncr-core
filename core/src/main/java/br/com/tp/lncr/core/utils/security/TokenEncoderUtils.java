@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TokenEncoderUtils {
+
+    private TokenEncoderUtils() {
+    }
+
     public static String generateToken(OauthCredentialsDTO oauthCredentialsDTO, OauthProfileConfig oauthConfig) {
         return JWT.create()
                 .withSubject("lncr-token")

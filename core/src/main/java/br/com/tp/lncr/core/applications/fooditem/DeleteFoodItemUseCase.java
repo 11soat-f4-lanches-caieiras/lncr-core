@@ -3,7 +3,7 @@ package br.com.tp.lncr.core.applications.fooditem;
 import br.com.tp.lncr.core.domain.fooditem.FoodItem;
 import br.com.tp.lncr.core.exceptions.FoodItemException;
 import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class DeleteFoodItemUseCase {
 
@@ -14,12 +14,12 @@ public class DeleteFoodItemUseCase {
     }
 
     public void execute(Integer foodItemId) {
-        Logger.info("Iniciando exclusão do item de alimentação com id: " + foodItemId);
+        LoggerUtil.info("Iniciando exclusão do item de alimentação com id: " + foodItemId);
         FoodItem foodItem = foodItemGateway.getFoodItemById(foodItemId, true);
         if (foodItem == null) {
             throw new FoodItemException("Não encontrado item de alimentação com id: " + foodItemId, 404);
         }
         foodItemGateway.deleteFoodItemImage(foodItem);
-        Logger.info("Item de alimentação com id: " + foodItemId + " excluído com sucesso.");
+        LoggerUtil.info("Item de alimentação com id: " + foodItemId + " excluído com sucesso.");
     }
 }

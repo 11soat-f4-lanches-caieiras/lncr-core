@@ -43,7 +43,6 @@ class CustomerOrderPresenterTest {
     @Test
     void testGetByStatusList() {
         CustomerOrder order = new CustomerOrder();
-        CustomerOrderDTO dto = new CustomerOrderDTO();
         List<CustomerOrder> orderList = List.of(order);
         List<String> statusList = List.of("PENDING");
         // Simula o utilitário de ordenação

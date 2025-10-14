@@ -33,9 +33,7 @@ public class FoodItemPresenter {
     }
 
     private List<FoodItemDTO> formatFoodItemDTOList(List<FoodItemDTO> foodItemListDTO, String imageLocationPrefix) {
-        foodItemListDTO.forEach(foodItemDto -> {
-            formatFoodItemDTO(foodItemDto, imageLocationPrefix);
-        });
+        foodItemListDTO.forEach(foodItemDto -> formatFoodItemDTO(foodItemDto, imageLocationPrefix));
         return foodItemListDTO;
     }
 
@@ -50,7 +48,7 @@ public class FoodItemPresenter {
                     img.setLocation(location);
                 }
                 img.setFoodItemId(null);
-                img.set_data(null);
+                img.setData(null);
                 img.setFileName(null);
                 img.setFileExtension(null);
             });

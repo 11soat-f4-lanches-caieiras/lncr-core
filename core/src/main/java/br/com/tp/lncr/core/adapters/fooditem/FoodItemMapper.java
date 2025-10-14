@@ -5,9 +5,9 @@ import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.enums.FoodItemCategory;
+import java.util.Collections;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FoodItemMapper {
 
@@ -40,7 +40,7 @@ public class FoodItemMapper {
         FoodItemImageDTO dto = new FoodItemImageDTO();
         dto.setId(image.getId());
         dto.setFoodItemId(image.getFoodItemId());
-        dto.set_data(image.get_data());
+        dto.setData(image.getData());
         dto.setFileName(image.getFileName());
         dto.setFileExtension(image.getFileExtension());
         dto.setImageError(image.getImageError());
@@ -54,7 +54,7 @@ public class FoodItemMapper {
         FoodItemImage image = new FoodItemImage();
         image.setId(dto.getId());
         image.setFoodItemId(dto.getFoodItemId());
-        image.set_data(dto.get_data());
+        image.setData(dto.getData());
         image.setLocation(dto.getLocation());
         image.setFileName(dto.getFileName());
         image.setFileExtension(dto.getFileExtension());
@@ -63,12 +63,12 @@ public class FoodItemMapper {
     }
 
     public List<FoodItemImageDTO> foodItemImageToDtoList(List<FoodItemImage> images) {
-        if (images == null) return null;
-        return images.stream().map(this::foodItemImageToDTO).collect(Collectors.toList());
+        if (images == null) return Collections.emptyList();
+        return images.stream().map(this::foodItemImageToDTO).toList();
     }
 
     public List<FoodItemImage> foodItemImageToDomainList(List<FoodItemImageDTO> dtos) {
-        if (dtos == null) return null;
-        return dtos.stream().map(this::foodItemImageToDomain).collect(Collectors.toList());
+        if (dtos == null) return Collections.emptyList();
+        return dtos.stream().map(this::foodItemImageToDomain).toList();
     }
 }

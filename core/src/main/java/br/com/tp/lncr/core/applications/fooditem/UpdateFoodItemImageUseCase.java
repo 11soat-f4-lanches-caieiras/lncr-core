@@ -5,7 +5,7 @@ import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.exceptions.FoodItemException;
 import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
 import br.com.tp.lncr.core.utils.FoodItemImageRules;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class UpdateFoodItemImageUseCase {
 
@@ -16,7 +16,7 @@ public class UpdateFoodItemImageUseCase {
     }
 
     public FoodItemImage updateImageById(Integer foodItemImageId, FoodItemImageDTO foodItemImageDTO, FoodItemImageRules foodItemImageRules) {
-        Logger.info("Iniciando atualização de imagem com id: " + foodItemImageId);
+        LoggerUtil.info("Iniciando atualização de imagem com id: " + foodItemImageId);
         FoodItemImage existFoodItemImage = foodItemGateway.getFoodItemImageById(foodItemImageId);
 
         if (existFoodItemImage == null){
@@ -31,10 +31,10 @@ public class UpdateFoodItemImageUseCase {
         }
 
         if (!existFoodItemImage.getFileName().equals(newFoodItemImage.getFileName())){
-            Logger.debug("Arquivo de imagem alterado, removendo arquivo antigo: " + existFoodItemImage.getFileName());
+            LoggerUtil.debug("Arquivo de imagem alterado, removendo arquivo antigo: " + existFoodItemImage.getFileName());
             foodItemGateway.deleteImageFile(existFoodItemImage.getFileName());
         }
-        Logger.info("Imagem com id: " + foodItemImageId + " atualizada com sucesso.");
+        LoggerUtil.info("Imagem com id: " + foodItemImageId + " atualizada com sucesso.");
         return newFoodItemImage;
     }
 }

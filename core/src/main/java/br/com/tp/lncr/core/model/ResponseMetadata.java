@@ -25,27 +25,27 @@ public class ResponseMetadata {
         this._timestamp = _timestamp;
     }
 
-    public String get_traceId() {
+    public String getTraceId() {
         return _traceId;
     }
 
-    public void set_traceId(String _traceId) {
+    public void setTraceId(String _traceId) {
         this._traceId = _traceId;
     }
 
-    public String get_timestamp() {
+    public String getTimestamp() {
         return _timestamp;
     }
 
-    public void set_timestamp(String _timestamp) {
+    public void setTimestamp(String _timestamp) {
         this._timestamp = _timestamp;
     }
 
-    public String get_message() {
+    public String getMessage() {
         return _message;
     }
 
-    public void set_message(String _message) {
+    public void setMessage(String _message) {
         this._message = _message;
     }
 }

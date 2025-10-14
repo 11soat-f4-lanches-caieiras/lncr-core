@@ -5,8 +5,6 @@ import br.com.tp.lncr.core.domain.kitchenorder.KitchenOrderFoodItem;
 import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
 import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderFoodItemDTO;
 
-import java.util.stream.Collectors;
-
 public class KitchenOrderMapper {
     public KitchenOrderDTO kitchenOrderToDTO(KitchenOrder order) {
         if (order == null) return null;
@@ -14,12 +12,11 @@ public class KitchenOrderMapper {
         dto.setId(order.getId());
         dto.setCustomerOrderId(order.getCustomerOrderId());
         dto.setStatus(order.getStatus());
-        dto.setCreated(order.get_created());
-        dto.setUpdated(order.get_updated());
+        dto.setCreated(order.getCreated());
+        dto.setUpdated(order.getUpdated());
         if (order.getFoodItems() != null) {
             dto.setFoodItems(order.getFoodItems().stream()
-                .map(this::kitchenOrderFoodItemToDTO)
-                .collect(Collectors.toList()));
+                .map(this::kitchenOrderFoodItemToDTO).toList());
         }
         return dto;
     }
@@ -30,12 +27,12 @@ public class KitchenOrderMapper {
         order.setId(dto.getId());
         order.setCustomerOrderId(dto.getCustomerOrderId());
         order.setStatus(dto.getStatus());
-        order.set_created(dto.getCreated());
-        order.set_updated(dto.getUpdated());
+        order.setCreated(dto.getCreated());
+        order.setUpdated(dto.getUpdated());
         if (dto.getFoodItems() != null) {
             order.setFoodItems(dto.getFoodItems().stream()
                 .map(this::kichenOrderFoodItemToDomain)
-                .collect(Collectors.toList()));
+                    .toList());
         }
 
         return order;

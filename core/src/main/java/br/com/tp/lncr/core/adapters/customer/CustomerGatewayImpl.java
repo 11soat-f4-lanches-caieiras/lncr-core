@@ -2,6 +2,7 @@ package br.com.tp.lncr.core.adapters.customer;
 
 import br.com.tp.lncr.core.domain.customer.Customer;
 import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.exceptions.CustomerException;
 import br.com.tp.lncr.core.interfaces.customer.CustomerDatabase;
 import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
 
@@ -63,9 +64,8 @@ public class CustomerGatewayImpl implements CustomerGateway {
     public void deleteCustomerById(Integer id) {
         Customer customer = this.getCustomerById(id);
         if (customer == null) {
-            throw new RuntimeException("Cliente não encontrado com o ID: " + id);
+            throw new CustomerException("Cliente não encontrado com o ID: " + id,404);
         }
-        CustomerDTO customerDTO = customerMapper.customerToDomain(customer);
         this.customerDatabase.deleteById(id);
     }
 

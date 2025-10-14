@@ -11,7 +11,7 @@ public class NotificationMapper {
             notification.getNotificationType(),
             notification.getArtefactId(),
             notification.getMessage(),
-            notification.get_created()
+            notification.getCreated()
         );
     }
 

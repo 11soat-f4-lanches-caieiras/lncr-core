@@ -3,11 +3,11 @@ package br.com.tp.lncr.core.domain.kitchenorder;
 import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderFoodItemDTO;
 
 public class KitchenOrderFoodItem {
-    public Integer id;
-    public Integer kitchenOrderId;
-    public String name;
-    public String description;
-    public String notes;
+    private Integer id;
+    private Integer kitchenOrderId;
+    private String name;
+    private String description;
+    private String notes;
 
     public KitchenOrderFoodItem(Integer id, Integer kitchenOrderId, String name, String description, String notes) {
         this.id = id;

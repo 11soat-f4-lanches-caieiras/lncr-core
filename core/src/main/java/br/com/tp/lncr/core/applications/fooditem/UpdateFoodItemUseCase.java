@@ -4,7 +4,7 @@ import br.com.tp.lncr.core.domain.fooditem.FoodItem;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
 import br.com.tp.lncr.core.exceptions.FoodItemException;
 import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 public class UpdateFoodItemUseCase {
 
@@ -15,7 +15,7 @@ public class UpdateFoodItemUseCase {
     }
 
     public FoodItem partialUpdateById(Integer foodItemId, FoodItemDTO foodItemDTO) {
-        Logger.info("Iniciando atualização parcial do item de alimentação com id: " + foodItemId);
+        LoggerUtil.info("Iniciando atualização parcial do item de alimentação com id: " + foodItemId);
         FoodItem existFoodItem = foodItemGateway.getFoodItemById(foodItemId);
         if (existFoodItem == null) {
             throw new FoodItemException("Não encontrado Item de alimentação com Id: " + foodItemId, 404);
@@ -23,19 +23,19 @@ public class UpdateFoodItemUseCase {
         boolean foodItemWasChanged = false;
 
         if (foodItemDTO.getDescription() != null && !foodItemDTO.getDescription().equals(existFoodItem.getDescription())) {
-            Logger.debug("Atualizando descrição do item de alimentação com id: " + foodItemId);
+            LoggerUtil.debug("Atualizando descrição do item de alimentação com id: " + foodItemId);
             existFoodItem.setDescription(foodItemDTO.getDescription());
             foodItemWasChanged = true;
         }
 
         if (foodItemDTO.getPrice() != null && !foodItemDTO.getPrice().equals(existFoodItem.getPrice())) {
-            Logger.debug("Atualizando preço do item de alimentação com id: " + foodItemId);
+            LoggerUtil.debug("Atualizando preço do item de alimentação com id: " + foodItemId);
             existFoodItem.setPrice(foodItemDTO.getPrice());
             foodItemWasChanged = true;
         }
         if (foodItemWasChanged) {
             existFoodItem = foodItemGateway.saveFoodItem(existFoodItem);
-            Logger.info("Item de alimentação com id: " + foodItemId + " atualizado com sucesso.");
+            LoggerUtil.info("Item de alimentação com id: " + foodItemId + " atualizado com sucesso.");
             return existFoodItem;
         } else {
             throw new FoodItemException("Não identificada mudança na descrição ou no preço do item de alimentação, por favor revisar dados da atualização.", 400);

@@ -18,8 +18,8 @@ class CustomerOrderDTOTest {
         Assertions.assertEquals(100, dto.getId());
         Assertions.assertEquals("RECEIVED", dto.getStatus());
         Assertions.assertEquals(30.0, dto.getTotalCost());
-        Assertions.assertEquals(now, dto.get_created());
-        Assertions.assertEquals(now, dto.get_updated());
+        Assertions.assertEquals(now, dto.getCreated());
+        Assertions.assertEquals(now, dto.getUpdated());
         Assertions.assertEquals(customer, dto.getCustomer());
         Assertions.assertEquals(foodItems, dto.getFoodItems());
     }
@@ -34,15 +34,15 @@ class CustomerOrderDTOTest {
         dto.setId(200);
         dto.setStatus("READY");
         dto.setTotalCost(50.0);
-        dto.set_created(now);
-        dto.set_updated(now);
+        dto.setCreated(now);
+        dto.setUpdated(now);
         dto.setCustomer(customer);
         dto.setFoodItems(foodItems);
         Assertions.assertEquals(200, dto.getId());
         Assertions.assertEquals("READY", dto.getStatus());
         Assertions.assertEquals(50.0, dto.getTotalCost());
-        Assertions.assertEquals(now, dto.get_created());
-        Assertions.assertEquals(now, dto.get_updated());
+        Assertions.assertEquals(now, dto.getCreated());
+        Assertions.assertEquals(now, dto.getUpdated());
         Assertions.assertEquals(customer, dto.getCustomer());
         Assertions.assertEquals(foodItems, dto.getFoodItems());
     }
@@ -53,8 +53,8 @@ class CustomerOrderDTOTest {
         Assertions.assertNull(dto.getId());
         Assertions.assertNull(dto.getStatus());
         Assertions.assertNull(dto.getTotalCost());
-        Assertions.assertNull(dto.get_created());
-        Assertions.assertNull(dto.get_updated());
+        Assertions.assertNull(dto.getCreated());
+        Assertions.assertNull(dto.getUpdated());
         Assertions.assertNull(dto.getCustomer());
         Assertions.assertNull(dto.getFoodItems());
     }

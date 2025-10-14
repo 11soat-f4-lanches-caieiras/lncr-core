@@ -7,7 +7,7 @@ import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.exceptions.FoodItemException;
 import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
 import br.com.tp.lncr.core.utils.FoodItemImageRules;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class CreateFoodItemUseCase {
     }
 
     public FoodItem execute(FoodItemDTO foodItemDTO) {
-        Logger.info("Iniciando criação de item de alimentação: " + foodItemDTO.getName());
+        LoggerUtil.info("Iniciando criação de item de alimentação: " + foodItemDTO.getName());
         if (existsByName(foodItemDTO.getName())) {
             throw new FoodItemException("Item de Alimentação já cadastrado com o nome: " + foodItemDTO.getName(), 409);
         }
@@ -40,7 +40,7 @@ public class CreateFoodItemUseCase {
         if (!invalidFoodItemImages.isEmpty()) {
             foodItem.getImages().addAll(invalidFoodItemImages);
         }
-        Logger.info("Item de alimentação criado com sucesso: " + foodItem.getName());
+        LoggerUtil.info("Item de alimentação criado com sucesso: " + foodItem.getName());
         return foodItem;
     }
 
@@ -49,7 +49,7 @@ public class CreateFoodItemUseCase {
     }
 
     private void splitValidAndInvalidIFoodItemList(FoodItemDTO foodItemDTO, FoodItem foodItem, List<FoodItemImage> invalidFoodItemImages) {
-        Logger.debug("Separando imagens válidas e inválidas para o item de alimentação: " + foodItemDTO.getName());
+        LoggerUtil.debug("Separando imagens válidas e inválidas para o item de alimentação: " + foodItemDTO.getName());
         for (FoodItemImageDTO imageDTO : foodItemDTO.getImages()) {
             try {
                 foodItem.getImages().add(new FoodItemImage(imageDTO, foodItemImageRules));

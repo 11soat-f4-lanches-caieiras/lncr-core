@@ -5,7 +5,7 @@ import br.com.tp.lncr.core.enums.CustomerOrderStatus;
 import br.com.tp.lncr.core.exceptions.CustomerOrderException;
 import br.com.tp.lncr.core.interfaces.SortedByStatusCreated;
 import br.com.tp.lncr.core.utils.EnumUtils;
-import br.com.tp.lncr.core.utils.Logger;
+import br.com.tp.lncr.core.utils.LoggerUtil;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
@@ -35,8 +35,8 @@ public class CustomerOrder implements SortedByStatusCreated {
         this.id = dto.getId();
         this.status = dto.getStatus();
         this.totalCost = dto.getTotalCost();
-        this._created = dto.get_created();
-        this._updated = dto.get_updated();
+        this._created = dto.getCreated();
+        this._updated = dto.getUpdated();
         this.customer = null;
         if (dto.getCustomer() != null) {
             this.customer = new CustomerOrderCustomer(dto.getCustomer());
@@ -82,7 +82,7 @@ public class CustomerOrder implements SortedByStatusCreated {
     }
 
     public void setStatus(String status, Boolean forceUpdate) {
-        if (forceUpdate == false) {
+        if (!Boolean.TRUE.equals(forceUpdate)) {
             cancelCustomerOrderRule(status);
         }
         this.status = validateNewStatusRules(status,forceUpdate);
@@ -123,29 +123,29 @@ public class CustomerOrder implements SortedByStatusCreated {
         return status.getDescription();
     }
 
-    public LocalDateTime get_created() {
+    public LocalDateTime getCreated() {
         return _created;
     }
 
-    public void set_created(LocalDateTime _created) {
+    public void setCreated(LocalDateTime _created) {
         this._created = _created;
     }
 
-    public LocalDateTime get_updated() {
+    public LocalDateTime getUpdated() {
         return _updated;
     }
 
-    public void set_updated(LocalDateTime _updated) {
+    public void setUpdated(LocalDateTime _updated) {
         this._updated = _updated;
     }
 
     private String validateNewStatusRules(String newStatus, Boolean forceUpdate) {
-        Logger.debug("Validando regras de novo status do pedido.");
+        LoggerUtil.debug("Validando regras de novo status do pedido.");
         return EnumUtils.validateNewStatusRules(CustomerOrderStatus.class, this.getStatus(), newStatus, forceUpdate,
-                (message) -> new CustomerOrderException(message, 400));
+                message -> new CustomerOrderException(message, 400));
     }
     private void cancelCustomerOrderRule(String newStatus) {
-        Logger.debug("Validando regra de cancelamento do pedido.");
+        LoggerUtil.debug("Validando regra de cancelamento do pedido.");
         if (newStatus.equalsIgnoreCase(CustomerOrderStatus.CANCELLED.getDescription())) {
             if (this.status.equals(CustomerOrderStatus.CHECKOUT.getDescription()) || this.status.equals(CustomerOrderStatus.RECEIVED.getDescription())) {
                 this.status = newStatus;

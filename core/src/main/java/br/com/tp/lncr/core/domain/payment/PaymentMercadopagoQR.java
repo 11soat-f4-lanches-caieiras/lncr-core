@@ -23,8 +23,8 @@ public class PaymentMercadopagoQR extends Payment{
             dto.getStatus(),
             dto.getAmount(),
             dto.getExternalPaymentId(),
-            dto.get_created(),
-            dto.get_updated()
+            dto.getCreated(),
+            dto.getUpdated()
         );
         this.qrData = dto.getQrData();
         this.meliId = dto.getMeliId();

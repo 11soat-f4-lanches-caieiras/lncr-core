@@ -21,42 +21,42 @@ public class PaymentMercadoPagoQrControllerImpl implements PaymentController<Pay
     }
 
     @Override
-    public PaymentMercadopagoQrDTO createPaymentCharge(PaymentDatabase paymentDatabase, PaymentMercadopagoQrDTO paymentDTO) {
+    public PaymentMercadopagoQrDTO createPaymentCharge(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, PaymentMercadopagoQrDTO paymentDTO) {
         PaymentMercadopagoQR paymentMercadopagoQR = new CreatePaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).createCharge(paymentDTO);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).createdCharge(paymentMercadopagoQR);
     }
 
     @Override
-    public PaymentMercadopagoQrDTO getPaymentById(PaymentDatabase paymentDatabase, Integer paymentId) {
+    public PaymentMercadopagoQrDTO getPaymentById(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, Integer paymentId) {
         PaymentMercadopagoQR paymentMercadopagoQR = new GetPaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).getById(paymentId);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).getById(paymentMercadopagoQR);
     }
 
     @Override
-    public PaymentMercadopagoQrDTO getPaymentByCustomerOrderId(PaymentDatabase paymentDatabase, Integer customerOrderId) {
+    public PaymentMercadopagoQrDTO getPaymentByCustomerOrderId(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, Integer customerOrderId) {
         PaymentMercadopagoQR paymentMercadopagoQR = new GetPaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).getByCustomerOrderId(customerOrderId);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).getByCustomerOrderId(paymentMercadopagoQR);
     }
 
     @Override
-    public PaymentMercadopagoQrDTO cancelPaymentByOrderId(PaymentDatabase paymentDatabase, Integer customerOrderId) {
+    public PaymentMercadopagoQrDTO cancelPaymentByOrderId(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, Integer customerOrderId) {
         PaymentMercadopagoQR paymentMercadopagoQR = new UpdatePaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).cancelByCustomerOrderId(customerOrderId);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).cancelByCustomerOrderId(paymentMercadopagoQR);
     }
 
     @Override
-    public List<PaymentMercadopagoQrDTO> getPaymentByStatusList(PaymentDatabase paymentDatabase, List<String> paymentStatusList) {
+    public List<PaymentMercadopagoQrDTO> getPaymentByStatusList(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, List<String> paymentStatusList) {
         List<PaymentMercadopagoQR> paymentMercadopagoQRList = new GetPaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).getByStatusList(paymentStatusList);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).getByStatusList(paymentMercadopagoQRList,paymentStatusList);
     }
 
     @Override
-    public PaymentMercadopagoQrDTO processPaymentReceived(PaymentDatabase paymentDatabase, String externalReference, String dataId, Map<String, Object> body) {
+    public PaymentMercadopagoQrDTO processPaymentReceived(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase, String externalReference, String dataId, Map<String, Object> body) {
         PaymentMercadopagoQR paymentMercadopagoQR = new UpdatePaymentMercadoPagoQRUseCase(createPaymentMercadoPagoQrGateway(paymentDatabase)).processPaymentReceived(externalReference, dataId, body);
         return new PaymentMercadoPagoQrPresenter(paymentMercadopagoQRMapper).cancelByCustomerOrderId(paymentMercadopagoQR);
     }
 
-    private PaymentGateway createPaymentMercadoPagoQrGateway(PaymentDatabase paymentDatabase){
+    private PaymentGateway<PaymentMercadopagoQR> createPaymentMercadoPagoQrGateway(PaymentDatabase<PaymentMercadopagoQrDTO> paymentDatabase){
         return new PaymentGatewayImpl(paymentDatabase, paymentMercadopagoQRMapper);
     }
 

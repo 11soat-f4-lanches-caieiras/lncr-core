@@ -3,7 +3,7 @@ package br.com.tp.lncr.core.domain.customer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CustomerTest {
+class CustomerTest {
     @Test
     void testConstructorAndGetters() {
         Customer customer = new Customer(1, "12345678909", "João", "joao@email.com");

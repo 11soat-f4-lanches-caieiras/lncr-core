@@ -7,6 +7,9 @@ import br.com.tp.lncr.core.exceptions.OauthException;
 @SuppressWarnings("unused")
 public class OauthUtil {
 
+    private OauthUtil() {
+    }
+
     private static final String AUTHORIZATION_TYPE = "Basic ";
 
     public static OauthCredentialsDTO getCredentialsFromAuthorizationHeader(String authorizationHeader, OauthCredentialsDTO body) {
@@ -18,7 +21,7 @@ public class OauthUtil {
         return new OauthCredentialsDTO(clientId, clientSecret, body.grant_type(), body.scope(), body.name(), body.customerId());
     }
 
-    private static void validadeAuthorizationHeader(String authorizationHeader, OauthProfileConfig oauthConfig) {
+    private static void validadeAuthorizationHeader(String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith(AUTHORIZATION_TYPE)) {
             throw new OauthException("Authorization inválido", 400);
         }
@@ -51,7 +54,7 @@ public class OauthUtil {
 }
 
 public static void validateTokenRequest(String authorizationHeader, OauthCredentialsDTO body, OauthProfileConfig oauthConfig) {
-    validadeAuthorizationHeader(authorizationHeader,oauthConfig);
+    validadeAuthorizationHeader(authorizationHeader);
     validadeBody(body,oauthConfig);
 }
 }
