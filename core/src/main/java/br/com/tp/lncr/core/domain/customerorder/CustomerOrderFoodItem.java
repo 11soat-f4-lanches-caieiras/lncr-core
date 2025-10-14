@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.domain.customerorder;
 
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderFoodItemDTO;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderFoodItemDTO;
 
 public class CustomerOrderFoodItem {
     private Integer id;

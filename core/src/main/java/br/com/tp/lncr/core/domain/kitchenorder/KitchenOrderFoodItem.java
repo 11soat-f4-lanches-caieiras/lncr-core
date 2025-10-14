@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.kitchenorder;
 
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderFoodItemDTO;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderFoodItemDTO;
 
 public class KitchenOrderFoodItem {
     public Integer id;

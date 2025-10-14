@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.applications.payment.usercases.mercadopago;
 
-import br.com.tp.lncr.core.commons.enums.PaymentStatus;
-import br.com.tp.lncr.core.commons.exceptions.PaymentException;
-import br.com.tp.lncr.core.commons.interfaces.payment.PaymentGateway;
-import br.com.tp.lncr.core.commons.utils.Logger;
 import br.com.tp.lncr.core.domain.payment.PaymentMercadopagoQR;
+import br.com.tp.lncr.core.enums.PaymentStatus;
+import br.com.tp.lncr.core.exceptions.PaymentException;
+import br.com.tp.lncr.core.interfaces.payment.PaymentGateway;
+import br.com.tp.lncr.core.utils.Logger;
 
 import java.util.Map;
 

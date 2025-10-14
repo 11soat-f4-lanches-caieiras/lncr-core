@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.customer;
 
-import br.com.tp.lncr.core.commons.exceptions.CustomerException;
+import br.com.tp.lncr.core.exceptions.CustomerException;
 
 public class CustomerCPF implements DocumentNumber {
     private final String value;

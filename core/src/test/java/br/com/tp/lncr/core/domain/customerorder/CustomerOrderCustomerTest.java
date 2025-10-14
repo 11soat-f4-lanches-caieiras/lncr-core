@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderCustomerDTO;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderCustomerDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

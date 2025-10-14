@@ -1,9 +1,9 @@
 package br.com.tp.lncr.core.applications.notification;
 
-import br.com.tp.lncr.core.commons.exceptions.NotificationException;
-import br.com.tp.lncr.core.commons.interfaces.notification.NotificationGateway;
-import br.com.tp.lncr.core.commons.utils.Logger;
 import br.com.tp.lncr.core.domain.notification.Notification;
+import br.com.tp.lncr.core.exceptions.NotificationException;
+import br.com.tp.lncr.core.interfaces.notification.NotificationGateway;
+import br.com.tp.lncr.core.utils.Logger;
 
 import java.util.List;
 

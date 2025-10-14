@@ -1,14 +1,14 @@
 package br.com.tp.lncr.core.adapters.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderCustomerDTO;
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderDTO;
-import br.com.tp.lncr.core.commons.dtos.payment.PaymentMercadopagoQrDTO;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderDatabase;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderGateway;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrderCustomer;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrderFoodItem;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderCustomerDTO;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
+import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderDatabase;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
 
 import java.util.List;
 

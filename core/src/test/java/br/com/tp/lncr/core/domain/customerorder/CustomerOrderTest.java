@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.domain.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderCustomerDTO;
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderFoodItemDTO;
-import br.com.tp.lncr.core.commons.enums.CustomerOrderStatus;
-import br.com.tp.lncr.core.commons.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderCustomerDTO;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderFoodItemDTO;
+import br.com.tp.lncr.core.enums.CustomerOrderStatus;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

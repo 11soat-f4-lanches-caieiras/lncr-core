@@ -1,8 +1,8 @@
 package br.com.tp.lncr.core.adapters.customer;
 
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerController;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerDatabase;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.interfaces.customer.CustomerController;
+import br.com.tp.lncr.core.interfaces.customer.CustomerDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

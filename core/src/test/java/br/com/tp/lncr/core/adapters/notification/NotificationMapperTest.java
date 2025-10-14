@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.notification;
 
-import br.com.tp.lncr.core.commons.dtos.notification.NotificationDTO;
 import br.com.tp.lncr.core.domain.notification.Notification;
+import br.com.tp.lncr.core.dtos.notification.NotificationDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

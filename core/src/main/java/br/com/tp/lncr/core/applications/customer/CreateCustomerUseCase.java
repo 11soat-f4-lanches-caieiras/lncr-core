@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.applications.customer;
 
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
-import br.com.tp.lncr.core.commons.exceptions.CustomerException;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerGateway;
-import br.com.tp.lncr.core.commons.utils.Logger;
 import br.com.tp.lncr.core.domain.customer.Customer;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.exceptions.CustomerException;
+import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
+import br.com.tp.lncr.core.utils.Logger;
 
 public class CreateCustomerUseCase {
 

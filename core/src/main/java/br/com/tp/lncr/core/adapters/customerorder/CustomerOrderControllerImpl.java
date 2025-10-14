@@ -3,11 +3,11 @@ package br.com.tp.lncr.core.adapters.customerorder;
 import br.com.tp.lncr.core.applications.customerorder.CreateCustomerOrderUseCase;
 import br.com.tp.lncr.core.applications.customerorder.GetCustomerOrderUseCase;
 import br.com.tp.lncr.core.applications.customerorder.UpdateCustomerOrderUseCase;
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderController;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderDatabase;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderGateway;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderController;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderDatabase;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
 
 import java.util.List;
 

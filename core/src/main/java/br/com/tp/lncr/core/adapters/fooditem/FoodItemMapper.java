@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.adapters.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemDTO;
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemImageDTO;
-import br.com.tp.lncr.core.commons.enums.FoodItemCategory;
 import br.com.tp.lncr.core.domain.fooditem.FoodItem;
 import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
+import br.com.tp.lncr.core.enums.FoodItemCategory;
 
 import java.util.List;
 import java.util.stream.Collectors;

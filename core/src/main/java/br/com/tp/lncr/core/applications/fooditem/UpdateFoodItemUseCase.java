@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.applications.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemDTO;
-import br.com.tp.lncr.core.commons.exceptions.FoodItemException;
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemGateway;
-import br.com.tp.lncr.core.commons.utils.Logger;
 import br.com.tp.lncr.core.domain.fooditem.FoodItem;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
+import br.com.tp.lncr.core.exceptions.FoodItemException;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
+import br.com.tp.lncr.core.utils.Logger;
 
 public class UpdateFoodItemUseCase {
 

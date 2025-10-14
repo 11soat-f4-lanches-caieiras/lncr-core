@@ -1,8 +1,8 @@
 package br.com.tp.lncr.core.adapters.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemImageDTO;
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemDatabase;
-import br.com.tp.lncr.core.commons.utils.FoodItemImageRules;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemDatabase;
+import br.com.tp.lncr.core.utils.FoodItemImageRules;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

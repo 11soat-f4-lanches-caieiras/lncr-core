@@ -1,8 +1,8 @@
 package br.com.tp.lncr.core.adapters.kitchenorder;
 
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderDTO;
-import br.com.tp.lncr.core.commons.utils.StatusOrderUtils;
 import br.com.tp.lncr.core.domain.kitchenorder.KitchenOrder;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
+import br.com.tp.lncr.core.utils.StatusOrderUtils;
 
 import java.util.List;
 

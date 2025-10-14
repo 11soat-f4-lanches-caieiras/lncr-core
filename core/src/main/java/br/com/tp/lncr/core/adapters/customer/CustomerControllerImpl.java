@@ -4,11 +4,11 @@ import br.com.tp.lncr.core.applications.customer.CreateCustomerUseCase;
 import br.com.tp.lncr.core.applications.customer.DeleteCustomerUseCase;
 import br.com.tp.lncr.core.applications.customer.GetCustomerUseCase;
 import br.com.tp.lncr.core.applications.customer.PartialUpdateCustomerUseCase;
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerController;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerDatabase;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerGateway;
 import br.com.tp.lncr.core.domain.customer.Customer;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.interfaces.customer.CustomerController;
+import br.com.tp.lncr.core.interfaces.customer.CustomerDatabase;
+import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
 
 import java.util.List;
 import java.util.Optional;

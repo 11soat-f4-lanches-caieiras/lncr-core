@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

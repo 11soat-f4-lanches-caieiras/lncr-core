@@ -1,11 +1,11 @@
 package br.com.tp.lncr.core.domain.kitchenorder;
 
 
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderDTO;
-import br.com.tp.lncr.core.commons.enums.KitchenOrderStatus;
-import br.com.tp.lncr.core.commons.exceptions.KitchenOrderException;
-import br.com.tp.lncr.core.commons.interfaces.SortedByStatusCreated;
-import br.com.tp.lncr.core.commons.utils.EnumUtils;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
+import br.com.tp.lncr.core.enums.KitchenOrderStatus;
+import br.com.tp.lncr.core.exceptions.KitchenOrderException;
+import br.com.tp.lncr.core.interfaces.SortedByStatusCreated;
+import br.com.tp.lncr.core.utils.EnumUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;

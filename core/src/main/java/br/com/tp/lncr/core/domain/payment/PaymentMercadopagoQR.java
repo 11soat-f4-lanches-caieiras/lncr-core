@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.payment;
 
-import br.com.tp.lncr.core.commons.dtos.payment.PaymentMercadopagoQrDTO;
+import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
 
 import java.time.LocalDateTime;
 

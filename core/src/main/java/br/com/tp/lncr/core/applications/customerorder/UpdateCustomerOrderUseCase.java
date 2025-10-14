@@ -1,11 +1,11 @@
 package br.com.tp.lncr.core.applications.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderDTO;
-import br.com.tp.lncr.core.commons.enums.CustomerOrderStatus;
-import br.com.tp.lncr.core.commons.exceptions.CustomerOrderException;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderGateway;
-import br.com.tp.lncr.core.commons.utils.Logger;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
+import br.com.tp.lncr.core.enums.CustomerOrderStatus;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
+import br.com.tp.lncr.core.utils.Logger;
 
 public class UpdateCustomerOrderUseCase {
 

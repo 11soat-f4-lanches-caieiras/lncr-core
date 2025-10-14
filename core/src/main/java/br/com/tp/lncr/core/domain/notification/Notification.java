@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.notification;
 
-import br.com.tp.lncr.core.commons.dtos.notification.NotificationDTO;
+import br.com.tp.lncr.core.dtos.notification.NotificationDTO;
 
 import java.time.LocalDateTime;
 

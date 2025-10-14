@@ -4,12 +4,12 @@ import br.com.tp.lncr.core.applications.fooditem.CreateFoodItemImageUseCase;
 import br.com.tp.lncr.core.applications.fooditem.DeleteFoodItemImageUseCase;
 import br.com.tp.lncr.core.applications.fooditem.GetFoodItemImageUseCase;
 import br.com.tp.lncr.core.applications.fooditem.UpdateFoodItemImageUseCase;
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemImageDTO;
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemDatabase;
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemGateway;
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemImageController;
-import br.com.tp.lncr.core.commons.utils.FoodItemImageRules;
 import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemDatabase;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemImageController;
+import br.com.tp.lncr.core.utils.FoodItemImageRules;
 
 
 public class FoodItemImageControllerImpl implements FoodItemImageController {

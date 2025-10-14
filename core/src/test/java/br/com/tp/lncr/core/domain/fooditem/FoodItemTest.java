@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.domain.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemDTO;
-import br.com.tp.lncr.core.commons.enums.FoodItemCategory;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
+import br.com.tp.lncr.core.enums.FoodItemCategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

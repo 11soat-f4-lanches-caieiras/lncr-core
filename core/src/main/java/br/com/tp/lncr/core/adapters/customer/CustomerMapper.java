@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.customer;
 
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
 import br.com.tp.lncr.core.domain.customer.Customer;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
 
 public class CustomerMapper {
 

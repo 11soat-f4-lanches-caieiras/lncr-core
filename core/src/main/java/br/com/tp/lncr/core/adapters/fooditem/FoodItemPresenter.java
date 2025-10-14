@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemDTO;
 import br.com.tp.lncr.core.domain.fooditem.FoodItem;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
 
 import java.util.List;
 

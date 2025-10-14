@@ -1,8 +1,8 @@
 package br.com.tp.lncr.core.applications.customerorder;
 
-import br.com.tp.lncr.core.commons.exceptions.CustomerOrderException;
-import br.com.tp.lncr.core.commons.interfaces.customerorder.CustomerOrderGateway;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

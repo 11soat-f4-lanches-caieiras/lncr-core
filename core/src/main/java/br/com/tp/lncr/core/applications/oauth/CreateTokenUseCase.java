@@ -1,10 +1,10 @@
 package br.com.tp.lncr.core.applications.oauth;
 
-import br.com.tp.lncr.core.commons.dtos.oauth.OauthCredentialsDTO;
-import br.com.tp.lncr.core.commons.dtos.oauth.OauthProfileConfig;
-import br.com.tp.lncr.core.commons.interfaces.oauth.OauthGateway;
-import br.com.tp.lncr.core.commons.utils.security.OauthUtil;
 import br.com.tp.lncr.core.domain.oauth.OauthToken;
+import br.com.tp.lncr.core.dtos.oauth.OauthCredentialsDTO;
+import br.com.tp.lncr.core.dtos.oauth.OauthProfileConfig;
+import br.com.tp.lncr.core.interfaces.oauth.OauthGateway;
+import br.com.tp.lncr.core.utils.security.OauthUtil;
 
 public class CreateTokenUseCase {
 

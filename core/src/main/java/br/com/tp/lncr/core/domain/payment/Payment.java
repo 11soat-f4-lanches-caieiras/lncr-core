@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.domain.payment;
 
-import br.com.tp.lncr.core.commons.enums.PaymentStatus;
-import br.com.tp.lncr.core.commons.interfaces.SortedByStatusCreated;
+import br.com.tp.lncr.core.enums.PaymentStatus;
+import br.com.tp.lncr.core.interfaces.SortedByStatusCreated;
 
 import java.time.LocalDateTime;
 

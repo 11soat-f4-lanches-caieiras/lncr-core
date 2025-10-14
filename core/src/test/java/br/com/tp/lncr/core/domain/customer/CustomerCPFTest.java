@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.customer;
 
-import br.com.tp.lncr.core.commons.exceptions.CustomerException;
+import br.com.tp.lncr.core.exceptions.CustomerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

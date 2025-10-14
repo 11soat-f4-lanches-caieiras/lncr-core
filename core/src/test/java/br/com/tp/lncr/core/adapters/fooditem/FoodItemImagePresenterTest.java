@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.fooditem;
 
-import br.com.tp.lncr.core.commons.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

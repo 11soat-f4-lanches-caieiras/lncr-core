@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.applications.fooditem;
 
-import br.com.tp.lncr.core.commons.interfaces.fooditem.FoodItemGateway;
 import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

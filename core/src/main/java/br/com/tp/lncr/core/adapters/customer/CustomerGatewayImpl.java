@@ -1,9 +1,9 @@
 package br.com.tp.lncr.core.adapters.customer;
 
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerDatabase;
-import br.com.tp.lncr.core.commons.interfaces.customer.CustomerGateway;
 import br.com.tp.lncr.core.domain.customer.Customer;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.interfaces.customer.CustomerDatabase;
+import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
 
 import java.util.List;
 import java.util.Optional;

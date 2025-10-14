@@ -1,9 +1,9 @@
 package br.com.tp.lncr.core.adapters.kitchenorder;
 
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderDTO;
-import br.com.tp.lncr.core.commons.dtos.kitchenorder.KitchenOrderFoodItemDTO;
-import br.com.tp.lncr.core.commons.interfaces.kitchenorder.KitchenOrderDatabase;
 import br.com.tp.lncr.core.domain.kitchenorder.KitchenOrder;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderDTO;
+import br.com.tp.lncr.core.dtos.kitchenorder.KitchenOrderFoodItemDTO;
+import br.com.tp.lncr.core.interfaces.kitchenorder.KitchenOrderDatabase;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

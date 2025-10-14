@@ -1,6 +1,6 @@
 package br.com.tp.lncr.core.domain.customer;
 
-import br.com.tp.lncr.core.commons.dtos.customer.CustomerDTO;
+import br.com.tp.lncr.core.dtos.customer.CustomerDTO;
 
 public class Customer {
     public Integer id;

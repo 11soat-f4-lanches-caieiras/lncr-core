@@ -1,7 +1,7 @@
 package br.com.tp.lncr.core.adapters.oauth;
 
-import br.com.tp.lncr.core.commons.dtos.oauth.OauthTokenDTO;
 import br.com.tp.lncr.core.domain.oauth.OauthToken;
+import br.com.tp.lncr.core.dtos.oauth.OauthTokenDTO;
 
 public class OauthPresenter {
 

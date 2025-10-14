@@ -2,11 +2,11 @@ package br.com.tp.lncr.core.adapters.notification;
 
 import br.com.tp.lncr.core.applications.notification.CreateNotificationUseCase;
 import br.com.tp.lncr.core.applications.notification.GetNotificationUseCase;
-import br.com.tp.lncr.core.commons.dtos.notification.NotificationDTO;
-import br.com.tp.lncr.core.commons.interfaces.notification.NotificationController;
-import br.com.tp.lncr.core.commons.interfaces.notification.NotificationDatabase;
-import br.com.tp.lncr.core.commons.interfaces.notification.NotificationGateway;
 import br.com.tp.lncr.core.domain.notification.Notification;
+import br.com.tp.lncr.core.dtos.notification.NotificationDTO;
+import br.com.tp.lncr.core.interfaces.notification.NotificationController;
+import br.com.tp.lncr.core.interfaces.notification.NotificationDatabase;
+import br.com.tp.lncr.core.interfaces.notification.NotificationGateway;
 
 import java.util.List;
 

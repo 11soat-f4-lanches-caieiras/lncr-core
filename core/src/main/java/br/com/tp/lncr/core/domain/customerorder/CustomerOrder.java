@@ -1,11 +1,11 @@
 package br.com.tp.lncr.core.domain.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
-import br.com.tp.lncr.core.commons.enums.CustomerOrderStatus;
-import br.com.tp.lncr.core.commons.exceptions.CustomerOrderException;
-import br.com.tp.lncr.core.commons.interfaces.SortedByStatusCreated;
-import br.com.tp.lncr.core.commons.utils.EnumUtils;
-import br.com.tp.lncr.core.commons.utils.Logger;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.enums.CustomerOrderStatus;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.interfaces.SortedByStatusCreated;
+import br.com.tp.lncr.core.utils.EnumUtils;
+import br.com.tp.lncr.core.utils.Logger;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;

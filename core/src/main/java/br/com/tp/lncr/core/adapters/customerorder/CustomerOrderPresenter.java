@@ -1,8 +1,8 @@
 package br.com.tp.lncr.core.adapters.customerorder;
 
-import br.com.tp.lncr.core.commons.dtos.customerorder.CustomerOrderDTO;
-import br.com.tp.lncr.core.commons.utils.StatusOrderUtils;
 import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.utils.StatusOrderUtils;
 
 import java.util.List;
 

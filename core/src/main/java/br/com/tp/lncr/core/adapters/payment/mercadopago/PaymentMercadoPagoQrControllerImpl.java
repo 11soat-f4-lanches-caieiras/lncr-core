@@ -3,11 +3,11 @@ package br.com.tp.lncr.core.adapters.payment.mercadopago;
 import br.com.tp.lncr.core.applications.payment.usercases.mercadopago.CreatePaymentMercadoPagoQRUseCase;
 import br.com.tp.lncr.core.applications.payment.usercases.mercadopago.GetPaymentMercadoPagoQRUseCase;
 import br.com.tp.lncr.core.applications.payment.usercases.mercadopago.UpdatePaymentMercadoPagoQRUseCase;
-import br.com.tp.lncr.core.commons.dtos.payment.PaymentMercadopagoQrDTO;
-import br.com.tp.lncr.core.commons.interfaces.payment.PaymentController;
-import br.com.tp.lncr.core.commons.interfaces.payment.PaymentDatabase;
-import br.com.tp.lncr.core.commons.interfaces.payment.PaymentGateway;
 import br.com.tp.lncr.core.domain.payment.PaymentMercadopagoQR;
+import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
+import br.com.tp.lncr.core.interfaces.payment.PaymentController;
+import br.com.tp.lncr.core.interfaces.payment.PaymentDatabase;
+import br.com.tp.lncr.core.interfaces.payment.PaymentGateway;
 
 import java.util.List;
 import java.util.Map;
