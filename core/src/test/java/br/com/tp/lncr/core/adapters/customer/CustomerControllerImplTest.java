@@ -43,8 +43,8 @@ class CustomerControllerImplTest {
     @Test
     void testGetAll() {
         CustomerDTO dto = new CustomerDTO(1, "71590186214", "Tito", "tito@email.com");
-        when(customerDatabase.findAll(any())).thenReturn(List.of(dto));
-        List<CustomerDTO> result = controller.getAll(Optional.of(10));
+        when(customerDatabase.findAll(anyInt())).thenReturn(List.of(dto));
+        List<CustomerDTO> result = controller.getAll(10);
         assertEquals(1, result.size());
     }
 

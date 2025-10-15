@@ -24,7 +24,20 @@ class PaymentMercadopagoQRMapperTest {
 
     @Test
     void testPaymentMercadopagoQrToDTO_AndBack() {
-        PaymentMercadopagoQR domain = new PaymentMercadopagoQR(1, 123, "Paid", 100.0, "EXT123", LocalDateTime.now(), LocalDateTime.now(), "MELI123", "qrdata");
+        LocalDateTime now = LocalDateTime.now();
+        PaymentMercadopagoQrDTO inputDto = new PaymentMercadopagoQrDTO.Builder()
+                .id(1)
+                .orderId(123)
+                .status("Paid")
+                .amount(100.0)
+                .externalPaymentId("EXT123")
+                .created(now)
+                .updated(now)
+                .qrData("qrdata")
+                .meliId("MELI123")
+                .build();
+
+        PaymentMercadopagoQR domain = new PaymentMercadopagoQR(inputDto);
         PaymentMercadopagoQrDTO dto = mapper.paymentMercadopagoQrToDTO(domain);
         assertNotNull(dto);
         PaymentMercadopagoQR domain2 = mapper.paymentMercadopagoQrToDomain(dto);

@@ -5,12 +5,13 @@ import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
 
 public class PaymentMercadopagoQRMapper {
 
-    private PaymentMercadopagoQRMapper() {
+    public PaymentMercadopagoQRMapper() {
+        // Default constructor
     }
 
     public PaymentMercadopagoQrDTO paymentMercadopagoQrToDTO(PaymentMercadopagoQR entity) {
         if (entity == null) return null;
-        return new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        return new PaymentMercadopagoQrDTO.Builder()
                 .id(entity.getId())
                 .orderId(entity.getOrderId())
                 .status(entity.getStatus())

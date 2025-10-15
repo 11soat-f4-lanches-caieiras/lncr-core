@@ -22,7 +22,7 @@ class PaymentMercadoPagoQrControllerImplTest {
     @BeforeEach
     void setUp() {
         paymentGateway = mock(PaymentGateway.class);
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(1)
                 .orderId(2)
                 .status("PAID")
@@ -40,7 +40,7 @@ class PaymentMercadoPagoQrControllerImplTest {
     @Test
     void testCreatePaymentCharge() {
         PaymentMercadopagoQrDTO input = new PaymentMercadopagoQrDTO(1, 25.99);
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(1)
                 .orderId(1)
                 .status("CHARGED")
@@ -66,7 +66,7 @@ class PaymentMercadoPagoQrControllerImplTest {
     void testGetPaymentById() {
 
         //Testando diretamente o UseCase com o gateway mockado
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(2)
                 .orderId(2)
                 .status("PAID")
@@ -90,7 +90,7 @@ class PaymentMercadoPagoQrControllerImplTest {
     @Test
     void testGetPaymentByCustomerOrderId() {
         // Testando diretamente o UseCase com o gateway mockado
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(2)
                 .orderId(2)
                 .status("PAID")
@@ -115,7 +115,7 @@ class PaymentMercadoPagoQrControllerImplTest {
 
     @Test
     void testCancelPaymentByOrderId() {
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(2)
                 .orderId(2)
                 .status("CHARGED")
@@ -139,7 +139,7 @@ class PaymentMercadoPagoQrControllerImplTest {
     @Test
     void testGetPaymentByStatusList() {
         List<String> statusList = List.of("CHARGED", "PAID", "CANCELLED");
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(2)
                 .orderId(2)
                 .status("PAID")
@@ -200,7 +200,7 @@ class PaymentMercadoPagoQrControllerImplTest {
             "user_id", "2425846779"
         );
 
-        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(6)
                 .orderId(6)
                 .status("CHARGED")

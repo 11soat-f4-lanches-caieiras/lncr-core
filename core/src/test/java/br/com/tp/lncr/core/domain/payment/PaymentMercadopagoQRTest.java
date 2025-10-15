@@ -1,5 +1,6 @@
 package br.com.tp.lncr.core.domain.payment;
 
+import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,20 @@ import java.time.LocalDateTime;
 class PaymentMercadopagoQRTest {
     @Test
     void testConstructorAndGetters() {
-        PaymentMercadopagoQR payment = new PaymentMercadopagoQR(1, 10, "Aprovado", 50.0, "ext123", LocalDateTime.now(), LocalDateTime.now(), "meli123", "qrdata");
+        LocalDateTime now = LocalDateTime.now();
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.Builder()
+                .id(1)
+                .orderId(10)
+                .status("Aprovado")
+                .amount(50.0)
+                .externalPaymentId("ext123")
+                .created(now)
+                .updated(now)
+                .qrData("qrdata")
+                .meliId("meli123")
+                .build();
+
+        PaymentMercadopagoQR payment = new PaymentMercadopagoQR(dto);
         Assertions.assertEquals(1, payment.getId());
         Assertions.assertEquals(10, payment.getOrderId());
         Assertions.assertEquals("Aprovado", payment.getStatus());
@@ -22,7 +36,20 @@ class PaymentMercadopagoQRTest {
 
     @Test
     void testSetters() {
-        PaymentMercadopagoQR payment = new PaymentMercadopagoQR(2, 20, "CHARGED", 100.0, "ext456", LocalDateTime.now(), LocalDateTime.now(), "meli456", "qrdata2");
+        LocalDateTime now = LocalDateTime.now();
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.Builder()
+                .id(2)
+                .orderId(20)
+                .status("CHARGED")
+                .amount(100.0)
+                .externalPaymentId("ext456")
+                .created(now)
+                .updated(now)
+                .qrData("qrdata2")
+                .meliId("meli456")
+                .build();
+
+        PaymentMercadopagoQR payment = new PaymentMercadopagoQR(dto);
         payment.setId(3);
         payment.setOrderId(30);
         payment.setStatus("Cancelled");
@@ -39,4 +66,3 @@ class PaymentMercadopagoQRTest {
         Assertions.assertEquals("qrdata3", payment.getQrData());
     }
 }
-

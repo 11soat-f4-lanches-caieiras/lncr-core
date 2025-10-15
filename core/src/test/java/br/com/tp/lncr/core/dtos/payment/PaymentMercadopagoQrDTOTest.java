@@ -11,7 +11,7 @@ class PaymentMercadopagoQrDTOTest {
     @Test
     void testAllArgsConstructor() {
         LocalDateTime now = LocalDateTime.now();
-        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(1)
                 .orderId(2)
                 .status("PAID")
@@ -72,7 +72,7 @@ class PaymentMercadopagoQrDTOTest {
 
     @Test
     void testNullValuesConstructor() {
-        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.Builder()
                 .id(null)
                 .orderId(null)
                 .status(null)

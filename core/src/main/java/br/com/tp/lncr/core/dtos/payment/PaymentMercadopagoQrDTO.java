@@ -19,18 +19,18 @@ public class PaymentMercadopagoQrDTO extends PaymentDTO {
         super(orderId, amount);
     }
 
-    private PaymentMercadopagoQrDTO(PaymentMercadopagoQrDtoBuilder paymentMercadopagoQrDtoBuilder) {
-        this.setId(paymentMercadopagoQrDtoBuilder.id);
-        this.setOrderId(paymentMercadopagoQrDtoBuilder.orderId);
-        this.setStatus(paymentMercadopagoQrDtoBuilder.status);
-        this.setAmount(paymentMercadopagoQrDtoBuilder.amount);
-        this.setPaymentProvider(paymentMercadopagoQrDtoBuilder.paymentProvider);
-        this.setPaymentMethod(paymentMercadopagoQrDtoBuilder.paymentMethod);
-        this.setCreated(paymentMercadopagoQrDtoBuilder.created);
-        this.setUpdated(paymentMercadopagoQrDtoBuilder.updated);
-        this.setExternalPaymentId(paymentMercadopagoQrDtoBuilder.externalPaymentId);
-        this.qrData = paymentMercadopagoQrDtoBuilder.qrData;
-        this.meliId = paymentMercadopagoQrDtoBuilder.meliId;
+    private PaymentMercadopagoQrDTO(Builder builder) {
+        this.setId(builder.id);
+        this.setOrderId(builder.orderId);
+        this.setStatus(builder.status);
+        this.setAmount(builder.amount);
+        this.setPaymentProvider(builder.paymentProvider);
+        this.setPaymentMethod(builder.paymentMethod);
+        this.setCreated(builder.created);
+        this.setUpdated(builder.updated);
+        this.setExternalPaymentId(builder.externalPaymentId);
+        this.qrData = builder.qrData;
+        this.meliId = builder.meliId;
     }
 
     public String getQrData() {
@@ -49,7 +49,7 @@ public class PaymentMercadopagoQrDTO extends PaymentDTO {
         this.meliId = meliId;
     }
 
-    public static class PaymentMercadopagoQrDtoBuilder {
+    public static class Builder {
         private Integer id;
         private Integer orderId;
         private String status;
@@ -62,57 +62,57 @@ public class PaymentMercadopagoQrDTO extends PaymentDTO {
         private String qrData;
         private String meliId;
 
-        public PaymentMercadopagoQrDtoBuilder id(Integer id) {
+        public Builder id(Integer id) {
             this.id = id;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder orderId(Integer orderId) {
+        public Builder orderId(Integer orderId) {
             this.orderId = orderId;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder status(String status) {
+        public Builder status(String status) {
             this.status = status;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder amount(Double amount) {
+        public Builder amount(Double amount) {
             this.amount = amount;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder paymentProvider(String paymentProvider) {
+        public Builder paymentProvider(String paymentProvider) {
             this.paymentProvider = paymentProvider;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder paymentMethod(String paymentMethod) {
+        public Builder paymentMethod(String paymentMethod) {
             this.paymentMethod = paymentMethod;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder created(LocalDateTime created) {
+        public Builder created(LocalDateTime created) {
             this.created = created;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder updated(LocalDateTime updated) {
+        public Builder updated(LocalDateTime updated) {
             this.updated = updated;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder externalPaymentId(String externalPaymentId) {
+        public Builder externalPaymentId(String externalPaymentId) {
             this.externalPaymentId = externalPaymentId;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder qrData(String qrData) {
+        public Builder qrData(String qrData) {
             this.qrData = qrData;
             return this;
         }
 
-        public PaymentMercadopagoQrDtoBuilder meliId(String meliId) {
+        public Builder meliId(String meliId) {
             this.meliId = meliId;
             return this;
         }
