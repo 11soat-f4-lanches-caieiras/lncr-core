@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EnumUtilsTest {
     enum TestEnum implements EnumWithIdDescription {
-        UM(1, "Primeiro"), DOIS(2, "Segundo");
+        UM(1, "Primeiro"), DOIS(2, "Segundo"), TRES(3, "Terceiro");
         private final int id;
         private final String description;
         TestEnum(int id, String description) { this.id = id; this.description = description; }
