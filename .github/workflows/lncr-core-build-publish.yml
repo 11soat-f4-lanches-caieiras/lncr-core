@@ -52,12 +52,11 @@ jobs:
 
     - name: Análise SonarQube
       run: |
-        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \ 
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml \
           -Pcoverage
           -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
           -Dsonar.login=${{ env.SONAR_TOKEN }} \
-          -Dsonar.branch.name=${{ github.ref_name }} \
-          -f lncr-core/core/pom.xml
+          -Dsonar.branch.name=${{ github.ref_name }}
 
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
