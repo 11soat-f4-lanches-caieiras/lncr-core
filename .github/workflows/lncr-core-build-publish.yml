@@ -52,9 +52,14 @@ jobs:
 
     - name: Análise SonarQube
       run: |
-        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml \ 
-        -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
-        -Dsonar.login=${{ env.SONAR_TOKEN }}
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml \
+          -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
+          -Dsonar.login=${{ env.SONAR_TOKEN }} \
+          -Dsonar.branch.name=${{ github.ref_name }}
+
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
 
     - name: Executar testes
       run: mvn clean test -f core/pom.xml
