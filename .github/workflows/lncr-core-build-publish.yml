@@ -5,6 +5,7 @@ on:
     paths:
       - 'core/src/main/**'
       - 'core/pom.xml'
+      - '.github/workflows/lncr-core-build-publish.yml'
   pull_request:
     branches: [ master ]
     paths:
