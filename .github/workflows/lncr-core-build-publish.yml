@@ -57,7 +57,7 @@ jobs:
           -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
           -Dsonar.login=${{ env.SONAR_TOKEN }} \
           -Dsonar.branch.name=${{ github.ref_name }} \
-          -f core/pom.xml \
+          -f core/pom.xml
 
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
