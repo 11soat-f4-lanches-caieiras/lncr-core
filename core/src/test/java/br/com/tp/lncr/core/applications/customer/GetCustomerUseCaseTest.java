@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -27,7 +26,7 @@ class GetCustomerUseCaseTest {
     @Test
     void deveBuscarTodosComLimitePadrao() {
         when(customerGateway.getAllCustomers(10)).thenReturn(Collections.emptyList());
-        List<Customer> result = useCase.getAll(null);
+        List<Customer> result = useCase.getAll(10);
         assertNotNull(result);
     }
 

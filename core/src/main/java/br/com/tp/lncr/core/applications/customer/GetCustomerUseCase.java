@@ -15,14 +15,6 @@ public class GetCustomerUseCase {
         this.customerGateway = customerGateway;
     }
 
-    public List<Customer> getAll(Integer limit) {
-        if ((limit <= 0 || limit > 50)) {
-            throw new CustomerException("Limite deve ser maior que 0 e menor ou igual a 50", 400);
-        }
-        limit = limit == null ? 10 : limit;
-        return customerGateway.getAllCustomers(limit);
-    }
-
     public Customer getById(Integer id) {
         LoggerUtil.info("Buscando cliente com ID: " + id);
         Customer customer = customerGateway.getCustomerById(id);
@@ -31,6 +23,14 @@ public class GetCustomerUseCase {
         }
         LoggerUtil.info("Cliente encontrado: " + customer);
         return customer;
+    }
+
+    public List<Customer> getAll(Integer limit) {
+        if ((limit <= 0 || limit > 50)) {
+            throw new CustomerException("Limite deve ser maior que 0 e menor ou igual a 50", 400);
+        }
+        limit = limit == null ? 10 : limit;
+        return customerGateway.getAllCustomers(limit);
     }
 
 
