@@ -14,16 +14,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FoodItemMapperTest {
-    private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImage IMAGE = new FoodItemImage(null,1, BASE64_PNG, null, null, null, null);
-    private final List<FoodItemImage> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE));
-    private final FoodItem ITEM = new FoodItem(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH, IMAGES);
+    private static final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
+    private static final FoodItemImage IMAGE = new FoodItemImage(null,1, BASE64_PNG, null, null, null, null);
+    private static final List<FoodItemImage> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE));
+    private static final FoodItem ITEM = new FoodItem(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH, IMAGES);
 
     @Test
     void testFoodItemToDTOAndBack() {
         FoodItemMapper mapper = new FoodItemMapper();
-        FoodItem item = ITEM;
-        FoodItemDTO dto = mapper.foodItemToDTO(item);
+        FoodItemDTO dto = mapper.foodItemToDTO(ITEM);
         assertNotNull(dto);
         assertNotNull(mapper.foodItemToDomain(dto));
     }
@@ -31,8 +30,7 @@ class FoodItemMapperTest {
     @Test
     void testFoodItemImageToDTOAndBack() {
         FoodItemMapper mapper = new FoodItemMapper();
-        FoodItemImage image = IMAGE;
-        FoodItemImageDTO dto = mapper.foodItemImageToDTO(image);
+        FoodItemImageDTO dto = mapper.foodItemImageToDTO(IMAGE);
         assertNotNull(dto);
         assertNotNull(mapper.foodItemImageToDomain(dto));
     }

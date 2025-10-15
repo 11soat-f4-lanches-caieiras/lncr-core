@@ -30,8 +30,8 @@ public class CustomerGatewayImpl implements CustomerGateway {
     }
 
     @Override
-    public List<Customer> getAllCustomers(Integer _limit) {
-        return customerDatabase.findAll(_limit).stream()
+    public List<Customer> getAllCustomers(Integer limit) {
+        return customerDatabase.findAll(limit).stream()
                 .map(customerMapper::customerToDTO)
                 .toList();
     }
@@ -39,19 +39,13 @@ public class CustomerGatewayImpl implements CustomerGateway {
     @Override
     public Customer getCustomerByDocumentNumber(String documentNumber) {
         Optional<CustomerDTO> customerDTO = this.customerDatabase.findByDocumentNumber(documentNumber);
-        if (customerDTO.isEmpty()) {
-            return null;
-        }
-        return customerMapper.customerToDTO(customerDTO.get());
+        return customerDTO.map(customerMapper::customerToDTO).orElse(null);
     }
 
     @Override
     public Customer getCustomerById(Integer id) {
         Optional<CustomerDTO> customerDTO = this.customerDatabase.findById(id);
-        if (customerDTO.isEmpty()) {
-            return null;
-        }
-        return customerMapper.customerToDTO(customerDTO.get());
+        return customerDTO.map(customerMapper::customerToDTO).orElse(null);
     }
 
     @Override

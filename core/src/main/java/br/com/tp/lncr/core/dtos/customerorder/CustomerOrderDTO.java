@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CustomerOrderDTO {
     private Integer id;
-    private LocalDateTime _created;
-    private LocalDateTime _updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private String status;
     private Double totalCost;
     private CustomerOrderCustomerDTO customer;
@@ -14,12 +14,12 @@ public class CustomerOrderDTO {
 
     public CustomerOrderDTO() {}
 
-    public CustomerOrderDTO(Integer id, String status, Double totalCost, LocalDateTime _created, LocalDateTime _updated, CustomerOrderCustomerDTO customer, List<CustomerOrderFoodItemDTO> foodItems) {
+    public CustomerOrderDTO(Integer id, String status, Double totalCost, LocalDateTime created, LocalDateTime updated, CustomerOrderCustomerDTO customer, List<CustomerOrderFoodItemDTO> foodItems) {
         this.id = id;
         this.status = status;
         this.totalCost = totalCost;
-        this._created = _created;
-        this._updated = _updated;
+        this.created = created;
+        this.updated = updated;
         this.customer = customer;
         this.foodItems = foodItems;
     }
@@ -33,15 +33,15 @@ public class CustomerOrderDTO {
     public Double getTotalCost() { return totalCost; }
     public void setTotalCost(Double totalCost) { this.totalCost = totalCost; }
 
-    public LocalDateTime getCreated() { return _created; }
-    public void setCreated(LocalDateTime _created) { this._created = _created; }
+    public LocalDateTime getCreated() { return created; }
+    public void setCreated(LocalDateTime created) { this.created = created; }
 
     public LocalDateTime getUpdated() {
-        return _updated;
+        return updated;
     }
 
-    public void setUpdated(LocalDateTime _updated) {
-        this._updated = _updated;
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 
     public CustomerOrderCustomerDTO getCustomer() {return customer;}

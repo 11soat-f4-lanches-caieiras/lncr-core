@@ -13,19 +13,19 @@ import java.util.List;
 
 public class CustomerOrder implements SortedByStatusCreated {
     private Integer id;
-    private LocalDateTime _created;
-    private LocalDateTime _updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private String status;
     private Double totalCost;
     private CustomerOrderCustomer customer;
     private List<CustomerOrderFoodItem> foodItems;
 
-    public CustomerOrder(Integer id, String status, Double totalCost, LocalDateTime _created, LocalDateTime _updated, CustomerOrderCustomer customer, List<CustomerOrderFoodItem> foodItems) {
+    public CustomerOrder(Integer id, String status, Double totalCost, LocalDateTime created, LocalDateTime updated, CustomerOrderCustomer customer, List<CustomerOrderFoodItem> foodItems) {
         this.id = id;
         this.status = status;
         this.totalCost = totalCost;
-        this._created = _created;
-        this._updated = _updated;
+        this.created = created;
+        this.updated = updated;
         this.customer = customer;
         this.foodItems = foodItems;
         setTotalCost();
@@ -35,8 +35,8 @@ public class CustomerOrder implements SortedByStatusCreated {
         this.id = dto.getId();
         this.status = dto.getStatus();
         this.totalCost = dto.getTotalCost();
-        this._created = dto.getCreated();
-        this._updated = dto.getUpdated();
+        this.created = dto.getCreated();
+        this.updated = dto.getUpdated();
         this.customer = null;
         if (dto.getCustomer() != null) {
             this.customer = new CustomerOrderCustomer(dto.getCustomer());
@@ -124,19 +124,19 @@ public class CustomerOrder implements SortedByStatusCreated {
     }
 
     public LocalDateTime getCreated() {
-        return _created;
+        return created;
     }
 
-    public void setCreated(LocalDateTime _created) {
-        this._created = _created;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     public LocalDateTime getUpdated() {
-        return _updated;
+        return updated;
     }
 
-    public void setUpdated(LocalDateTime _updated) {
-        this._updated = _updated;
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 
     private String validateNewStatusRules(String newStatus, Boolean forceUpdate) {
@@ -159,8 +159,8 @@ public class CustomerOrder implements SortedByStatusCreated {
     public String toString() {
         return "CustomerOrder{" +
                 "id=" + id +
-                ", _created=" + _created +
-                ", _updated=" + _updated +
+                ", _created=" + created +
+                ", _updated=" + updated +
                 ", status='" + status + '\'' +
                 ", totalCost=" + totalCost +
                 ", customer=" + customer +

@@ -12,20 +12,20 @@ import java.util.List;
 
 public class KitchenOrder implements SortedByStatusCreated {
     private Integer id;
-    private LocalDateTime _created;
-    private LocalDateTime _updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private Integer customerOrderId;
     private String status;
     private List<KitchenOrderFoodItem> foodItems;
 
 
-    public KitchenOrder(Integer id, Integer customerOrderId, String status, List<KitchenOrderFoodItem> foodItems, LocalDateTime _created, LocalDateTime _updated) {
+    public KitchenOrder(Integer id, Integer customerOrderId, String status, List<KitchenOrderFoodItem> foodItems, LocalDateTime created, LocalDateTime updated) {
         this.id = id;
         this.customerOrderId = customerOrderId;
         this.status = status;
         this.foodItems = foodItems;
-        this._created = _created;
-        this._updated = _updated;
+        this.created = created;
+        this.updated = updated;
     }
 
     public KitchenOrder() {
@@ -41,10 +41,10 @@ public class KitchenOrder implements SortedByStatusCreated {
                 .toList();
         }
         if (dto.getCreated() != null) {
-            this._created = dto.getCreated();
+            this.created = dto.getCreated();
         }
         if (dto.getUpdated() != null) {
-            this._updated = dto.getUpdated();
+            this.updated = dto.getUpdated();
         }
     }
 
@@ -57,19 +57,19 @@ public class KitchenOrder implements SortedByStatusCreated {
     }
 
     public LocalDateTime getCreated() {
-        return _created;
+        return created;
     }
 
-    public void setCreated(LocalDateTime _created) {
-        this._created = _created;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     public LocalDateTime getUpdated() {
-        return _updated;
+        return updated;
     }
 
-    public void setUpdated(LocalDateTime _updated) {
-        this._updated = _updated;
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 
     public Integer getCustomerOrderId() {

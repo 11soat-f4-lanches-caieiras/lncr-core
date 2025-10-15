@@ -13,7 +13,7 @@ public interface CustomerDatabase {
 
     boolean existsByEmail(String email);
 
-    List<CustomerDTO> findAll(Integer _limit);
+    List<CustomerDTO> findAll(Integer limit);
 
     Optional<CustomerDTO> findByDocumentNumber(String documentNumber);
 

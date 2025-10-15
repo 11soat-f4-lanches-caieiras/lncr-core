@@ -15,15 +15,15 @@ public class UpdateKitchenOrderUseCase {
     }
 
     public KitchenOrder updateStatus(Integer kitchenOrderId, String newStatus, Boolean forceUpdate, Boolean updateCustomerOrder) {
-        String SUFIX_MESSAGE = ", novo status: ";
-        LoggerUtil.info("Iniciando atualização de preparo, id: " + kitchenOrderId + SUFIX_MESSAGE + newStatus + ", forçar atualização: " + forceUpdate + ", atualizar pedido do cliente: " + updateCustomerOrder);
+        String sufixMessage = ", novo status: ";
+        LoggerUtil.info("Iniciando atualização de preparo, id: " + kitchenOrderId + sufixMessage + newStatus + ", forçar atualização: " + forceUpdate + ", atualizar pedido do cliente: " + updateCustomerOrder);
         KitchenOrder kitchenOrder = kitchenOrderGateway.getKitchenOrderById(kitchenOrderId);
         if (kitchenOrder != null) {
             kitchenOrder.setStatus(newStatus, forceUpdate);
             kitchenOrder = this.kitchenOrderGateway.saveKitchenOrder(kitchenOrder);
             updateCustomerOrder(kitchenOrder, updateCustomerOrder);
             sendNotification(kitchenOrder);
-            LoggerUtil.info("Preparo atualizado com sucesso, id: " + kitchenOrderId + SUFIX_MESSAGE + newStatus);
+            LoggerUtil.info("Preparo atualizado com sucesso, id: " + kitchenOrderId + sufixMessage + newStatus);
             return kitchenOrder;
         }
          throw new KitchenOrderException("Não encontrado preparo para o id:" + kitchenOrderId, 404);
@@ -41,23 +41,23 @@ public class UpdateKitchenOrderUseCase {
         Integer customerOrderId = kitchenOrder.getId();
         String  notificationType = null;
         String  message = null;
-        String PREFIX_MESSAGE = "Preparo com id: ";
+        String prefixMessage = "Preparo com id: ";
         switch (kitchenOrder.getStatus().toUpperCase()) {
             case "PREPARING":
                 notificationType = "KITCHEN_ORDER_PREPARING";
-                message = PREFIX_MESSAGE + customerOrderId + " iniciado.";
+                message = prefixMessage + customerOrderId + " iniciado.";
                 break;
             case "READY":
                 notificationType = "KITCHEN_ORDER_READY";
-                message = PREFIX_MESSAGE + customerOrderId + " pronto.";
+                message = prefixMessage + customerOrderId + " pronto.";
                 break;
             case "FINISEHD":
                 notificationType = "KITCHEN_ORDER_FINISHED";
-                message = PREFIX_MESSAGE + customerOrderId + " finalizado.";
+                message = prefixMessage + customerOrderId + " finalizado.";
                 break;
             case "CANCELLED":
                 notificationType = "KITCHEN_ORDER_CANCELLED";
-                message = PREFIX_MESSAGE + customerOrderId + " cancelado.";
+                message = prefixMessage + customerOrderId + " cancelado.";
                 break;
             default:
                 break;

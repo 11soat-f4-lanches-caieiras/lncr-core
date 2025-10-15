@@ -45,13 +45,13 @@ public class EnumUtils {
     }
 
     public static <E extends Enum<E> & EnumWithIdDescription, X extends RuntimeException> String validateNewStatusRules(Class<E> enumClass, String actualStatus, String newStatus, Boolean forceUpdate, Function<String, X> exceptionSupplier) {
-        String INVALID_STATUS = "Status inválido: ";
-        String forcedStatus = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(INVALID_STATUS + newStatus)).getDescription();
+        String invalidStatus = "Status inválido: ";
+        String forcedStatus = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(invalidStatus + newStatus)).getDescription();
         if (Boolean.TRUE.equals(forceUpdate) || actualStatus.equalsIgnoreCase(newStatus)) {
             return forcedStatus;
         } else {
-            Integer actualStatusId = EnumUtils.fromDescription(enumClass, actualStatus, exceptionSupplier.apply(INVALID_STATUS + actualStatus)).getId();
-            Integer newStatusId = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(INVALID_STATUS + newStatus)).getId();
+            Integer actualStatusId = EnumUtils.fromDescription(enumClass, actualStatus, exceptionSupplier.apply(invalidStatus + actualStatus)).getId();
+            Integer newStatusId = EnumUtils.fromDescription(enumClass, newStatus, exceptionSupplier.apply(invalidStatus + newStatus)).getId();
             if (actualStatusId + 1 == newStatusId) {
                 return newStatus;
             } else {

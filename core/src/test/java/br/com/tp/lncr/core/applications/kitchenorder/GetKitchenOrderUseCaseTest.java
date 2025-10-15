@@ -64,7 +64,7 @@ class GetKitchenOrderUseCaseTest {
     @Test
     void deveLancarExcecaoSeNaoEncontrarPorStatusList() {
         when(kitchenOrderGateway.getKitchenOrderByStatusList(anyList(), eq(true))).thenReturn(Collections.emptyList());
-        assertThrows(KitchenOrderException.class, () -> useCase.getByStatusList(Collections.singletonList("RECEIVED"), true));
+        List<String> statusList = Collections.singletonList("RECEIVED");
+        assertThrows(KitchenOrderException.class, () -> useCase.getByStatusList(statusList, true));
     }
 }
-

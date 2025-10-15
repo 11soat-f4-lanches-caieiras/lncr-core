@@ -12,7 +12,7 @@ public interface CustomerGateway {
 
     void deleteCustomerById(Integer id);
 
-    List<Customer> getAllCustomers(Integer _limit);
+    List<Customer> getAllCustomers(Integer limit);
 
     Customer getCustomerByDocumentNumber(String documentNumber);
 

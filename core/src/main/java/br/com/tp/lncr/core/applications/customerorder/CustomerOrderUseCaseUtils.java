@@ -6,8 +6,8 @@ import br.com.tp.lncr.core.domain.customerorder.CustomerOrderFoodItem;
 import br.com.tp.lncr.core.exceptions.CustomerOrderException;
 import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
 import br.com.tp.lncr.core.utils.LoggerUtil;
-import java.util.Collections;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -135,7 +135,7 @@ public class CustomerOrderUseCaseUtils {
         Integer customerOrderId = updateCustomerOrder.getId();
         String notificationType = null;
         String message = null;
-        String PREFIX_MESSAGE = "Pedido com id: ";
+        String prefixMessage = "Pedido com id: ";
         switch (updateCustomerOrder.getStatus().toUpperCase()) {
             case "RECEIVED":
                 notificationType = "CUSTOMER_ORDER_RECEIVED";
@@ -143,19 +143,19 @@ public class CustomerOrderUseCaseUtils {
                 break;
             case "PREPARING":
                 notificationType = "CUSTOMER_ORDER_PREPARING";
-                message = PREFIX_MESSAGE + customerOrderId + " iniciou preparo.";
+                message = prefixMessage + customerOrderId + " iniciou preparo.";
                 break;
             case "READY":
                 notificationType = "CUSTOMER_ORDER_READY";
-                message = PREFIX_MESSAGE + customerOrderId + " pronto para retirada.";
+                message = prefixMessage + customerOrderId + " pronto para retirada.";
                 break;
             case "FINISEHD":
                 notificationType = "CUSTOMER_ORDER_FINISHED";
-                message = PREFIX_MESSAGE + customerOrderId + " finalizado.";
+                message = prefixMessage + customerOrderId + " finalizado.";
                 break;
             case "CANCELLED":
                 notificationType = "CUSTOMER_ORDER_CANCELLED";
-                message = PREFIX_MESSAGE + customerOrderId + " cancelado.";
+                message = prefixMessage + customerOrderId + " cancelado.";
                 break;
             default:
                 // Nenhuma ação

@@ -52,9 +52,9 @@ public class FoodItemGatewayImpl implements FoodItemGateway {
     }
 
     @Override
-    public List<FoodItem> getAllFoodItems(Integer _limit, String category, Boolean includeImages) {
+    public List<FoodItem> getAllFoodItems(Integer limit, String category, Boolean includeImages) {
         Integer categoryId = category == null ? null : FoodItemCategory.fromDescription(category).getId();
-        return this.foodItemDatabase.findAllFoodItems(_limit, categoryId, includeImages)
+        return this.foodItemDatabase.findAllFoodItems(limit, categoryId, includeImages)
                 .stream()
                 .map(foodItemMapper::foodItemToDomain)
                 .toList();

@@ -21,7 +21,7 @@ public interface FoodItemGateway {
 
     void deleteImageFile(String fileName);
 
-    List<FoodItem> getAllFoodItems(Integer _limit, String category, Boolean includeImages);
+    List<FoodItem> getAllFoodItems(Integer limit, String category, Boolean includeImages);
 
     List<FoodItemImage> getAllImagesByFoodItemId(Integer foodItemId, Boolean includeData);
 

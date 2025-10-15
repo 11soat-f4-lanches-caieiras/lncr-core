@@ -30,8 +30,8 @@ public class FoodItemControllerImpl implements FoodItemController {
     }
 
     @Override
-    public List<FoodItemDTO> getAll(Integer _limit, String category, Boolean includeImages, FoodItemDatabase foodItemDatabase, FoodItemImageRules foodItemImageRules) {
-        List<FoodItem> foodItemList = new GetFoodItemUseCase(foodItemGateway).getAll(_limit, category, includeImages);
+    public List<FoodItemDTO> getAll(Integer limit, String category, Boolean includeImages, FoodItemDatabase foodItemDatabase, FoodItemImageRules foodItemImageRules) {
+        List<FoodItem> foodItemList = new GetFoodItemUseCase(foodItemGateway).getAll(limit, category, includeImages);
         return new FoodItemPresenter(foodItemMapper).getAll(foodItemList, foodItemImageRules.getImageLocation());
     }
 

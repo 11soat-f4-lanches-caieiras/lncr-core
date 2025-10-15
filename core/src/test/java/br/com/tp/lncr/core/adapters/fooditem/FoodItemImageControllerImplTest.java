@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 class FoodItemImageControllerImplTest {
-    private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
+    private static final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
+    private static final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
     private FoodItemImageControllerImpl controller;
     private FoodItemDatabase foodItemDatabase;
     private FoodItemImageRules foodItemImageRules;
@@ -40,8 +40,7 @@ class FoodItemImageControllerImplTest {
 
     @Test
     void testCreate() {
-        FoodItemImageDTO dto = IMAGE_DTO;
-        assertNotNull(controller.create(1, dto, foodItemDatabase, foodItemImageRules));
+        assertNotNull(controller.create(1, IMAGE_DTO, foodItemDatabase, foodItemImageRules));
     }
 
     @Test
@@ -52,8 +51,7 @@ class FoodItemImageControllerImplTest {
     @Test
     void testUpdateImageById() {
         // Corrige para garantir que o mock retorna um FoodItemImageDTO válido ao atualizar
-        FoodItemImageDTO dto = IMAGE_DTO;
-        assertNotNull(controller.updateImageById(1, dto, foodItemDatabase, foodItemImageRules));
+        assertNotNull(controller.updateImageById(1, IMAGE_DTO, foodItemDatabase, foodItemImageRules));
     }
 
     @Test

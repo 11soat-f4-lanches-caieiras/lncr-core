@@ -24,7 +24,7 @@ public interface FoodItemDatabase {
 
     List<FoodItemImageDTO> findAllFoodItemImagesByFoodItemId(Integer foodItemId, Boolean includeData);
 
-    List<FoodItemDTO> findAllFoodItems(Integer _limit, Integer categoryId, Boolean includeImages);
+    List<FoodItemDTO> findAllFoodItems(Integer limit, Integer categoryId, Boolean includeImages);
 
     FoodItemDTO findFoodItemById(Integer foodItemId, Boolean includeImages);
 

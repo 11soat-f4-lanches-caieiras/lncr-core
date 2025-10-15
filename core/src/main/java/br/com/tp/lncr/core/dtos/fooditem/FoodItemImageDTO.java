@@ -3,7 +3,7 @@ package br.com.tp.lncr.core.dtos.fooditem;
 public class FoodItemImageDTO {
     private Integer id;
     private Integer foodItemId;
-    private String _data;
+    private String data;
     private String location;
     private String fileName;
     private String fileExtension;
@@ -12,10 +12,10 @@ public class FoodItemImageDTO {
     public FoodItemImageDTO() {
     }
 
-    public FoodItemImageDTO(Integer id, Integer foodItemId, String _data, String location, String fileName, String fileExtension, String imageError) {
+    public FoodItemImageDTO(Integer id, Integer foodItemId, String data, String location, String fileName, String fileExtension, String imageError) {
         this.id = id;
         this.foodItemId = foodItemId;
-        this._data = _data;
+        this.data = data;
         this.location = location;
         this.fileName = fileName;
         this.fileExtension = fileExtension;
@@ -39,11 +39,11 @@ public class FoodItemImageDTO {
     }
 
     public String getData() {
-        return _data;
+        return data;
     }
 
-    public void setData(String _data) {
-        this._data = _data;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getLocation() {

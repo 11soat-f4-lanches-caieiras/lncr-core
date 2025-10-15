@@ -27,13 +27,14 @@ class GetCustomerUseCaseTest {
     @Test
     void deveBuscarTodosComLimitePadrao() {
         when(customerGateway.getAllCustomers(10)).thenReturn(Collections.emptyList());
-        List<Customer> result = useCase.getAll(Optional.empty());
+        List<Customer> result = useCase.getAll(null);
         assertNotNull(result);
     }
 
     @Test
     void deveLancarExcecaoSeLimiteInvalido() {
-        CustomerException ex = assertThrows(CustomerException.class, () -> useCase.getAll(Optional.of(0)));
+        Integer invalidLimit = 0;
+        CustomerException ex = assertThrows(CustomerException.class, () -> useCase.getAll(invalidLimit));
         assertEquals(400, ex.getCode());
     }
 
@@ -75,7 +76,8 @@ class GetCustomerUseCaseTest {
     @Test
     void deveLancarExcecaoSeListaDeIdsNaoEncontrada() {
         when(customerGateway.getCustomerByIdList(anyList())).thenReturn(null);
-        CustomerException ex = assertThrows(CustomerException.class, () -> useCase.getByIdList(Arrays.asList(3,4)));
+        List<Integer> idList = Arrays.asList(3, 4);
+        CustomerException ex = assertThrows(CustomerException.class, () -> useCase.getByIdList(idList));
         assertEquals(404, ex.getCode());
     }
 }

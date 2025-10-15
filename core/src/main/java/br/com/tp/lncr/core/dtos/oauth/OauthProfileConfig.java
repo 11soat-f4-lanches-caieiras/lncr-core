@@ -37,12 +37,12 @@ public class OauthProfileConfig implements OauthDatabase {
 
     @Override
     public OauthCredentialsDTO validateCredentials(OauthCredentialsDTO oauthCredentialsDTO) {
-        String client_id = oauthCredentialsDTO.client_id();
-        String client_secret = oauthCredentialsDTO.client_secret();
-        if (oauthProfile.getClientId().equals(client_id) && oauthProfile.getClientSecret().equals(client_secret)) {
+        String clientId = oauthCredentialsDTO.client_id();
+        String clientSecret = oauthCredentialsDTO.client_secret();
+        if (oauthProfile.getClientId().equals(clientId) && oauthProfile.getClientSecret().equals(clientSecret)) {
             return new OauthCredentialsDTO(
-                    client_id,
-                    client_secret,
+                    clientId,
+                    clientSecret,
                     oauthProfile.getGrantType(),
                     oauthProfile.getScope(),
                     null,

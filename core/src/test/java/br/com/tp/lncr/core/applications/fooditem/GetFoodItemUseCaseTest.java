@@ -18,10 +18,10 @@ import static org.mockito.Mockito.*;
 
 class GetFoodItemUseCaseTest {
 
-    private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
-    private final List<FoodItemImageDTO> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE_DTO));
-    private final FoodItemDTO ITEM_DTO = new FoodItemDTO(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH.getDescription(), IMAGES);
+    private static final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
+    private static final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
+    private static final List<FoodItemImageDTO> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE_DTO));
+    private static final FoodItemDTO ITEM_DTO = new FoodItemDTO(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH.getDescription(), IMAGES);
 
     private FoodItemGateway gateway;
     private GetFoodItemUseCase useCase;

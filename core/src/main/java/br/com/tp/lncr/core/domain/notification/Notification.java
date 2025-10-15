@@ -9,14 +9,14 @@ public class Notification {
     private String notificationType;
     private Integer artefactId;
     private String message;
-    private LocalDateTime _created;
+    private LocalDateTime created;
 
-    public Notification(Integer id, String notificationType, Integer artefactId, String message, LocalDateTime _created) {
+    public Notification(Integer id, String notificationType, Integer artefactId, String message, LocalDateTime created) {
         this.id = id;
         this.notificationType = notificationType;
         this.artefactId = artefactId;
         this.message = message;
-        this._created = _created;
+        this.created = created;
     }
 
     public Notification(NotificationDTO dto) {
@@ -24,7 +24,7 @@ public class Notification {
         this.notificationType = dto.getNotificationType();
         this.artefactId = dto.getArtefactId();
         this.message = dto.getMessage();
-        this._created = dto.getCreated();
+        this.created = dto.getCreated();
     }
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public class Notification {
     }
 
     public LocalDateTime getCreated() {
-        return _created;
+        return created;
     }
 
-    public void setCreated(LocalDateTime _created) {
-        this._created = _created;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
 }

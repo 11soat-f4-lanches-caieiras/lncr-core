@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FoodItemControllerImplTest {
-    private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
-    private final List<FoodItemImageDTO> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE_DTO));
-    private final FoodItemDTO ITEM_DTO = new FoodItemDTO(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH.getDescription(), IMAGES);
+    private static final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
+    private static final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(null,1, BASE64_PNG, null, null, null, null);
+    private static final List<FoodItemImageDTO> IMAGES = new ArrayList<>(Collections.singletonList(IMAGE_DTO));
+    private static final FoodItemDTO ITEM_DTO = new FoodItemDTO(1, "X-SALADA", "DESCRIÇÃO", 25.99, FoodItemCategory.SANDWICH.getDescription(), IMAGES);
     private FoodItemControllerImpl controller;
     private FoodItemDatabase foodItemDatabase;
     private FoodItemImageRules foodItemImageRules;
@@ -46,9 +46,9 @@ class FoodItemControllerImplTest {
         Mockito.when(foodItemDatabase.findFoodItemByIdList(Mockito.anyList())).thenReturn(Collections.singletonList(foodItem));
         Mockito.when(foodItemDatabase.create(Mockito.any(FoodItemDTO.class))).thenReturn(foodItem);
         Mockito.when(foodItemDatabase.save(Mockito.any(FoodItemDTO.class))).thenReturn(foodItem);
-        Mockito.when(foodItemDatabase.save(Mockito.any(FoodItemImageDTO.class))).thenReturn(images.get(0));
-        Mockito.when(foodItemDatabase.findFoodItemImageById(1)).thenReturn(images.get(0));
-        Mockito.when(foodItemDatabase.findFoodItemImageById(1)).thenReturn(images.get(0));
+        Mockito.when(foodItemDatabase.save(Mockito.any(FoodItemImageDTO.class))).thenReturn(images.getFirst());
+        Mockito.when(foodItemDatabase.findFoodItemImageById(1)).thenReturn(images.getFirst());
+        Mockito.when(foodItemDatabase.findFoodItemImageById(1)).thenReturn(images.getFirst());
         Mockito.when(foodItemDatabase.findAllFoodItemImagesByFoodItemId(1, false)).thenReturn(images);
         Mockito.doNothing().when(foodItemDatabase).delete(foodItem);
         Mockito.doNothing().when(foodItemDatabase).deleteImagesByFoodItemId(1);
@@ -56,8 +56,7 @@ class FoodItemControllerImplTest {
 
     @Test
     void testCreate() {
-        FoodItemDTO dto = ITEM_DTO;
-        FoodItemDTO result = controller.create(dto, foodItemDatabase, foodItemImageRules);
+        FoodItemDTO result = controller.create(ITEM_DTO, foodItemDatabase, foodItemImageRules);
         assertNotNull(result);
     }
 
@@ -103,8 +102,7 @@ class FoodItemControllerImplTest {
 
     @Test
     void testCreateImage() {
-        FoodItemImageDTO dto = IMAGE_DTO;
-        assertNotNull(controller.create(1, dto, foodItemDatabase, foodItemImageRules));
+        assertNotNull(controller.create(1, IMAGE_DTO, foodItemDatabase, foodItemImageRules));
     }
 
     @Test

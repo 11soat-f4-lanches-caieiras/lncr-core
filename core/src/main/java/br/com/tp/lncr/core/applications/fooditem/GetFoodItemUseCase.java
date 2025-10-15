@@ -16,18 +16,18 @@ public class GetFoodItemUseCase {
         this.foodItemGateway = foodItemGateway;
     }
 
-    public List<FoodItem> getAll(Integer _limit, String category, Boolean includeImages) {
-        LoggerUtil.info("Iniciando busca de todos os itens de alimentação com limite: " + _limit + ", categoria: " + category + ", incluir imagens: " + includeImages);
-        if (_limit == null) {
+    public List<FoodItem> getAll(Integer limit, String category, Boolean includeImages) {
+        LoggerUtil.info("Iniciando busca de todos os itens de alimentação com limite: " + limit + ", categoria: " + category + ", incluir imagens: " + includeImages);
+        if (limit == null) {
             LoggerUtil.debug("Limite não informado, usando valor padrão de 10");
-            _limit = 10; // Default limit
+            limit = 10; // Default limit
         } else {
-            if (_limit < 1 || _limit > 50) {
+            if (limit < 1 || limit > 50) {
                 throw new FoodItemException("Limite deve estar entre 1 e 50", 400);
             }
         }
 
-        List<FoodItem> foodItemList = foodItemGateway.getAllFoodItems(_limit, category, includeImages);
+        List<FoodItem> foodItemList = foodItemGateway.getAllFoodItems(limit, category, includeImages);
         LoggerUtil.info("Itens de alimentação encontrados: " + foodItemList.size());
         return foodItemList;
     }

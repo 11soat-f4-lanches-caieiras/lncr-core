@@ -13,8 +13,8 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class DeleteFoodItemUseCaseTest {
-    private final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
-    private final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(11,1, BASE64_PNG, null, null, null, null);
+    private static final String BASE64_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4";
+    private static final FoodItemImageDTO IMAGE_DTO = new FoodItemImageDTO(11,1, BASE64_PNG, null, null, null, null);
 
     private FoodItemGateway gateway;
     private DeleteFoodItemUseCase useCase;

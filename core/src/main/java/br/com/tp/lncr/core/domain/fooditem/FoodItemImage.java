@@ -13,7 +13,7 @@ public class FoodItemImage {
 
     private Integer id;
     private Integer foodItemId;
-    private String _data;
+    private String data;
     private String location;
     private String fileName;
     private String fileExtension;
@@ -30,7 +30,7 @@ public class FoodItemImage {
         if (foodItemImageDTO != null) {
             this.id = foodItemImageDTO.getId();
             this.foodItemId = foodItemImageDTO.getFoodItemId();
-            this._data = foodItemImageDTO.getData();
+            this.data = foodItemImageDTO.getData();
             this.location = foodItemImageDTO.getLocation();
             if (foodItemImageDTO.getFileName() != null) {
                 this.fileName = foodItemImageDTO.getFileName();
@@ -47,10 +47,10 @@ public class FoodItemImage {
         }
     }
 
-    public FoodItemImage(Integer id, Integer foodItemId, String _data, String location, String fileName, String fileExtension, String imageError) {
+    public FoodItemImage(Integer id, Integer foodItemId, String data, String location, String fileName, String fileExtension, String imageError) {
         this.id = id;
         this.foodItemId = foodItemId;
-        this._data = _data;
+        this.data = data;
         this.location = location;
         this.fileName = fileName;
         this.fileExtension = fileExtension;
@@ -74,11 +74,11 @@ public class FoodItemImage {
     }
 
     public String getData() {
-        return _data;
+        return data;
     }
 
-    public void setData(String _data) {
-        this._data = _data;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getLocation() {
@@ -118,15 +118,15 @@ public class FoodItemImage {
         String allowedExtensions = String.join(", ", foodItemImageRules.getAllowedExtentions().keySet());
         Integer maxSizeInBytes = foodItemImageRules.getImageMaxSize();
         if (foodItemImageRules.getImageMaxSize() != null && foodItemImageRules.getImageMaxSize() > 0) {
-            validateImageSize(this._data, maxSizeInBytes);
+            validateImageSize(this.data, maxSizeInBytes);
         }
         if (foodItemImageRules.getAllowedExtentions() != null) {
             validateImageExentions(foodItemImageRules, allowedExtensions);// Adicione este novo método na classe
         }
     }
 
-    public void validateImageSize(String _base64, Integer maxSizeInBytes) {
-        if (getDecodeImageData(_base64).length > maxSizeInBytes) {
+    public void validateImageSize(String base64, Integer maxSizeInBytes) {
+        if (getDecodeImageData(base64).length > maxSizeInBytes) {
             LoggerUtil.info("Tamanho da imagem excede o limite de "+ maxSizeInBytes + " bytes");
             this.imageError = "Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes"; //Adiciona mensagem de erro de tamanho inválid para o usuário
             throw new FoodItemException("Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes", 404);
@@ -136,7 +136,7 @@ public class FoodItemImage {
     private void validateImageExentions(FoodItemImageRules foodItemImageRules, String allowedExtensions) {
         for (Map.Entry<String, String> entry : foodItemImageRules.getAllowedExtentions().entrySet()) { // Lista de extensões permitidas
             String headerExtensions = entry.getValue();
-            if (validateImageExtention(this._data, headerExtensions)) { // Valida se extensão é permitida
+            if (validateImageExtention(this.data, headerExtensions)) { // Valida se extensão é permitida
                 this.fileExtension = entry.getKey();
             }
         }
@@ -147,10 +147,10 @@ public class FoodItemImage {
         }
     }
 
-    public byte[] getDecodeImageData(String _base64) {
+    public byte[] getDecodeImageData(String base64) {
         try {
-            if (_base64 != null) {
-                return Base64.getDecoder().decode(_base64);
+            if (base64 != null) {
+                return Base64.getDecoder().decode(base64);
             }
             throw new FoodItemException("Sem informações da imagem", 400);
         } catch (IllegalArgumentException e) {
@@ -158,8 +158,8 @@ public class FoodItemImage {
         }
     }
 
-    public boolean validateImageExtention(String _base64, String headerExtensions) {
-        String header = bytesToHex(getDecodeImageData(_base64));
+    public boolean validateImageExtention(String base64, String headerExtensions) {
+        String header = bytesToHex(getDecodeImageData(base64));
         return header.startsWith(headerExtensions);
     }
 

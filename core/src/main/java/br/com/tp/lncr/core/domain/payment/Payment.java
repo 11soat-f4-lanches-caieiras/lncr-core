@@ -11,17 +11,17 @@ public abstract class Payment implements SortedByStatusCreated {
     private String status;
     private Double amount;
     private String externalPaymentId;
-    private LocalDateTime _created;
-    private LocalDateTime _updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
 
-    protected Payment(Integer id, Integer orderId, String status, Double amount, String externalPaymentId, LocalDateTime _created, LocalDateTime _updated) {
+    protected Payment(Integer id, Integer orderId, String status, Double amount, String externalPaymentId, LocalDateTime created, LocalDateTime updated) {
         this.id = id;
         this.orderId = orderId;
         this.status = status;
         this.amount = amount;
         this.externalPaymentId = externalPaymentId;
-        this._created = _created;
-        this._updated = _updated;
+        this.created = created;
+        this.updated = updated;
     }
 
     public Integer getId() {
@@ -49,16 +49,16 @@ public abstract class Payment implements SortedByStatusCreated {
         this.amount = amount;
     }
     public LocalDateTime getCreated() {
-        return _created;
+        return created;
     }
-    public void setCreated(LocalDateTime _created) {
-        this._created = _created;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
     public LocalDateTime getUpdated() {
-        return _updated;
+        return updated;
     }
-    public void setUpdated(LocalDateTime _updated) {
-        this._updated = _updated;
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
     public String getExternalPaymentId() {
         return externalPaymentId;

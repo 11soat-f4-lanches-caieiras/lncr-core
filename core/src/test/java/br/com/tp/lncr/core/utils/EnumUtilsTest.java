@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EnumUtilsTest {
     enum TestEnum implements EnumWithIdDescription {
-        UM(1, "Primeiro"), DOIS(2, "Segundo"), TRES(3, "Terceiro");
+        UM(1, "Primeiro"), DOIS(2, "Segundo");
         private final int id;
         private final String description;
         TestEnum(int id, String description) { this.id = id; this.description = description; }
@@ -19,16 +19,15 @@ class EnumUtilsTest {
     @Test
     void testFromId() {
         assertEquals(TestEnum.UM, EnumUtils.fromId(TestEnum.class, 1, new RuntimeException()));
-        assertThrows(RuntimeException.class, () -> {
-            RuntimeException ex = new RuntimeException();
-            EnumUtils.fromId(TestEnum.class, 99, ex);
-        });
+        RuntimeException exception = new RuntimeException();
+        assertThrows(RuntimeException.class, () -> EnumUtils.fromId(TestEnum.class, 99, exception));
     }
 
     @Test
     void testFromDescription() {
         assertEquals(TestEnum.DOIS, EnumUtils.fromDescription(TestEnum.class, "Segundo", new RuntimeException()));
-        assertThrows(RuntimeException.class, () -> EnumUtils.fromDescription(TestEnum.class, "Inexistente", new RuntimeException()));
+        RuntimeException exception = new RuntimeException();
+        assertThrows(RuntimeException.class, () -> EnumUtils.fromDescription(TestEnum.class, "Inexistente", exception));
     }
 
     @Test
@@ -49,4 +48,3 @@ class EnumUtilsTest {
         assertThrows(RuntimeException.class, () -> EnumUtils.validateNewStatusRules(TestEnum.class, "Primeiro", "Terceiro", false, RuntimeException::new));
     }
 }
-

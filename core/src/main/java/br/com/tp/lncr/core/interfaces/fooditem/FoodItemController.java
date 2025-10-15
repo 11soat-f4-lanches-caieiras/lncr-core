@@ -16,7 +16,7 @@ public interface FoodItemController {
 
     void deleteImagesByFoodItemId(Integer foodItemId, FoodItemDatabase foodItemDatabase);
 
-    List<FoodItemDTO> getAll(Integer _limit, String category, Boolean includeImages, FoodItemDatabase foodItemDatabase, FoodItemImageRules foodItemImageRules);
+    List<FoodItemDTO> getAll(Integer limit, String category, Boolean includeImages, FoodItemDatabase foodItemDatabase, FoodItemImageRules foodItemImageRules);
 
     FoodItemDTO getById(Integer foodItemId, Boolean includeImages, FoodItemDatabase foodItemDatabase, FoodItemImageRules foodItemImageRules);
 

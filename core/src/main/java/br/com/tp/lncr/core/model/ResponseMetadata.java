@@ -4,48 +4,48 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class ResponseMetadata {
-    private String _traceId;
-    private String _timestamp;
-    private String _message;
+    private String traceId;
+    private String timestamp;
+    private String message;
 
     public ResponseMetadata() {
-        this._traceId = UUID.randomUUID().toString();
-        this._timestamp = Instant.now().toString();
-        this._message = null;
+        this.traceId = UUID.randomUUID().toString();
+        this.timestamp = Instant.now().toString();
+        this.message = null;
     }
 
-    public ResponseMetadata(String _traceId, String _timestamp, String _message) {
-        this._traceId = _traceId;
-        this._timestamp = _timestamp;
-        this._message = _message;
+    public ResponseMetadata(String traceid, String timestamp, String message) {
+        this.traceId = traceid;
+        this.timestamp = timestamp;
+        this.message = message;
     }
 
-    public ResponseMetadata(String _traceId, String _timestamp) {
-        this._traceId = _traceId;
-        this._timestamp = _timestamp;
+    public ResponseMetadata(String traceId, String timestamp) {
+        this.traceId = traceId;
+        this.timestamp = timestamp;
     }
 
     public String getTraceId() {
-        return _traceId;
+        return traceId;
     }
 
-    public void setTraceId(String _traceId) {
-        this._traceId = _traceId;
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
     }
 
     public String getTimestamp() {
-        return _timestamp;
+        return timestamp;
     }
 
-    public void setTimestamp(String _timestamp) {
-        this._timestamp = _timestamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getMessage() {
-        return _message;
+        return message;
     }
 
-    public void setMessage(String _message) {
-        this._message = _message;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

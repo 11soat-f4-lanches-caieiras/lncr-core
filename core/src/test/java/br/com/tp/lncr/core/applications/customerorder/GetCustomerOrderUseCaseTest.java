@@ -52,7 +52,7 @@ class GetCustomerOrderUseCaseTest {
     @Test
     void deveLancarExcecaoQuandoNaoExistemPedidosComStatus() {
         when(gateway.getCustomerOrderByStatusList(anyList(), anyBoolean())).thenReturn(Collections.emptyList());
-        assertThrows(CustomerOrderException.class, () -> useCase.getByStatusList(Collections.singletonList("INEXISTENTE"), true));
+        List<String> statusList = Collections.singletonList("INEXISTENTE");
+        assertThrows(CustomerOrderException.class, () -> useCase.getByStatusList(statusList, true));
     }
 }
-

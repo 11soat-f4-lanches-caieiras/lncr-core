@@ -11,7 +11,6 @@ import br.com.tp.lncr.core.interfaces.customer.CustomerDatabase;
 import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
 
 import java.util.List;
-import java.util.Optional;
 
 public class CustomerControllerImpl implements CustomerController {
 
@@ -35,8 +34,8 @@ public class CustomerControllerImpl implements CustomerController {
     }
 
     @Override
-    public List<CustomerDTO> getAll(Optional<Integer> _limit) {
-        List<Customer> customerList = new GetCustomerUseCase(customerGateway).getAll(_limit);
+    public List<CustomerDTO> getAll(Integer limit) {
+        List<Customer> customerList = new GetCustomerUseCase(customerGateway).getAll(limit);
         return new CustomerPresenter(customerMapper).getAll(customerList);
     }
 

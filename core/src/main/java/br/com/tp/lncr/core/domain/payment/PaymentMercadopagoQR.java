@@ -10,10 +10,10 @@ public class PaymentMercadopagoQR extends Payment{
     private String meliId;
     private String qrData;
 
-    public PaymentMercadopagoQR(Integer id, Integer orderId, String status, Double amount, String externalPaymentId, LocalDateTime _created, LocalDateTime _updated, String meliId, String qrData) {
-        super(id, orderId, status, amount, externalPaymentId, _created, _updated);
-        this.meliId = meliId;
-        this.qrData = qrData;
+    private PaymentMercadopagoQR(Builder builder) {
+        super(builder.id, builder.orderId, builder.status, builder.amount, builder.externalPaymentId, builder.created, builder.updated);
+        this.meliId = builder.meliId;
+        this.qrData = builder.qrData;
     }
 
     public PaymentMercadopagoQR(PaymentMercadopagoQrDTO dto) {
@@ -54,5 +54,66 @@ public class PaymentMercadopagoQR extends Payment{
     @Override
     public String getPaymentMethod() {
         return METHOD;
+    }
+
+    public static class Builder {
+        private Integer id;
+        private Integer orderId;
+        private String status;
+        private Double amount;
+        private String externalPaymentId;
+        private LocalDateTime created;
+        private LocalDateTime updated;
+        private String meliId;
+        private String qrData;
+
+        public Builder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder orderId(Integer orderId) {
+            this.orderId = orderId;
+            return this;
+        }
+
+        public Builder status(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder amount(Double amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder externalPaymentId(String externalPaymentId) {
+            this.externalPaymentId = externalPaymentId;
+            return this;
+        }
+
+        public Builder created(LocalDateTime created) {
+            this.created = created;
+            return this;
+        }
+
+        public Builder updated(LocalDateTime updated) {
+            this.updated = updated;
+            return this;
+        }
+
+        public Builder meliId(String meliId) {
+            this.meliId = meliId;
+            return this;
+        }
+
+        public Builder qrData(String qrData) {
+            this.qrData = qrData;
+            return this;
+        }
+
+        public PaymentMercadopagoQR build() {
+            return new PaymentMercadopagoQR(this);
+        }
     }
 }

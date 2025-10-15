@@ -24,7 +24,7 @@ public class GetCustomerOrderUseCase {
             throw new CustomerOrderException("Não encontrado pedido com id: " + customerOrderId,404);
         }
         CustomerOrderUseCaseUtils.getCustomerDetails(customerOrder,customerOrderGateway);
-        if (includFoodItems) CustomerOrderUseCaseUtils.getFoodItemsDetails(customerOrder, customerOrderGateway);
+        if (Boolean.TRUE.equals(includFoodItems)) CustomerOrderUseCaseUtils.getFoodItemsDetails(customerOrder, customerOrderGateway);
         LoggerUtil.info("Pedido encontrado: " + customerOrder);
         return customerOrder;
     }
@@ -37,7 +37,7 @@ public class GetCustomerOrderUseCase {
             throw new CustomerOrderException("Não existe pedidos com os status: " + String.join(", ", statusList) ,404);
         }
         CustomerOrderUseCaseUtils.getCustomerDetailsList(customerOrderList, customerOrderGateway);
-        if (includeFoodItems) CustomerOrderUseCaseUtils.getFoodItemsDetailsList(customerOrderList,customerOrderGateway);
+        if (Boolean.TRUE.equals(includeFoodItems)) CustomerOrderUseCaseUtils.getFoodItemsDetailsList(customerOrderList,customerOrderGateway);
         LoggerUtil.info("Pedidos encontrados: " + customerOrderList.size());
         return customerOrderList;
     }

@@ -10,8 +10,8 @@ public abstract class PaymentDTO {
     private String paymentProvider;
     private String paymentMethod;
     private String externalPaymentId;
-    private LocalDateTime _created;
-    private LocalDateTime _updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
 
 
     protected PaymentDTO() {}
@@ -19,18 +19,6 @@ public abstract class PaymentDTO {
     protected PaymentDTO(Integer orderId, Double amount) {
         this.orderId = orderId;
         this.amount = amount;
-    }
-
-    protected PaymentDTO(Integer id, Integer orderId, String status, Double amount, String paymentProvider, String paymentMethod, LocalDateTime created, LocalDateTime updated, String externalPaymentId) {
-        this.id = id;
-        this.orderId = orderId;
-        this.status = status;
-        this.amount = amount;
-        this.paymentProvider = paymentProvider;
-        this.paymentMethod = paymentMethod;
-        this._created = created;
-        this._updated = updated;
-        this.externalPaymentId = externalPaymentId;
     }
 
     public Integer getId() { return id; }
@@ -45,11 +33,12 @@ public abstract class PaymentDTO {
     public void setPaymentProvider(String paymentProvider) { this.paymentProvider = paymentProvider; }
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
-    public LocalDateTime getCreated() { return _created; }
-    public void setCreated(LocalDateTime _created) { this._created = _created; }
-    public LocalDateTime getUpdated() { return _updated; }
-    public void setUpdated(LocalDateTime _updated) { this._updated = _updated; }
+    public LocalDateTime getCreated() { return created; }
+    public void setCreated(LocalDateTime created) { this.created = created; }
+    public LocalDateTime getUpdated() { return updated; }
+    public void setUpdated(LocalDateTime updated) { this.updated = updated; }
     public String getExternalPaymentId() { return externalPaymentId; }
     public void setExternalPaymentId(String externalPaymentId) { this.externalPaymentId = externalPaymentId; }
-}
 
+
+}

@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 class KitchenOrderGatewayImplTest {
-    private final KitchenOrderFoodItemDTO KITCHEN_FOOD_ITEM_DTO = new KitchenOrderFoodItemDTO(1, 1, "Coca", "Lata 350 ml", "Copo com gelo e limão");
-    private final KitchenOrderDTO KITCHEN_ORDER_DTO = new KitchenOrderDTO(1, 1, "PREPARING", List.of(KITCHEN_FOOD_ITEM_DTO), null, null);
+    private static final KitchenOrderFoodItemDTO KITCHEN_FOOD_ITEM_DTO = new KitchenOrderFoodItemDTO(1, 1, "Coca", "Lata 350 ml", "Copo com gelo e limão");
+    private static final KitchenOrderDTO KITCHEN_ORDER_DTO = new KitchenOrderDTO(1, 1, "PREPARING", List.of(KITCHEN_FOOD_ITEM_DTO), null, null);
 
     @Test
     void testSaveKitchenOrder() {

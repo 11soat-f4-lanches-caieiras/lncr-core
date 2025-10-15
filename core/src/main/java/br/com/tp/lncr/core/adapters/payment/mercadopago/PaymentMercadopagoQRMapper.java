@@ -5,24 +5,24 @@ import br.com.tp.lncr.core.dtos.payment.PaymentMercadopagoQrDTO;
 
 public class PaymentMercadopagoQRMapper {
 
-    public PaymentMercadopagoQRMapper() {
+    private PaymentMercadopagoQRMapper() {
     }
 
     public PaymentMercadopagoQrDTO paymentMercadopagoQrToDTO(PaymentMercadopagoQR entity) {
         if (entity == null) return null;
-        return new PaymentMercadopagoQrDTO(
-            entity.getId(),
-            entity.getOrderId(),
-            entity.getStatus(),
-            entity.getAmount(),
-            entity.getPaymentProvider(),
-            entity.getPaymentMethod(),
-            entity.getCreated(),
-            entity.getUpdated(),
-            entity.getExternalPaymentId(),
-            entity.getQrData(),
-            entity.getMeliId() != null ? entity.getMeliId() : null
-        );
+        return new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(entity.getId())
+                .orderId(entity.getOrderId())
+                .status(entity.getStatus())
+                .amount(entity.getAmount())
+                .paymentProvider(entity.getPaymentProvider())
+                .paymentMethod(entity.getPaymentMethod())
+                .created(entity.getCreated())
+                .updated(entity.getUpdated())
+                .externalPaymentId(entity.getExternalPaymentId())
+                .qrData(entity.getQrData())
+                .meliId(entity.getMeliId() != null ? entity.getMeliId() : null)
+                .build();
     }
 
     public PaymentMercadopagoQR paymentMercadopagoQrToDomain(PaymentMercadopagoQrDTO dto) {
@@ -30,4 +30,3 @@ public class PaymentMercadopagoQRMapper {
         return new PaymentMercadopagoQR(dto);
     }
 }
-
