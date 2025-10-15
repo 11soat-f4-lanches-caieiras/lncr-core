@@ -16,6 +16,9 @@ public class OauthUtil {
         String base64Credentials = authorizationHeader.substring(AUTHORIZATION_TYPE.length());
         String credentials = new String(java.util.Base64.getDecoder().decode(base64Credentials));
         String[] values = credentials.split(":", 2);
+        if (values.length != 2) {
+            throw new OauthException("Credenciais inválidas", 400);
+        }
         String clientId = values[0];
         String clientSecret = values[1];
         return new OauthCredentialsDTO(clientId, clientSecret, body.grant_type(), body.scope(), body.name(), body.customerId());
