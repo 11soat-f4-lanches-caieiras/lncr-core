@@ -53,10 +53,10 @@ jobs:
     - name: Análise SonarQube
       run: |
         mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml \
-          -Pcoverage
           -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
           -Dsonar.login=${{ env.SONAR_TOKEN }} \
-          -Dsonar.branch.name=${{ github.ref_name }}
+          -Dsonar.branch.name=${{ github.ref_name }} \
+          -Pcoverage
 
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
