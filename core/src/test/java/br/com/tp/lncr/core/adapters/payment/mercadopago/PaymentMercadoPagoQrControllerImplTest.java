@@ -22,13 +22,37 @@ class PaymentMercadoPagoQrControllerImplTest {
     @BeforeEach
     void setUp() {
         paymentGateway = mock(PaymentGateway.class);
-        dto = new PaymentMercadopagoQrDTO(1, 2, "PAID", 25.99, "MERCADO_PAGO", "QR", null, null, "123", "qr_data", "meli_123");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(1)
+                .orderId(2)
+                .status("PAID")
+                .amount(25.99)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("123")
+                .qrData("qr_data")
+                .meliId("meli_123")
+                .build();
     }
 
     @Test
     void testCreatePaymentCharge() {
         PaymentMercadopagoQrDTO input = new PaymentMercadopagoQrDTO(1, 25.99);
-        dto = new PaymentMercadopagoQrDTO(1, 1, "CHARGED", 30.00, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "meli_456");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(1)
+                .orderId(1)
+                .status("CHARGED")
+                .amount(30.00)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("meli_456")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
 
         when(paymentGateway.getPaymentByCustomerOrderId(1)).thenReturn(null);
@@ -42,7 +66,19 @@ class PaymentMercadoPagoQrControllerImplTest {
     void testGetPaymentById() {
 
         //Testando diretamente o UseCase com o gateway mockado
-        dto = new PaymentMercadopagoQrDTO(2, 2, "PAID", 30.00, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "meli_456");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(2)
+                .orderId(2)
+                .status("PAID")
+                .amount(30.00)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("meli_456")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
 
         when(paymentGateway.getPaymentById(2)).thenReturn(paymentMercadopagoQR);
@@ -54,7 +90,19 @@ class PaymentMercadoPagoQrControllerImplTest {
     @Test
     void testGetPaymentByCustomerOrderId() {
         // Testando diretamente o UseCase com o gateway mockado
-        dto = new PaymentMercadopagoQrDTO(2, 2, "PAID", 30.00, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "meli_456");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(2)
+                .orderId(2)
+                .status("PAID")
+                .amount(30.00)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("meli_456")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
 
         when(paymentGateway.getPaymentByCustomerOrderId(2)).thenReturn(paymentMercadopagoQR);
@@ -67,7 +115,19 @@ class PaymentMercadoPagoQrControllerImplTest {
 
     @Test
     void testCancelPaymentByOrderId() {
-        dto = new PaymentMercadopagoQrDTO(2, 2, "CHARGED", 30.00, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "meli_456");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(2)
+                .orderId(2)
+                .status("CHARGED")
+                .amount(30.00)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("meli_456")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
         when(paymentGateway.getPaymentByCustomerOrderId(2)).thenReturn(paymentMercadopagoQR);
         when(paymentGateway.savePayment(paymentMercadopagoQR)).thenReturn(paymentMercadopagoQR);
@@ -79,7 +139,19 @@ class PaymentMercadoPagoQrControllerImplTest {
     @Test
     void testGetPaymentByStatusList() {
         List<String> statusList = List.of("CHARGED", "PAID", "CANCELLED");
-        dto = new PaymentMercadopagoQrDTO(2, 2, "PAID", 30.00, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "meli_456");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(2)
+                .orderId(2)
+                .status("PAID")
+                .amount(30.00)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("meli_456")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
         when(paymentGateway.getPaymentMercadoPagoQRList(any())).thenReturn(List.of(paymentMercadopagoQR));
         GetPaymentMercadoPagoQRUseCase useCase = new GetPaymentMercadoPagoQRUseCase(paymentGateway);
@@ -128,7 +200,19 @@ class PaymentMercadoPagoQrControllerImplTest {
             "user_id", "2425846779"
         );
 
-        dto = new PaymentMercadopagoQrDTO(6, 6, "CHARGED", 91.44, "MERCADO_PAGO", "QR", null, null, "456", "qr_data_456", "PAY01K0A8YZ1ACXYH4A81YX2GHMP6");
+        dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(6)
+                .orderId(6)
+                .status("CHARGED")
+                .amount(91.44)
+                .paymentProvider("MERCADO_PAGO")
+                .paymentMethod("QR")
+                .created(null)
+                .updated(null)
+                .externalPaymentId("456")
+                .qrData("qr_data_456")
+                .meliId("PAY01K0A8YZ1ACXYH4A81YX2GHMP6")
+                .build();
         PaymentMercadopagoQR paymentMercadopagoQR = new PaymentMercadopagoQR(dto);
 
         when(paymentGateway.getPaymentByCustomerOrderId(6)).thenReturn(paymentMercadopagoQR);

@@ -42,7 +42,7 @@ public class UpdatePaymentMercadoPagoQRUseCase {
 
     public PaymentMercadopagoQR processPaymentReceived(String externalReference, String dataId, Map<String, Object> body) {
         Integer externalReferenceId = Integer.valueOf(externalReference);
-        if (validadeOrderPayment(body)) {
+        if (Boolean.TRUE.equals(validadeOrderPayment(body))) {
             PaymentMercadopagoQR paymentMercadopagoQR = this.paymentGateway.getPaymentByCustomerOrderId(externalReferenceId);
             if (paymentMercadopagoQR != null && paymentMercadopagoQR.getMeliId().equals(dataId)) {
                 if (paymentMercadopagoQR.getStatus().equalsIgnoreCase(PaymentStatus.CHARGED.getDescription())) {

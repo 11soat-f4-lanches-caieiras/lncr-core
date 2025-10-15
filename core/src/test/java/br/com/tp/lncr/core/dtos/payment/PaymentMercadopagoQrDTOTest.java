@@ -1,70 +1,101 @@
 package br.com.tp.lncr.core.dtos.payment;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 class PaymentMercadopagoQrDTOTest {
     @Test
-    void createPaymentMercadopagoQrDTOWithAllFields() {
+    void testAllArgsConstructor() {
         LocalDateTime now = LocalDateTime.now();
-        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO(1, 2, "PAID", 100.0, "MP", "QR", now, now, "extId", "qrdata", "meliid");
-        Assertions.assertEquals(1, dto.getId());
-        Assertions.assertEquals(2, dto.getOrderId());
-        Assertions.assertEquals("PAID", dto.getStatus());
-        Assertions.assertEquals(100.0, dto.getAmount());
-        Assertions.assertEquals("MP", dto.getPaymentProvider());
-        Assertions.assertEquals("QR", dto.getPaymentMethod());
-        Assertions.assertEquals(now, dto.getCreated());
-        Assertions.assertEquals(now, dto.getUpdated());
-        Assertions.assertEquals("extId", dto.getExternalPaymentId());
-        Assertions.assertEquals("qrdata", dto.getQrData());
-        Assertions.assertEquals("meliid", dto.getMeliId());
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(1)
+                .orderId(2)
+                .status("PAID")
+                .amount(100.0)
+                .paymentProvider("MP")
+                .paymentMethod("QR")
+                .created(now)
+                .updated(now)
+                .externalPaymentId("extId")
+                .qrData("qrdata")
+                .meliId("meliid")
+                .build();
+
+        assertEquals(1, dto.getId());
+        assertEquals(2, dto.getOrderId());
+        assertEquals("PAID", dto.getStatus());
+        assertEquals(100.0, dto.getAmount());
+        assertEquals("MP", dto.getPaymentProvider());
+        assertEquals("QR", dto.getPaymentMethod());
+        assertEquals(now, dto.getCreated());
+        assertEquals(now, dto.getUpdated());
+        assertEquals("extId", dto.getExternalPaymentId());
+        assertEquals("qrdata", dto.getQrData());
+        assertEquals("meliid", dto.getMeliId());
     }
 
     @Test
-    void setAndGetFieldsIndividually() {
+    void testDefaultConstructor() {
         PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO();
-        dto.setId(3);
-        dto.setOrderId(4);
-        dto.setStatus("PENDING");
-        dto.setAmount(200.0);
-        dto.setPaymentProvider("MP");
-        dto.setPaymentMethod("QR");
-        LocalDateTime now = LocalDateTime.now();
-        dto.setCreated(now);
-        dto.setUpdated(now);
-        dto.setExternalPaymentId("ext2");
-        dto.setQrData("qr2");
-        dto.setMeliId("meli2");
-        Assertions.assertEquals(3, dto.getId());
-        Assertions.assertEquals(4, dto.getOrderId());
-        Assertions.assertEquals("PENDING", dto.getStatus());
-        Assertions.assertEquals(200.0, dto.getAmount());
-        Assertions.assertEquals("MP", dto.getPaymentProvider());
-        Assertions.assertEquals("QR", dto.getPaymentMethod());
-        Assertions.assertEquals(now, dto.getCreated());
-        Assertions.assertEquals(now, dto.getUpdated());
-        Assertions.assertEquals("ext2", dto.getExternalPaymentId());
-        Assertions.assertEquals("qr2", dto.getQrData());
-        Assertions.assertEquals("meli2", dto.getMeliId());
+        assertNull(dto.getId());
+        assertNull(dto.getOrderId());
+        assertNull(dto.getStatus());
+        assertNull(dto.getAmount());
+        assertNull(dto.getPaymentProvider());
+        assertNull(dto.getPaymentMethod());
+        assertNull(dto.getCreated());
+        assertNull(dto.getUpdated());
+        assertNull(dto.getExternalPaymentId());
+        assertNull(dto.getQrData());
+        assertNull(dto.getMeliId());
     }
 
     @Test
-    void allowNullFields() {
-        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO(null, null, null, null, null, null, null, null, null, null, null);
-        Assertions.assertNull(dto.getId());
-        Assertions.assertNull(dto.getOrderId());
-        Assertions.assertNull(dto.getStatus());
-        Assertions.assertNull(dto.getAmount());
-        Assertions.assertNull(dto.getPaymentProvider());
-        Assertions.assertNull(dto.getPaymentMethod());
-        Assertions.assertNull(dto.getCreated());
-        Assertions.assertNull(dto.getUpdated());
-        Assertions.assertNull(dto.getExternalPaymentId());
-        Assertions.assertNull(dto.getQrData());
-        Assertions.assertNull(dto.getMeliId());
+    void testPartialConstructor() {
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO("qrdata", "meliid");
+        assertNull(dto.getId());
+        assertNull(dto.getOrderId());
+        assertNull(dto.getStatus());
+        assertNull(dto.getAmount());
+        assertNull(dto.getPaymentProvider());
+        assertNull(dto.getPaymentMethod());
+        assertNull(dto.getCreated());
+        assertNull(dto.getUpdated());
+        assertNull(dto.getExternalPaymentId());
+        assertEquals("qrdata", dto.getQrData());
+        assertEquals("meliid", dto.getMeliId());
+    }
+
+    @Test
+    void testNullValuesConstructor() {
+        PaymentMercadopagoQrDTO dto = new PaymentMercadopagoQrDTO.PaymentMercadopagoQrDtoBuilder()
+                .id(null)
+                .orderId(null)
+                .status(null)
+                .amount(null)
+                .paymentProvider(null)
+                .paymentMethod(null)
+                .created(null)
+                .updated(null)
+                .externalPaymentId(null)
+                .qrData(null)
+                .meliId(null)
+                .build();
+
+        assertNull(dto.getId());
+        assertNull(dto.getOrderId());
+        assertNull(dto.getStatus());
+        assertNull(dto.getAmount());
+        assertNull(dto.getPaymentProvider());
+        assertNull(dto.getPaymentMethod());
+        assertNull(dto.getCreated());
+        assertNull(dto.getUpdated());
+        assertNull(dto.getExternalPaymentId());
+        assertNull(dto.getQrData());
+        assertNull(dto.getMeliId());
     }
 }
-

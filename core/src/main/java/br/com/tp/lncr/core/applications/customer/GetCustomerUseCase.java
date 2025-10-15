@@ -6,7 +6,6 @@ import br.com.tp.lncr.core.interfaces.customer.CustomerGateway;
 import br.com.tp.lncr.core.utils.LoggerUtil;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GetCustomerUseCase {
 
@@ -16,12 +15,12 @@ public class GetCustomerUseCase {
         this.customerGateway = customerGateway;
     }
 
-    public List<Customer> getAll(Optional<Integer> limit) {
-        if (limit.isPresent() && (limit.get() <= 0 || limit.get() > 50)) {
+    public List<Customer> getAll(Integer limit) {
+        if ((limit <= 0 || limit > 50)) {
             throw new CustomerException("Limite deve ser maior que 0 e menor ou igual a 50", 400);
         }
-
-        return customerGateway.getAllCustomers(limit.orElse(10));
+        limit = limit == null ? 10 : limit;
+        return customerGateway.getAllCustomers(limit);
     }
 
     public Customer getById(Integer id) {

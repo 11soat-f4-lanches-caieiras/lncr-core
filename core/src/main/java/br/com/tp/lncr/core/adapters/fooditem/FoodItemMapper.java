@@ -5,8 +5,8 @@ import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemDTO;
 import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
 import br.com.tp.lncr.core.enums.FoodItemCategory;
-import java.util.Collections;
 
+import java.util.Collections;
 import java.util.List;
 
 public class FoodItemMapper {
