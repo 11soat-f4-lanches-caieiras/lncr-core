@@ -6,6 +6,7 @@ import br.com.tp.lncr.core.domain.customerorder.CustomerOrderFoodItem;
 import br.com.tp.lncr.core.exceptions.CustomerOrderException;
 import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
 import br.com.tp.lncr.core.utils.LoggerUtil;
+import br.com.tp.lncr.core.utils.NotificationUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -131,37 +132,7 @@ public class CustomerOrderUseCaseUtils {
     }
 
     public static void sendNotification(CustomerOrder updateCustomerOrder, CustomerOrderGateway customerOrderGateway) {
-        if (updateCustomerOrder == null) return;
-        Integer customerOrderId = updateCustomerOrder.getId();
-        String notificationType = null;
-        String message = null;
-        String prefixMessage = "Pedido com id: ";
-        switch (updateCustomerOrder.getStatus().toUpperCase()) {
-            case "RECEIVED":
-                notificationType = "CUSTOMER_ORDER_RECEIVED";
-                message = "Pagamento finalizado do pedido com id: " + customerOrderId + ". Aguardando preparo.";
-                break;
-            case "PREPARING":
-                notificationType = "CUSTOMER_ORDER_PREPARING";
-                message = prefixMessage + customerOrderId + " iniciou preparo.";
-                break;
-            case "READY":
-                notificationType = "CUSTOMER_ORDER_READY";
-                message = prefixMessage + customerOrderId + " pronto para retirada.";
-                break;
-            case "FINISEHD":
-                notificationType = "CUSTOMER_ORDER_FINISHED";
-                message = prefixMessage + customerOrderId + " finalizado.";
-                break;
-            case "CANCELLED":
-                notificationType = "CUSTOMER_ORDER_CANCELLED";
-                message = prefixMessage + customerOrderId + " cancelado.";
-                break;
-            default:
-                // Nenhuma ação
-                break;
-        }
-        if (notificationType != null)
-            customerOrderGateway.sendNotification(notificationType, customerOrderId, message);
+        NotificationUtil.NotificationData data = NotificationUtil.buildNotification("CUSTOMER", updateCustomerOrder.getId(), updateCustomerOrder.getStatus());
+        if (data.type != null) customerOrderGateway.sendNotification(data.type, data.id, data.message);
     }
 }

@@ -5,6 +5,7 @@ import br.com.tp.lncr.core.enums.KitchenOrderStatus;
 import br.com.tp.lncr.core.exceptions.KitchenOrderException;
 import br.com.tp.lncr.core.interfaces.kitchenorder.KitchenOrderGateway;
 import br.com.tp.lncr.core.utils.LoggerUtil;
+import br.com.tp.lncr.core.utils.NotificationUtil;
 
 public class UpdateKitchenOrderUseCase {
 
@@ -36,33 +37,7 @@ public class UpdateKitchenOrderUseCase {
     }
 
     private void sendNotification(KitchenOrder kitchenOrder) {
-        if (kitchenOrder == null) return;
-        LoggerUtil.debug("Enviando notificação para o preparo, id: " + kitchenOrder.getId() + ", status: " + kitchenOrder.getStatus());
-        Integer customerOrderId = kitchenOrder.getId();
-        String  notificationType = null;
-        String  message = null;
-        String prefixMessage = "Preparo com id: ";
-        switch (kitchenOrder.getStatus().toUpperCase()) {
-            case "PREPARING":
-                notificationType = "KITCHEN_ORDER_PREPARING";
-                message = prefixMessage + customerOrderId + " iniciado.";
-                break;
-            case "READY":
-                notificationType = "KITCHEN_ORDER_READY";
-                message = prefixMessage + customerOrderId + " pronto.";
-                break;
-            case "FINISEHD":
-                notificationType = "KITCHEN_ORDER_FINISHED";
-                message = prefixMessage + customerOrderId + " finalizado.";
-                break;
-            case "CANCELLED":
-                notificationType = "KITCHEN_ORDER_CANCELLED";
-                message = prefixMessage + customerOrderId + " cancelado.";
-                break;
-            default:
-                break;
-        }
-        if (notificationType != null)
-            this.kitchenOrderGateway.sendNotification(notificationType,customerOrderId,message);
+        NotificationUtil.NotificationData data = NotificationUtil.buildNotification("KITCHEN", kitchenOrder.getId(), kitchenOrder.getStatus());
+        if (data.type != null) kitchenOrderGateway.sendNotification(data.type, data.id, data.message);
     }
 }
