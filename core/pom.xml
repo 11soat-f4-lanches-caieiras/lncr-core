@@ -23,7 +23,8 @@
             br.com.tp.lncr.core.exceptions,
             br.com.tp.lncr.core.domain
         </sonar.cpd.exclusions>
-        <sonar.coverage.jacoco.xmlReportPaths>../target/site/jacoco-aggregate/jacoco.xml
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ../target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -109,6 +110,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
+                    <doclint>all,-missing</doclint>
                     <failOnError>true</failOnError>
                     <serialwarn>false</serialwarn>
                 </configuration>
