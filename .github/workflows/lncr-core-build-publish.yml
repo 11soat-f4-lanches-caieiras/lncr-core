@@ -64,15 +64,16 @@ jobs:
       - name: Cobertura de Testes Jacoco & Sonar
         run: |
           if [ -f core/target/site/jacoco/jacoco.xml ]; then
-            COVERED=$(grep -oP 'counter type="INSTRUCTION"[^>]+covered="\K[0-9]+' core/target/site/jacoco/jacoco.xml)
-            MISSED=$(grep -oP 'counter type="INSTRUCTION"[^>]+missed="\K[0-9]+' core/target/site/jacoco/jacoco.xml)
-            if [ -n "$COVERED" ] && [ -n "$MISSED" ]; then
+            COVERED=$(grep -oP 'counter type="INSTRUCTION"[^>]+covered="\K[0-9]+' core/target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
+            MISSED=$(grep -oP 'counter type="INSTRUCTION"[^>]+missed="\K[0-9]+' core/target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
+            if [[ "$COVERED" =~ ^[0-9]+$ ]] && [[ "$MISSED" =~ ^[0-9]+$ ]] && [ $((COVERED + MISSED)) -ne 0 ]; then
               PERCENT=$(awk "BEGIN {printf \"%.2f\", 100 * $COVERED / ($COVERED + $MISSED)}")
               echo "Cobertura de instruções: $PERCENT%"
               echo "COVERAGE_PERCENTAGE=$PERCENT" >> $GITHUB_ENV
               echo "MISSED=$MISSED" >> $GITHUB_ENV
             else
-              echo "Não foi possível calcular a cobertura."
+              echo "Valores de cobertura não encontrados. Falhando o build."
+              exit 1
             fi
           else
             echo "Relatório Jacoco não encontrado."
