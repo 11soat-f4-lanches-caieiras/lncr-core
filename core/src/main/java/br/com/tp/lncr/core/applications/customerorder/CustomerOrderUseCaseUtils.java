@@ -137,6 +137,6 @@ public class CustomerOrderUseCaseUtils {
             return;
         }
         NotificationUtil.NotificationData data = NotificationUtil.buildNotification("CUSTOMER", updateCustomerOrder.getId(), updateCustomerOrder.getStatus());
-        if (data.type() != null) customerOrderGateway.sendNotification(data.type(), data.id(), data.message());
+        if (data != null) customerOrderGateway.sendNotification(data.type(), data.id(), data.message());
     }
 }
