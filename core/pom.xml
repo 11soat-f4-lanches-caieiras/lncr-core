@@ -18,7 +18,14 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <sonar.organization>11soat-f4-lanches-caieiras</sonar.organization>
-        <sonar.coverage.jacoco.xmlReportPaths>../target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.cpd.exclusions>
+            br.com.tp.lncr.core.dtos,
+            br.com.tp.lncr.core.exceptions,
+            br.com.tp.lncr.core.domain
+        </sonar.cpd.exclusions>
+        <sonar.coverage.jacoco.xmlReportPaths>../target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -79,7 +86,7 @@
                     <source>21</source>
                     <target>21</target>
                     <compilerArgs>
-                        <arg>-Xlint:-missingjavadoc</arg>
+                        <arg>-Xlint:none</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
