@@ -54,7 +54,7 @@ jobs:
       run: |
         mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml \
           -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
-          -Dsonar.login=${{ env.SONAR_TOKEN }} \
+          -Dsonar.token=${{ env.SONAR_TOKEN }} \
           -Dsonar.branch.name=${{ github.ref_name }} \
           -Pcoverage
 

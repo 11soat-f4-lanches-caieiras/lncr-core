@@ -79,7 +79,7 @@
                     <source>21</source>
                     <target>21</target>
                     <compilerArgs>
-                        <arg>-parameters</arg>
+                        <arg>-Xlint:-missingjavadoc</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
