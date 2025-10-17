@@ -62,7 +62,7 @@ jobs:
             -Dsonar.token=${{ env.SONAR_TOKEN }} \
             -Dsonar.branch.name=${{ github.ref_name }} \
             -Dsonar.qualitygate.wait=true \
-            -Dsonar.sources=src/main
+            -Dsonar.sources=src/main \
             -Pcoverage
 
       - name: Cobertura de Testes Jacoco & Sonar
