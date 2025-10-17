@@ -49,7 +49,7 @@ class CustomerOrderUseCaseUtilsTest {
         CustomerOrderFoodItem detailed = new CustomerOrderFoodItem(1, null, "Nome", "Desc", 10.0, null);
         when(gateway.getFoodItemsDetails(anyList())).thenReturn(Collections.singletonList(detailed));
         CustomerOrderUseCaseUtils.getFoodItemsDetails(order, gateway);
-        assertEquals("Nome", order.getFoodItems().get(0).getName());
+        assertEquals("Nome", order.getFoodItems().getFirst().getName());
     }
 
     @Test
@@ -59,7 +59,7 @@ class CustomerOrderUseCaseUtilsTest {
         when(order.getStatus()).thenReturn("RECEIVED");
         doNothing().when(gateway).sendNotification(anyString(), anyInt(), anyString());
         CustomerOrderUseCaseUtils.sendNotification(order, gateway);
-        verify(gateway).sendNotification(contains("RECEIVED"), eq(1), contains("Pagamento finalizado"));
+        verify(gateway).sendNotification(contains("RECEIVED"), eq(1), contains("recebido"));
     }
 
     @Test
