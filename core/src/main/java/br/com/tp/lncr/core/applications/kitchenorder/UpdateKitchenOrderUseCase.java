@@ -38,6 +38,6 @@ public class UpdateKitchenOrderUseCase {
 
     private void sendNotification(KitchenOrder kitchenOrder) {
         NotificationUtil.NotificationData data = NotificationUtil.buildNotification("KITCHEN", kitchenOrder.getId(), kitchenOrder.getStatus());
-        if (data.type != null) kitchenOrderGateway.sendNotification(data.type, data.id, data.message);
+        if (data.type() != null) kitchenOrderGateway.sendNotification(data.type(), data.id(), data.message());
     }
 }

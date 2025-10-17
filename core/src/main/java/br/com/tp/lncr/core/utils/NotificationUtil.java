@@ -7,44 +7,40 @@ public class  NotificationUtil {
     }
 
     public static NotificationData buildNotification(String entity, Integer id, String status) {
-        String notificationType = null;
+        String notificationSufix = null;
         String message = null;
         String prefixMessage = entity + " com id: ";
         switch (status.toUpperCase()) {
             case "RECEIVED":
-                notificationType = entity + "_ORDER_RECEIVED";
-                message = "Pagamento finalizado do " + entity.toLowerCase() + " com id: " + id + ". Aguardando preparo.";
+                notificationSufix = "_ORDER_RECEIVED";
+                message = "Novo " + entity.toLowerCase() + " com id: " + id + "recebido.";
                 break;
             case "PREPARING":
-                notificationType = entity + "_ORDER_PREPARING";
+                notificationSufix = "_ORDER_PREPARING";
                 message = prefixMessage + id + " iniciou.";
                 break;
             case "READY":
-                notificationType = entity + "_ORDER_READY";
+                notificationSufix = "_ORDER_READY";
                 message = prefixMessage + id + " pronto.";
                 break;
             case "FINISEHD":
-                notificationType = entity + "_ORDER_FINISHED";
+                notificationSufix = "_ORDER_FINISHED";
                 message = prefixMessage + id + " finalizado.";
                 break;
             case "CANCELLED":
-                notificationType = entity + "_ORDER_CANCELLED";
+                notificationSufix = "_ORDER_CANCELLED";
                 message = prefixMessage + id + " cancelado.";
                 break;
             default:
                 break;
         }
-        return new NotificationData(notificationType, id, message);
+        return new NotificationData(getNotificationType(entity,notificationSufix), id, message);
     }
 
-    public static class NotificationData {
-        public final String type;
-        public final Integer id;
-        public final String message;
-        public NotificationData(String type, Integer id, String message) {
-            this.type = type;
-            this.id = id;
-            this.message = message;
-        }
+    public static String getNotificationType(String entity, String sufix) {
+        return entity + sufix;
+    }
+
+    public record NotificationData(String type, Integer id, String message) {
     }
 }
