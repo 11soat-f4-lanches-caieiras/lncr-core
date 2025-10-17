@@ -132,6 +132,10 @@ public class CustomerOrderUseCaseUtils {
     }
 
     public static void sendNotification(CustomerOrder updateCustomerOrder, CustomerOrderGateway customerOrderGateway) {
+        if (updateCustomerOrder == null) {
+            LoggerUtil.error("Tentativa de enviar notificação com pedido nulo.");
+            return;
+        }
         NotificationUtil.NotificationData data = NotificationUtil.buildNotification("CUSTOMER", updateCustomerOrder.getId(), updateCustomerOrder.getStatus());
         if (data.type != null) customerOrderGateway.sendNotification(data.type, data.id, data.message);
     }

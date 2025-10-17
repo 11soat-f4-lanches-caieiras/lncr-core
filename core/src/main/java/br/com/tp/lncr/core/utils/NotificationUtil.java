@@ -1,6 +1,11 @@
 package br.com.tp.lncr.core.utils;
 
 public class  NotificationUtil {
+
+    private NotificationUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static NotificationData buildNotification(String entity, Integer id, String status) {
         String notificationType = null;
         String message = null;
@@ -12,7 +17,7 @@ public class  NotificationUtil {
                 break;
             case "PREPARING":
                 notificationType = entity + "_ORDER_PREPARING";
-                message = prefixMessage + id + " iniciou preparo.";
+                message = prefixMessage + id + " iniciou.";
                 break;
             case "READY":
                 notificationType = entity + "_ORDER_READY";
