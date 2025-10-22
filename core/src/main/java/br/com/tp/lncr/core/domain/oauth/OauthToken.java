@@ -1,0 +1,30 @@
+package br.com.tp.lncr.core.domain.oauth;
+
+import br.com.tp.lncr.core.dtos.oauth.OauthCredentialsDTO;
+import br.com.tp.lncr.core.dtos.oauth.OauthProfileConfig;
+import br.com.tp.lncr.core.utils.security.TokenEncoderUtils;
+
+public class OauthToken {
+    private final String accessToken;
+    private final String tokenType;
+    private final Integer expiresIn;
+
+    public OauthToken(OauthCredentialsDTO credentialsDto, OauthProfileConfig profileConfig) {
+        this.tokenType = profileConfig.getTokenType();
+        this.expiresIn = profileConfig.getExpireIn();
+        this.accessToken = TokenEncoderUtils.generateToken(credentialsDto, profileConfig);
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public Integer getExpiresIn() {
+        return expiresIn;
+    }
+
+}

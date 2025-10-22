@@ -1,0 +1,175 @@
+package br.com.tp.lncr.core.domain.fooditem;
+
+import br.com.tp.lncr.core.dtos.fooditem.FoodItemImageDTO;
+import br.com.tp.lncr.core.exceptions.FoodItemException;
+import br.com.tp.lncr.core.utils.FoodItemImageRules;
+import br.com.tp.lncr.core.utils.LoggerUtil;
+
+import java.util.Base64;
+import java.util.Map;
+
+
+public class FoodItemImage {
+
+    private Integer id;
+    private Integer foodItemId;
+    private String data;
+    private String location;
+    private String fileName;
+    private String fileExtension;
+    private String imageError;
+
+    public FoodItemImage() {
+    }
+
+    public FoodItemImage(FoodItemImageDTO foodItemImageDTO) {
+        new FoodItemImage(foodItemImageDTO, null);
+    }
+
+    public FoodItemImage(FoodItemImageDTO foodItemImageDTO, FoodItemImageRules foodItemImageRules) {
+        if (foodItemImageDTO != null) {
+            this.id = foodItemImageDTO.getId();
+            this.foodItemId = foodItemImageDTO.getFoodItemId();
+            this.data = foodItemImageDTO.getData();
+            this.location = foodItemImageDTO.getLocation();
+            if (foodItemImageDTO.getFileName() != null) {
+                this.fileName = foodItemImageDTO.getFileName();
+            }
+            this.fileExtension = foodItemImageDTO.getFileExtension();
+            this.imageError = foodItemImageDTO.getImageError();
+            if (foodItemImageRules != null) {
+                validateImage(foodItemImageRules);
+            }
+            if(this.fileExtension != null && this.id != null){
+                this.fileName = this.id + "." + this.fileExtension;
+            }
+
+        }
+    }
+
+    public FoodItemImage(Integer id, Integer foodItemId, String data, String location, String fileName, String fileExtension, String imageError) {
+        this.id = id;
+        this.foodItemId = foodItemId;
+        this.data = data;
+        this.location = location;
+        this.fileName = fileName;
+        this.fileExtension = fileExtension;
+        this.imageError = imageError;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getFoodItemId() {
+        return foodItemId;
+    }
+
+    public void setFoodItemId(Integer foodItemId) {
+        this.foodItemId = foodItemId;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
+    public String getImageError() {
+        return imageError;
+    }
+
+    public void setImageError(String imageError) {
+        this.imageError = imageError;
+    }
+
+    //Método para validar imagens enviadas
+    public void validateImage(FoodItemImageRules foodItemImageRules) {
+        String allowedExtensions = String.join(", ", foodItemImageRules.getAllowedExtentions().keySet());
+        Integer maxSizeInBytes = foodItemImageRules.getImageMaxSize();
+        if (foodItemImageRules.getImageMaxSize() != null && foodItemImageRules.getImageMaxSize() > 0) {
+            validateImageSize(this.data, maxSizeInBytes);
+        }
+        if (foodItemImageRules.getAllowedExtentions() != null) {
+            validateImageExentions(foodItemImageRules, allowedExtensions);// Adicione este novo método na classe
+        }
+    }
+
+    public void validateImageSize(String base64, Integer maxSizeInBytes) {
+        if (getDecodeImageData(base64).length > maxSizeInBytes) {
+            LoggerUtil.info("Tamanho da imagem excede o limite de "+ maxSizeInBytes + " bytes");
+            this.imageError = "Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes"; //Adiciona mensagem de erro de tamanho inválid para o usuário
+            throw new FoodItemException("Encontrada imagem que excede o limite de " + maxSizeInBytes + "bytes", 404);
+        }
+    }
+
+    private void validateImageExentions(FoodItemImageRules foodItemImageRules, String allowedExtensions) {
+        for (Map.Entry<String, String> entry : foodItemImageRules.getAllowedExtentions().entrySet()) { // Lista de extensões permitidas
+            String headerExtensions = entry.getValue();
+            if (validateImageExtention(this.data, headerExtensions)) { // Valida se extensão é permitida
+                this.fileExtension = entry.getKey();
+            }
+        }
+        if (this.fileExtension == null) {
+            LoggerUtil.info("Imagens inválidas. Extensões permitidas: "+ allowedExtensions);
+            this.imageError = "Encontrada uma imagem inválida. Extensões permitidas:" + allowedExtensions; //Adiciona mensagem de erro de extensão não permitida
+            throw new FoodItemException("Encontrada uma imagem inválida. Extensões permitidas:" + allowedExtensions, 404);
+        }
+    }
+
+    public byte[] getDecodeImageData(String base64) {
+        try {
+            if (base64 != null) {
+                return Base64.getDecoder().decode(base64);
+            }
+            throw new FoodItemException("Sem informações da imagem", 400);
+        } catch (IllegalArgumentException e) {
+            throw new FoodItemException("Erro ao decodificar a imagem. Informar um base64 válido .", 404);
+        }
+    }
+
+    public boolean validateImageExtention(String base64, String headerExtensions) {
+        String header = bytesToHex(getDecodeImageData(base64));
+        return header.startsWith(headerExtensions);
+    }
+
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : bytes) {
+            hexString.append(String.format("%02X", b));
+        }
+        return hexString.toString();
+    }
+
+
+}

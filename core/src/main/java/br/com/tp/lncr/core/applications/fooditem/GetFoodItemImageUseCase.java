@@ -1,0 +1,28 @@
+package br.com.tp.lncr.core.applications.fooditem;
+
+import br.com.tp.lncr.core.domain.fooditem.FoodItemImage;
+import br.com.tp.lncr.core.exceptions.FoodItemException;
+import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
+import br.com.tp.lncr.core.utils.LoggerUtil;
+
+public class GetFoodItemImageUseCase {
+
+    private final FoodItemGateway foodItemGateway;
+
+    public GetFoodItemImageUseCase(FoodItemGateway foodItemGateway) {
+        this.foodItemGateway = foodItemGateway;
+    }
+
+    public FoodItemImage getById(Integer foodItemImageId) {
+        LoggerUtil.info("Iniciando busca de imagem com id: " + foodItemImageId);
+        FoodItemImage foodItemImage = foodItemGateway.getFoodItemImageById(foodItemImageId);
+        if (foodItemImage == null) {
+            throw new FoodItemException("Não encontrada imagem com id: " + foodItemImageId, 404);
+        }
+
+        if (foodItemImage.getData() == null) {
+            throw new FoodItemException("Não encontrado arquivo " + foodItemImage.getFileName() + " no sistema de arquivo.", 500);
+        }
+        return foodItemImage;
+    }
+}

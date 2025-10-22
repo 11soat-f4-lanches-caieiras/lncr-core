@@ -1,0 +1,170 @@
+package br.com.tp.lncr.core.domain.customerorder;
+
+import br.com.tp.lncr.core.dtos.customerorder.CustomerOrderDTO;
+import br.com.tp.lncr.core.enums.CustomerOrderStatus;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.interfaces.SortedByStatusCreated;
+import br.com.tp.lncr.core.utils.EnumUtils;
+import br.com.tp.lncr.core.utils.LoggerUtil;
+
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class CustomerOrder implements SortedByStatusCreated {
+    private Integer id;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+    private String status;
+    private Double totalCost;
+    private CustomerOrderCustomer customer;
+    private List<CustomerOrderFoodItem> foodItems;
+
+    public CustomerOrder(Integer id, String status, Double totalCost, LocalDateTime created, LocalDateTime updated, CustomerOrderCustomer customer, List<CustomerOrderFoodItem> foodItems) {
+        this.id = id;
+        this.status = status;
+        this.totalCost = totalCost;
+        this.created = created;
+        this.updated = updated;
+        this.customer = customer;
+        this.foodItems = foodItems;
+        setTotalCost();
+    }
+
+    public CustomerOrder(CustomerOrderDTO dto) {
+        this.id = dto.getId();
+        this.status = dto.getStatus();
+        this.totalCost = dto.getTotalCost();
+        this.created = dto.getCreated();
+        this.updated = dto.getUpdated();
+        this.customer = null;
+        if (dto.getCustomer() != null) {
+            this.customer = new CustomerOrderCustomer(dto.getCustomer());
+        }
+
+        //Regra de negócio que pedido deve ter pelo menos um item no pedido
+        if (dto.getFoodItems()==null || dto.getFoodItems().isEmpty()) {
+            throw new CustomerOrderException("Pedido do cliente deve conter pelo menos 1 item",400);
+        }
+
+        this.foodItems = dto.getFoodItems().stream().map(CustomerOrderFoodItem::new).toList();
+        setTotalCost();
+    }
+
+    public CustomerOrder() {
+
+    }
+
+    public void setTotalCost(Double totalCost){
+        this.totalCost = totalCost;
+    }
+
+    public void setTotalCost() {
+        this.totalCost = 0.0;
+        if (this.foodItems != null) {
+            for (CustomerOrderFoodItem foodItem : foodItems) {
+                this.totalCost += foodItem.getPrice() == null ? 0.00 : foodItem.getPrice();
+            }
+        }
+        this.totalCost = Double.parseDouble(new DecimalFormat("#.00").format(this.totalCost).replace(",", "."));
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status, Boolean forceUpdate) {
+        if (!Boolean.TRUE.equals(forceUpdate)) {
+            cancelCustomerOrderRule(status);
+        }
+        this.status = validateNewStatusRules(status,forceUpdate);
+    }
+
+    public void setStatus(String status) {
+        this.status = validateNewStatusRules(status,true);
+    }
+
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public CustomerOrderCustomer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerOrderCustomer customer) {
+        this.customer = customer;
+    }
+
+    public List<CustomerOrderFoodItem> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(List<CustomerOrderFoodItem> foodItems) {
+        this.foodItems = foodItems;
+        if (this.foodItems != null) {
+            setTotalCost();
+        }
+    }
+
+    public void setStatus(CustomerOrderStatus status) {
+        this.status = fromCustomerOrderStatus(status);
+    }
+
+    public String fromCustomerOrderStatus(CustomerOrderStatus status) {
+        return status.getDescription();
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
+
+    private String validateNewStatusRules(String newStatus, Boolean forceUpdate) {
+        LoggerUtil.debug("Validando regras de novo status do pedido.");
+        return EnumUtils.validateNewStatusRules(CustomerOrderStatus.class, this.getStatus(), newStatus, forceUpdate,
+                message -> new CustomerOrderException(message, 400));
+    }
+    private void cancelCustomerOrderRule(String newStatus) {
+        LoggerUtil.debug("Validando regra de cancelamento do pedido.");
+        if (newStatus.equalsIgnoreCase(CustomerOrderStatus.CANCELLED.getDescription())) {
+            if (this.status.equals(CustomerOrderStatus.CHECKOUT.getDescription()) || this.status.equals(CustomerOrderStatus.RECEIVED.getDescription())) {
+                this.status = newStatus;
+            }else {
+                throw new CustomerOrderException("Não é possível cancelar o pedido com status: " + this.status, 400);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerOrder{" +
+                "id=" + id +
+                ", _created=" + created +
+                ", _updated=" + updated +
+                ", status='" + status + '\'' +
+                ", totalCost=" + totalCost +
+                ", customer=" + customer +
+                ", foodItems=" + foodItems +
+                '}';
+    }
+}

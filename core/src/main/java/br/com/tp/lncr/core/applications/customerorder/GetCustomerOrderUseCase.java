@@ -1,0 +1,53 @@
+package br.com.tp.lncr.core.applications.customerorder;
+
+import br.com.tp.lncr.core.domain.customerorder.CustomerOrder;
+import br.com.tp.lncr.core.enums.CustomerOrderStatus;
+import br.com.tp.lncr.core.exceptions.CustomerOrderException;
+import br.com.tp.lncr.core.interfaces.customerorder.CustomerOrderGateway;
+import br.com.tp.lncr.core.utils.LoggerUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GetCustomerOrderUseCase {
+
+    private final CustomerOrderGateway customerOrderGateway;
+
+    public GetCustomerOrderUseCase(CustomerOrderGateway customerOrderGateway) {
+        this.customerOrderGateway = customerOrderGateway;
+    }
+
+    public CustomerOrder getById(Integer customerOrderId, Boolean includFoodItems) {
+        LoggerUtil.info("Iniciando busca por pedido com id: " + customerOrderId);
+        CustomerOrder customerOrder = this.customerOrderGateway.getCustomerOrderById(customerOrderId,includFoodItems);
+        if (customerOrder == null) {
+            throw new CustomerOrderException("Não encontrado pedido com id: " + customerOrderId,404);
+        }
+        CustomerOrderUseCaseUtils.getCustomerDetails(customerOrder,customerOrderGateway);
+        if (Boolean.TRUE.equals(includFoodItems)) CustomerOrderUseCaseUtils.getFoodItemsDetails(customerOrder, customerOrderGateway);
+        LoggerUtil.info("Pedido encontrado: " + customerOrder);
+        return customerOrder;
+    }
+
+    public List<CustomerOrder>  getByStatusList(List<String> statusList, Boolean includeFoodItems) {
+        LoggerUtil.info("Iniciando busca por pedidos com status: " + String.join(", ", statusList));
+        List<Integer> statusListIds = getStatusListIds(statusList);
+        List<CustomerOrder> customerOrderList = this.customerOrderGateway.getCustomerOrderByStatusList(statusListIds, includeFoodItems);
+        if (customerOrderList == null || customerOrderList.isEmpty()){
+            throw new CustomerOrderException("Não existe pedidos com os status: " + String.join(", ", statusList) ,404);
+        }
+        CustomerOrderUseCaseUtils.getCustomerDetailsList(customerOrderList, customerOrderGateway);
+        if (Boolean.TRUE.equals(includeFoodItems)) CustomerOrderUseCaseUtils.getFoodItemsDetailsList(customerOrderList,customerOrderGateway);
+        LoggerUtil.info("Pedidos encontrados: " + customerOrderList.size());
+        return customerOrderList;
+    }
+    
+    private List<Integer> getStatusListIds(List<String> statusList){
+        LoggerUtil.debug("Convertendo status de pedidos para IDs");
+        List<Integer> statusListIds = new ArrayList<>();
+        for(String status : statusList){
+            statusListIds.add(CustomerOrderStatus.fromDescription(status).getId());
+        }
+        return statusListIds;
+    }
+}
