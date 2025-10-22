@@ -17,6 +17,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--suppress UnresolvedMavenProperty -->
         <sonar.branch.name>${BRANCH_NAME}</sonar.branch.name>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -32,10 +33,10 @@
             br.com.tp.lncr.core.domain
         </sonar.cpd.exclusions>
         <sonar.coverage.jacoco.xmlReportPaths>
-            ../target/site/jacoco-aggregate/jacoco.xml
+            target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
     <dependencies>
         <dependency>
