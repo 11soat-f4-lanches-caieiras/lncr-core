@@ -1,4 +1,4 @@
-name: Build and Publish Core JAR
+name: Build and Publish lncr-core
 on:
   push:
     branches: [ develop ]
