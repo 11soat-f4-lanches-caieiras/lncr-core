@@ -19,7 +19,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--suppress UnresolvedMavenProperty -->
-        <sonar.branch.name>${BRANCH_NAME}</sonar.branch.name>
+        <sonar.branch.name>master</sonar.branch.name>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
         <sonar.organization>11soat-f4-lanches-caieiras</sonar.organization>
