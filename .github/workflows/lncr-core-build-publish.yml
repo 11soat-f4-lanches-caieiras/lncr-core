@@ -22,14 +22,13 @@ permissions:
   actions: write
 
 env:
-  APP_DOMAIN: 'core'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_ACTOR: ${{ github.actor}}
   LNCR_MAVEN_ACTOR: ${{ secrets.LNCR_MAVEN_ACTOR }}
   LNCR_MAVEN_PAT: ${{ secrets.LNCR_MAVEN_PAT }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  MAVEN_POM_PATH: "${{ env.APP_DOMAIN }}/pom.xml"
-  JACOCO_REPORT_PATH: "${{ env.APP_DOMAIN }}/target/site/jacoco/jacoco.xml"
+  MAVEN_POM_PATH: 'core/pom.xml'
+  JACOCO_REPORT_PATH: 'core'/target/site/jacoco/jacoco.xml'
 
 
 jobs:
