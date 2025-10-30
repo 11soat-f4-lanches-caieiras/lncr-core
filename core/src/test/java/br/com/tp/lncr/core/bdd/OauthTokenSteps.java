@@ -1,4 +1,4 @@
-package br.com.tp.lncr.core.bdd.oauth;
+package br.com.tp.lncr.core.bdd;
 
 import br.com.tp.lncr.core.domain.oauth.OauthToken;
 import br.com.tp.lncr.core.dtos.oauth.OauthCredentialsDTO;

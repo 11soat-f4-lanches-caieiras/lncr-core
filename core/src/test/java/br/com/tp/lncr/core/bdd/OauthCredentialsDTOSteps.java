@@ -1,4 +1,4 @@
-package br.com.tp.lncr.core.bdd.oauth;
+package br.com.tp.lncr.core.bdd;
 
 import br.com.tp.lncr.core.dtos.oauth.OauthCredentialsDTO;
 import io.cucumber.java.pt.Dado;
