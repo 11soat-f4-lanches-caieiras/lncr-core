@@ -18,8 +18,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--suppress UnresolvedMavenProperty -->
-        <sonar.branch.name>master</sonar.branch.name>
+        <sonar.branch.name>master</sonar.branch.name> <!--fixado branch como master, pois Free Tier do SonarQube aceita somente uma branch-->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
         <sonar.organization>11soat-f4-lanches-caieiras</sonar.organization>
@@ -38,26 +37,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>5.14.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>4.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.19.2</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -72,9 +54,21 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
-            <version>1.9.3</version>
+            <version>1.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.14.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -143,6 +137,7 @@
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/*TestRunner.java</include>
+                        <include>**/AllBddRunner*.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <cucumber.junit-platform.naming-strategy>long</cucumber.junit-platform.naming-strategy>

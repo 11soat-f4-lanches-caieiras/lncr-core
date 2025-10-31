@@ -22,13 +22,19 @@ permissions:
   actions: write
 
 env:
+  DOMAIN: ${{ vars.DOMAIN }}
+  GITHUB_ACTOR: ${{ github.actor}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  JACOCO_REPORT_PATH: '${{ vars.DOMAIN }}/target/site/jacoco/jacoco.xml'
+  LNCR_MAVEN_ACTOR: ${{ secrets.LNCR_MAVEN_ACTOR }}
+  LNCR_MAVEN_PAT: ${{ secrets.LNCR_MAVEN_PAT }}
+  MAVEN_POM_PATH: '${{ vars.DOMAIN }}/pom.xml'
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
 jobs:
   build:
-    name: Validação e Construção do lncr-core
+    name: Construir Artefato lncr-core
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true || (github.event_name == 'push' && github.ref == 'refs/heads/develop') || github.event_name == 'workflow_dispatch'
     steps:
@@ -53,15 +59,19 @@ jobs:
 
       - name: Análise SonarQube
         env:
-          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          MAVEN_SETTINGS_PATH: ${{ env.MAVEN_SETTINGS_PATH }}
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
         run: |
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f core/pom.xml -Pcoverage
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -f $MAVEN_POM_PATH -Pcoverage
 
       - name: Cobertura de Testes Jacoco & Sonar
+        env:
+          JACOCO_REPORT_PATH: ${{ env.JACOCO_REPORT_PATH }}
         run: |
-          if [ -f core/target/site/jacoco/jacoco.xml ]; then
-            COVERED=$(grep -oP 'counter type="INSTRUCTION"[^>]+covered="\K[0-9]+' core/target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
-            MISSED=$(grep -oP 'counter type="INSTRUCTION"[^>]+missed="\K[0-9]+' core/target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
+          if [ -f $JACOCO_REPORT_PATH ]; then
+            COVERED=$(grep -oP 'counter type="INSTRUCTION"[^>]+covered="\K[0-9]+' $JACOCO_REPORT_PATH | awk '{s+=$1} END {print s}')
+            MISSED=$(grep -oP 'counter type="INSTRUCTION"[^>]+missed="\K[0-9]+' $JACOCO_REPORT_PATH | awk '{s+=$1} END {print s}')
             if [[ "$COVERED" =~ ^[0-9]+$ ]] && [[ "$MISSED" =~ ^[0-9]+$ ]] && [ $((COVERED + MISSED)) -ne 0 ]; then
               PERCENT=$(awk "BEGIN {printf \"%.2f\", 100 * $COVERED / ($COVERED + $MISSED)}")
               echo "Cobertura de instruções: $PERCENT%"
@@ -93,12 +103,18 @@ jobs:
               fi
 
       - name: Construir JAR
-        run: mvn clean package -f core/pom.xml -DskipTests
+        env:
+          MAVEN_SETTINGS_PATH: ${{ env.MAVEN_SETTINGS_PATH }}
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
+
+        run: mvn clean package -f $MAVEN_POM_PATH -DskipTests
 
       - name: Obter versão do pom.xml
+        env:
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
         id: get_version
         run: |
-          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f core/pom.xml)
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f $MAVEN_POM_PATH)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Upload JAR como artefato
@@ -128,9 +144,11 @@ jobs:
           server-password: GITHUB_TOKEN
 
       - name: Obter versão do pom.xml
+        env:
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
         id: get_version
         run: |
-          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f core/pom.xml)
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f $MAVEN_POM_PATH)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Verificar se pacote existe
@@ -232,15 +250,18 @@ jobs:
           fi
 
       - name: Validar configurações Maven
+        env:
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
         run: |
           echo "Validando configuração Maven para GitHub Packages..."
-          mvn help:effective-settings -f core/pom.xml | grep -A 10 -B 10 github || true
+          mvn help:effective-settings -f $MAVEN_POM_PATH | grep -A 10 -B 10 github || true
 
       - name: Publicar no GitHub Packages
-        run: mvn deploy -f core/pom.xml -DskipTests
         env:
-          GITHUB_ACTOR: ${{ github.actor }}
+          MAVEN_POM_PATH: ${{ env.MAVEN_POM_PATH }}
+          GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn deploy -f $MAVEN_POM_PATH -DskipTests
 
       - name: Download do artefato construído
         uses: actions/download-artifact@v4
