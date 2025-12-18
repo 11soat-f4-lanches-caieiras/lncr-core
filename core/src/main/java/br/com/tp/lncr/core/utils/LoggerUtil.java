@@ -17,6 +17,17 @@ public class LoggerUtil {
     private static final String LOG_FILE = "../../application.log";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     private static final String PID = getProcessId();
+    private static final boolean FILE_LOGGING_ENABLED = isFileLoggingEnabled();
+
+    private static boolean isFileLoggingEnabled() {
+        try {
+            java.io.File logFile = new java.io.File(LOG_FILE);
+            java.io.File parentDir = logFile.getParentFile();
+            return parentDir != null && parentDir.exists() && parentDir.canWrite();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public static void log(Level level, String message) {
         String logMessage = String.format("%s  %-5s %s --- [%s] %s : %s",
@@ -27,7 +38,9 @@ public class LoggerUtil {
                 LoggerUtil.class.getSimpleName(),
                 message);
         logger.info(logMessage);
-        writeToFile(logMessage);
+        if (FILE_LOGGING_ENABLED) {
+            writeToFile(logMessage);
+        }
     }
 
     public static void info(String message) {
@@ -46,7 +59,7 @@ public class LoggerUtil {
         try (FileWriter fw = new FileWriter(LOG_FILE, true); PrintWriter pw = new PrintWriter(fw)) {
             pw.println(message);
         } catch (IOException e) {
-            System.err.println("ERRO ao escrever no arquivo de log: " + e.getMessage());
+            logger.warning("ERRO ao escrever no arquivo de log: " + e.getMessage());
         }
     }
 
