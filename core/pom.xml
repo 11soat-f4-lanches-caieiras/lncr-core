@@ -30,9 +30,9 @@
         <!--suppress UnresolvedMavenProperty -->
         <sonar.token>${SONAR_TOKEN}</sonar.token>
         <sonar.cpd.exclusions>
-            br.com.tp.lncr.core.dtos,
-            br.com.tp.lncr.core.exceptions,
-            br.com.tp.lncr.core.domain
+            **/br/com/tp/lncr/core/dtos/**/*,
+            **/br/com/tp/lncr/core/exceptions/**/*,
+            **/br/com/tp/lncr/core/domain/**/*
         </sonar.cpd.exclusions>
         <sonar.coverage.jacoco.xmlReportPaths>
             target/site/jacoco/jacoco.xml
