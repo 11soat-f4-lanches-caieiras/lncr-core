@@ -34,6 +34,9 @@
             **/br/com/tp/lncr/core/exceptions/**/*,
             **/br/com/tp/lncr/core/domain/**/*
         </sonar.cpd.exclusions>
+        <sonar.coverage.exclusions>
+            **/br/com/tp/lncr/core/utils/LoggerUtil.java
+        </sonar.coverage.exclusions>
         <sonar.coverage.jacoco.xmlReportPaths>
             target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
