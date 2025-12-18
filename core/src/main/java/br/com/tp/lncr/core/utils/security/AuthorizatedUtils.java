@@ -8,8 +8,8 @@ public class AuthorizatedUtils {
     private AuthorizatedUtils() {
     }
 
-    public static Boolean isAuthorizedResult(Map<String, Object> allowResourcesRules, String scope, String method, String path) {
-        Boolean result = false;
+    public static boolean isAuthorizedResult(Map<String, Object> allowResourcesRules, String scope, String method, String path) {
+        boolean result = false;
         if (allowResourcesRules.containsKey(scope)) {
             Map<String, List<String>> scopeData = (Map<String, List<String>>) allowResourcesRules.get(scope);
 
