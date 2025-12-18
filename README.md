@@ -14,7 +14,7 @@ Para configuar o artefato em outros projetos, adicione no `pom.xml` do seu proje
 <project>
 <repositories>
     <repository>
-        <id>github</id>
+        <id>lncr-core</id>
         <name>GitHub Packages</name>
         <url>https://maven.pkg.github.com/11soat-f3-lanches-caieiras/lncr-core</url>
         <releases>
@@ -54,7 +54,7 @@ Para configuar o artefato em outros projetos, adicione no `pom.xml` do seu proje
     <!-- Configuração de servidores para autenticação -->
     <servers>
         <server>
-            <id>github</id>
+            <id>lncr-core</id>
             <username>${env.GITHUB_USERNAME}</username>
             <password>${env.GITHUB_TOKEN}</password>
         </server>
@@ -158,9 +158,9 @@ meu-projeto/
     
     <repositories>
         <repository>
-            <id>github</id>
+            <id>lncr-core</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/11soat-f3-lanches-caieiras/lncr-core</url>
+            <url>https://maven.pkg.github.com/11soat-f4-lanches-caieiras/lncr-core</url>
             <releases>
                 <updatePolicy>always</updatePolicy>
             </releases>
@@ -171,7 +171,7 @@ meu-projeto/
         <dependency>
             <groupId>br.com.tp.lncr</groupId>
             <artifactId>core</artifactId>
-            <version>2.0</version>
+            <version>3.0</version>
         </dependency>
     </dependencies>
     
@@ -183,8 +183,7 @@ meu-projeto/
 ```java
 package com.exemplo;
 
-import br.com.tp.lncr.core.domain.entities.Cliente;
-import br.com.tp.lncr.core.domain.valueobjects.CPF;
+import br.com.tp.lncr.core.domain.*;
 
 public class MinhaClasse {
     public static void main(String[] args) {

@@ -46,7 +46,7 @@ public class LoggerUtil {
         try (FileWriter fw = new FileWriter(LOG_FILE, true); PrintWriter pw = new PrintWriter(fw)) {
             pw.println(message);
         } catch (IOException e) {
-            error("Erro ao escrever no arquivo de log: " + e.getMessage());
+            System.err.println("ERRO ao escrever no arquivo de log: " + e.getMessage());
         }
     }
 
