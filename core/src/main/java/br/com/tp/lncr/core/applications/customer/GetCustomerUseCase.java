@@ -26,10 +26,10 @@ public class GetCustomerUseCase {
     }
 
     public List<Customer> getAll(Integer limit) {
+        limit = limit == null ? 10 : limit;
         if ((limit <= 0 || limit > 50)) {
             throw new CustomerException("Limite deve ser maior que 0 e menor ou igual a 50", 400);
         }
-        limit = limit == null ? 10 : limit;
         return customerGateway.getAllCustomers(limit);
     }
 
