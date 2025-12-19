@@ -9,6 +9,7 @@ import br.com.tp.lncr.core.interfaces.fooditem.FoodItemDatabase;
 import br.com.tp.lncr.core.interfaces.fooditem.FoodItemGateway;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FoodItemGatewayImpl implements FoodItemGateway {
 
@@ -57,7 +58,7 @@ public class FoodItemGatewayImpl implements FoodItemGateway {
         return this.foodItemDatabase.findAllFoodItems(limit, categoryId, includeImages)
                 .stream()
                 .map(foodItemMapper::foodItemToDomain)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -73,7 +74,7 @@ public class FoodItemGatewayImpl implements FoodItemGateway {
     @Override
     public List<FoodItem> getFoodItemByIdList(List<Integer> foodItemIds) {
         List<FoodItemDTO> foodItemDTOList =  this.foodItemDatabase.findFoodItemByIdList(foodItemIds);
-        return foodItemDTOList.stream().map(foodItemMapper::foodItemToDomain).toList();
+        return foodItemDTOList.stream().map(foodItemMapper::foodItemToDomain).collect(Collectors.toList());
     }
 
     @Override

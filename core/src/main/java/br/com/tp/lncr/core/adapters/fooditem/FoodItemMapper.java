@@ -8,6 +8,7 @@ import br.com.tp.lncr.core.enums.FoodItemCategory;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FoodItemMapper {
 
@@ -64,11 +65,11 @@ public class FoodItemMapper {
 
     public List<FoodItemImageDTO> foodItemImageToDtoList(List<FoodItemImage> images) {
         if (images == null) return Collections.emptyList();
-        return images.stream().map(this::foodItemImageToDTO).toList();
+        return images.stream().map(this::foodItemImageToDTO).collect(Collectors.toList());
     }
 
     public List<FoodItemImage> foodItemImageToDomainList(List<FoodItemImageDTO> dtos) {
         if (dtos == null) return Collections.emptyList();
-        return dtos.stream().map(this::foodItemImageToDomain).toList();
+        return dtos.stream().map(this::foodItemImageToDomain).collect(Collectors.toList());
     }
 }
