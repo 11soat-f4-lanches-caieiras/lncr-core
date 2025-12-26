@@ -6,8 +6,13 @@ Este documento contém as configurações necessárias para utilizar o artefato 
 O `lncr-core` é um módulo que contém as regras de negócio, entidades do domínio, interfaces dos casos de uso da aplicação Lanches Caieiras e bibliotecas de uso comum.
 Ele está publicado no GitHub Packages e pode ser utilizado como dependência em projetos Mave.
 
+## 2. Sonar Quality Gate
 
-## 2. Utilizando lncr-core nos projetos
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=11soat-f4-lanches-caieiras_lncr-core&metric=alert_status&token=c598f158e4b4c1ed668215fe45a22a4f69563000)](https://sonarcloud.io/summary/new_code?id=11soat-f4-lanches-caieiras_lncr-core)
+
+Acesse o dashboard completo: [SonarCloud - lncr-core](https://sonarcloud.io/project/overview?id=11soat-f4-lanches-caieiras_lncr-core)
+
+## 3. Utilizando lncr-core nos projetos
 Para configuar o artefato em outros projetos, adicione no `pom.xml` do seu projeto:
 
 ```xml
@@ -36,7 +41,7 @@ Para configuar o artefato em outros projetos, adicione no `pom.xml` do seu proje
 </project>
 ```
 
-## 3. Configuração do settings.xml do Maven
+## 4. Configuração do settings.xml do Maven
 
 ### Localização do Arquivo
 - **Windows**: `C:\Users\{seu-usuario}\.m2\settings.xml`
@@ -63,7 +68,7 @@ Para configuar o artefato em outros projetos, adicione no `pom.xml` do seu proje
 </settings>
 ```
 
-## 4. Instruções para Configuração de Login e Senha
+## 5. Instruções para Configuração de Login e Senha
 
 ### Passo 1: Criar Personal Access Token (PAT)
 
@@ -118,7 +123,7 @@ mvn dependency:resolve
 mvn clean compile
 ```
 
-## 5. Exemplo Completo de Uso
+## 6. Exemplo Completo de Uso
 
 ### Estrutura do projeto consumidor:
 
